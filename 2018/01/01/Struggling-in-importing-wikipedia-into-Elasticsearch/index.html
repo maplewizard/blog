@@ -1,0 +1,1013 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  Elasticsearch is a powerful search engine based on Lucene. It can build indexes on huge amount of data and we can query the data fast by keywords. Different from com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struggling in importing wikipedia into Elasticsearch">
+<meta property="og:url" content="http://yoursite.com/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Elasticsearch is a powerful search engine based on Lucene. It can build indexes on huge amount of data and we can query the data fast by keywords. Different from com">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/blog/images/logstash_pipeline.png">
+<meta property="og:updated_time" content="2018-01-02T09:28:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struggling in importing wikipedia into Elasticsearch">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Elasticsearch is a powerful search engine based on Lucene. It can build indexes on huge amount of data and we can query the data fast by keywords. Different from com">
+<meta name="twitter:image" content="http://yoursite.com/blog/images/logstash_pipeline.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/"/>
+
+
+
+
+
+  <title> Struggling in importing wikipedia into Elasticsearch | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Struggling in importing wikipedia into Elasticsearch
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T22:32:49+08:00">
+                2018-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" class="leancloud_visitors" data-flag-title="Struggling in importing wikipedia into Elasticsearch">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>Elasticsearch is a powerful search engine based on Lucene. It can build indexes on huge amount of data and we can query the data fast by keywords. Different from common database, Elasticsearch build inverted index and is capable of search keywords on all documents. The serch tool of wikipedia now is Elasticsearch. In this post, we introduce how to make a local Elasticsearch and import wikipedia dump into it. Some basic usages of Elasticsearch are also introduced.</p>
+<h2 id="download-elasticsearch">Download Elasticsearch</h2>
+<p>We run Elasticsearch on Linux system. Fisrly, we download Elasticsearch from the web.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.zip</span><br><span class="line">unzip elasticsearch-5.5.2.zip</span><br><span class="line"><span class="built_in">cd</span> elasticsearch-5.5.2</span><br><span class="line">bin/elasticsearch-plugin install analysis-icu</span><br><span class="line">./bin/elasticsearch-plugin install org.wikimedia.search:extra:5.5.2</span><br></pre></td></tr></table></figure>
+<p>We installed some plugins provided by wikimedia. Afterwards, we start Elasticsearch by: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/elasticsearch</span><br></pre></td></tr></table></figure></p>
+<h2 id="do-not-follow-the-official-old-post">Do not follow the official old post</h2>
+<p>This famous post provided by Elasticsearch <a href="ttps://www.elastic.co/blog/loading-wikipedia" target="_blank" rel="noopener">https://www.elastic.co/blog/loading-wikipedia</a> is out-of-date since recently, a lot of changes have been made in the development of Elasticsearch. I personally encountered a lot of problems during reproduce this tutorial. And I cannot find the solution.</p>
+<h2 id="use-logstash">Use Logstash</h2>
+<p>Logstash is log processing tool. However, it can also be used as the processing tool of our data. Since wikipedia dump is a text stream, Logstash can process text data by a rich set of plugins. The framework of Logstash is shown as follows <img src="/blog/images/logstash_pipeline.png" alt="Logstash"> We can define our own Imput, Filter and Output part to process the text stream to our desired data.</p>
+<a id="more"></a>
+<p>Firstly, we download Logstash and unzip it. <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://artifacts.elastic.co/downloads/logstash/logstash-6.1.1.zip</span><br><span class="line">unzip logstash-6.1.1.zip</span><br><span class="line">cd logstash-6.1.1</span><br></pre></td></tr></table></figure></p>
+<p>Then, we make our config file to define the three parts of Logstash. The config file <code>wikipedia.conf</code> is as follows: <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  stdin &#123;</span><br><span class="line">    codec =&gt; multiline</span><br><span class="line">    &#123;</span><br><span class="line">        pattern =&gt; "&lt;page"</span><br><span class="line">        negate =&gt; true</span><br><span class="line">        what =&gt; "previous"</span><br><span class="line">        auto_flush_interval =&gt; 1</span><br><span class="line">    &#125;</span><br><span class="line">    #sincedb_path =&gt; "/dev/null"</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">filter &#123;</span><br><span class="line">    xml &#123;</span><br><span class="line">        source =&gt; "message"</span><br><span class="line">        target =&gt; "doc"</span><br><span class="line">        id =&gt; "id"</span><br><span class="line">        store_xml =&gt; false</span><br><span class="line">        periodic_flush =&gt; true</span><br><span class="line">        xpath =&gt; [ "(page/title/text())[1]", "title" ]</span><br><span class="line">        xpath =&gt; [ "(page/id/text())[1]", "id" ]</span><br><span class="line">        xpath =&gt; [ "page/revision/text", "text" ]</span><br><span class="line">    &#125;</span><br><span class="line">    mutate &#123;</span><br><span class="line">        remove_field =&gt; ['doc', 'path', 'host', 'message', 'tags']</span><br><span class="line">        join =&gt; ["id", ""]</span><br><span class="line">        join =&gt; ["title", ""]</span><br><span class="line">        gsub =&gt; [</span><br><span class="line">            "text", "https?[^\s]+|&lt;text xml:space=\"preserve\"&gt;|&lt;/text&gt;", " ",</span><br><span class="line">            "text", "==See also==(.|\n)+|==References==(.|\n)+|==Further reading==(.|\n)+", " ",</span><br><span class="line">            "text", "(\&amp;lt;.+?\&amp;gt;)", " ",</span><br><span class="line">            "text", "(\/ref|\&#123;\&#123;[c|C]ite.+?\&#125;\&#125;)", " ",</span><br><span class="line">            "text", "[\[\[|\]\]|==|=|\(|\)|\&#123;\&#123;|\&#125;\&#125;|]|\#+|'+|\&amp;amp;|\&amp;lt;|\&amp;gt;|&amp;nbsp;", " ",</span><br><span class="line">            "text", "\.", " . ",</span><br><span class="line">            "text", "\,", " , ",</span><br><span class="line">            "text", "\:", " : ",</span><br><span class="line">            "text", "\;", " ; ",</span><br><span class="line">            "text", "\/", " \/ ",</span><br><span class="line">            "text", '"', ' " ',</span><br><span class="line">            "text", " +", " ",</span><br><span class="line">            "text", "\. (\. )+", ". ",</span><br><span class="line">            "text", '\n *(\n| )*', ' &lt;br&gt; '</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">   elasticsearch &#123;</span><br><span class="line">     hosts =&gt; "http://localhost:9200"</span><br><span class="line">     index =&gt; "enwiki"</span><br><span class="line">     document_id =&gt; "%&#123;id&#125;"</span><br><span class="line">  &#125;</span><br><span class="line">stdout &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>In the input part, we get text stream from stdin. We use multiline codec to seperate the text by xml tag <code>&lt;page&gt;</code>. In the filter part, we use two filters. The first is xml filter, it use xpath to extract information we need and pass the information to the next filter mutate. Mutate is a filter used to modify the data. Here, we removed some fields and convert the title and id from array to string. Afterwards, we use gsub module to do some regexp replacement to preprocess the raw text. Finally, we defined the output part. We set the output node to Elasticsearch (Logstash also support a lot of output database). we set the index of our data and we set the id of each document the same with our extracted id.</p>
+<p>We import our data by <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bunzip2 -c /dataset/wikipedia/enwiki-20171220-pages-articles.xml.bz2 |  ./bin/logstash -f wikipedia.conf</span><br></pre></td></tr></table></figure></p>
+<p>Here, <code>bunzip2 -c</code> output the file to stdout, by the pipline, the text stream is sent to logstash.</p>
+<h2 id="use-stream2es">Use stream2es</h2>
+<p>stream2es(<a href="https://github.com/elastic/stream2es" class="uri" target="_blank" rel="noopener">https://github.com/elastic/stream2es</a>) is an old tool provided by Elasticsearch team. If you think Logstash takes too much time, you can consider using this tool instead. Stream2es can import different kinds of formats of data into Elasticsearch. Please be noted that there are some size limit of jave. So we have to change the limit in the importing command. The command is as follows:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -DentityExpansionLimit=<span class="number">2147480000</span> -DtotalEntitySizeLimit=<span class="number">2147480000</span> -Djdk.xml.totalEntitySizeLimit=<span class="number">2147480000</span> -Xmx2g -jar stream2es wiki --target http:<span class="comment">//localhost:9200/enwiki --source /dataset/wikipedia/enwiki-20171220-pages-articles.xml.bz2 --log debug</span></span><br></pre></td></tr></table></figure>
+<p>During the importing, Stream2es will stuck and cannot import more data.</p>
+<h2 id="some-basic-operation-of-elasticsearch">Some basic operation of Elasticsearch</h2>
+<h3 id="view-index-information">View Index Information</h3>
+<p>After importing the data, we can view the index information by <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &apos;http://localhost:9200/_cat/indices?v&apos;</span><br><span class="line">health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size</span><br><span class="line">yellow open   enwiki InluFbzVRB24smaRgr2h2A   5   1   17959833          327       57gb           57gb</span><br></pre></td></tr></table></figure></p>
+<p>We can see that we have 17959833 documents and it occupy 57Gb disk.</p>
+<h3 id="search-by-content">Search by content</h3>
+<p>We use the following command to search the keyword &quot;&quot; <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl &apos;localhost:9200/enwiki/_search?pretty&apos;  -d &apos;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123; &quot;match&quot; : &#123; &quot;text&quot; : &quot;Beihang&quot; &#125;&#125;</span><br><span class="line">&#125;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>We get <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"took"</span> : <span class="number">5</span>,</span><br><span class="line">  <span class="attr">"timed_out"</span> : <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"_shards"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"successful"</span> : <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"failed"</span> : <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"hits"</span> : &#123;</span><br><span class="line">    <span class="attr">"total"</span> : <span class="number">149</span>,</span><br><span class="line">    <span class="attr">"max_score"</span> : <span class="number">22.093157</span>,</span><br><span class="line">    <span class="attr">"hits"</span> : [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"_index"</span> : <span class="string">"enwiki"</span>,</span><br><span class="line">        <span class="attr">"_type"</span> : <span class="string">"doc"</span>,</span><br><span class="line">        <span class="attr">"_id"</span> : <span class="string">"6713515"</span>,</span><br><span class="line">        <span class="attr">"_score"</span> : <span class="number">22.093157</span>,</span><br><span class="line">        <span class="attr">"_source"</span> : &#123;</span><br><span class="line">          <span class="attr">"@version"</span> : <span class="string">"1"</span>,</span><br><span class="line">          <span class="attr">"@timestamp"</span> : <span class="string">"2018-01-01T12:44:47.083Z"</span>,</span><br><span class="line">          <span class="attr">"text"</span> : [</span><br><span class="line">            <span class="string">"&lt;text xml:space=\"preserve\"&gt;&#123;&#123;Infobox venue\n| name= Beihang University Gymnasium\n|image=[[Image:2008 BUAA Gymnasium Indoor Arena.JPG|250px]]&amp;lt;br&amp;gt;The indoor arena at the 2008 Summer Olympics.\n|location=[[Beihang University]]\n|opened=2001\n|owner=Beihang University\n|seating_capacity=5,400\n|tenants=Beihang University &#125;&#125;\n'''Beihang University Gymnasium''' (&#123;&#123;Zh|s=北京航空航天大学体育馆|t=北京航空航天大學體育館|p=Běijīng Hángkōng Hángtiān Dàxué Tǐyùguǎn&#125;&#125;, sometime listed as the '''Beijing University of Aeronautics &amp;amp; Astronautics Gymnasium''') is a 5,400-seat indoor arena located on the campus of [[Beihang University]] in [[Beijing]], [[China]]. It hosted [[Weightlifting at the 2008 Summer Olympics|weightlifting]] competitions at the [[2008 Summer Olympics]] and [[Powerlifting at the 2008 Summer Paralympics|powerlifting]] competitions at the [[2008 Summer Paralympics]].\n\n==References==\n*[https://web.archive.org/web/20080810035639/http://en.beijing2008.cn/venues/aag/index.shtml Beijing2008.cn profile]\n\n&#123;&#123;2008 Summer Olympics venues&#125;&#125;\n&#123;&#123;Olympic venues weightlifting&#125;&#125;\n\n&#123;&#123;Coord|39|58|45|N|116|20|35|E|type:landmark|display=title&#125;&#125;\n\n[[Category:2008 Summer Olympic venues]]\n[[Category:Sports ve\nnues in Beijing]]\n[[Category:Indoor arenas in China]]\n[[Category:Olympic weightlifting venues]]\n\n\n&#123;&#123;PRChina-sports-venue-stub&#125;&#125;\n&#123;&#123;2008-Olympic-stub&#125;&#125;&lt;/text&gt;"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"title"</span> : <span class="string">"Beihang University Gymnasium"</span>,</span><br><span class="line">          <span class="attr">"id"</span> : <span class="string">"6713515"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"_index"</span> : <span class="string">"enwiki"</span>,</span><br><span class="line">        <span class="attr">"_type"</span> : <span class="string">"doc"</span>,</span><br><span class="line">          <span class="attr">"id"</span> : <span class="string">"19983118"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"_index"</span> : <span class="string">"enwiki"</span>,</span><br><span class="line">        <span class="attr">"_type"</span> : <span class="string">"doc"</span>,</span><br><span class="line">        <span class="attr">"_id"</span> : <span class="string">"55716559"</span>,</span><br><span class="line">        <span class="attr">"_score"</span> : <span class="number">19.37609</span>,</span><br><span class="line">        <span class="attr">"_source"</span> : &#123;</span><br><span class="line">          <span class="attr">"@version"</span> : <span class="string">"1"</span>,</span><br><span class="line">          <span class="attr">"@timestamp"</span> : <span class="string">"2018-01-01T13:56:25.637Z"</span>,</span><br><span class="line">          <span class="attr">"text"</span> : [</span><br><span class="line">            <span class="string">"&lt;text xml:space=\"preserve\"&gt;#redirect [[Beihang University]]&lt;/text&gt;"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"title"</span> : <span class="string">"Beijing Univ. of Aeronautics and Astronautics"</span>,</span><br><span class="line">          <span class="attr">"id"</span> : <span class="string">"55716559"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="list-data">List data</h3>
+<p>We can list some sample data by <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl &apos;localhost:9200/enwiki/_search&apos;</span><br></pre></td></tr></table></figure></p>
+<h3 id="remove-index">Remove index</h3>
+<p>We can remove the index by <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XDELETE &quot;localhost:9200/enwiki/?pretty&quot;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/" rel="next" title="Optimization Revisit: From Linear Programming to Lagrange">
+                <i class="fa fa-chevron-left"></i> Optimization Revisit: From Linear Programming to Lagrange
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/07/14/随机过程题型总结/" rel="prev" title="随机过程题型总结">
+                随机过程题型总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#download-elasticsearch"><span class="nav-number">1.</span> <span class="nav-text">Download Elasticsearch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#do-not-follow-the-official-old-post"><span class="nav-number">2.</span> <span class="nav-text">Do not follow the official old post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-logstash"><span class="nav-number">3.</span> <span class="nav-text">Use Logstash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-stream2es"><span class="nav-number">4.</span> <span class="nav-text">Use stream2es</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-basic-operation-of-elasticsearch"><span class="nav-number">5.</span> <span class="nav-text">Some basic operation of Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#view-index-information"><span class="nav-number">5.1.</span> <span class="nav-text">View Index Information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-by-content"><span class="nav-number">5.2.</span> <span class="nav-text">Search by content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list-data"><span class="nav-number">5.3.</span> <span class="nav-text">List data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove-index"><span class="nav-number">5.4.</span> <span class="nav-text">Remove index</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/';
+          this.page.identifier = '2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/';
+          this.page.title = 'Struggling in importing wikipedia into Elasticsearch';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

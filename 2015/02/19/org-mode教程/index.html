@@ -1,0 +1,1228 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Emacs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  org-mode 入门教程 　　org-mode是Emacs提供的一个强大的编辑模式，可以用于做会议笔记以及制作各种待办事项（GDT）。其语法类似于Markdown但是提供了比Markdown更多的操作，再加上Emacs强大的编辑功能，能给笔记增加很多动态的操作（能纯文本上实现折叠、展开、树状视图、表格求和、求代码运行结果等功能">
+<meta name="keywords" content="Emacs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="org-mode入门教程">
+<meta property="og:url" content="http://yoursite.com/2015/02/19/org-mode教程/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  org-mode 入门教程 　　org-mode是Emacs提供的一个强大的编辑模式，可以用于做会议笔记以及制作各种待办事项（GDT）。其语法类似于Markdown但是提供了比Markdown更多的操作，再加上Emacs强大的编辑功能，能给笔记增加很多动态的操作（能纯文本上实现折叠、展开、树状视图、表格求和、求代码运行结果等功能">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/blog/images/org-mode-unicorn-logo.png">
+<meta property="og:image" content="http://yoursite.com/blog/images/orgmode5.png">
+<meta property="og:image" content="http://yoursite.com/blog/images/orgmode4.png">
+<meta property="og:image" content="http://yoursite.com/blog/images/orgmode6.png">
+<meta property="og:updated_time" content="2017-10-18T03:02:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="org-mode入门教程">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  org-mode 入门教程 　　org-mode是Emacs提供的一个强大的编辑模式，可以用于做会议笔记以及制作各种待办事项（GDT）。其语法类似于Markdown但是提供了比Markdown更多的操作，再加上Emacs强大的编辑功能，能给笔记增加很多动态的操作（能纯文本上实现折叠、展开、树状视图、表格求和、求代码运行结果等功能">
+<meta name="twitter:image" content="http://yoursite.com/blog/images/org-mode-unicorn-logo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/02/19/org-mode教程/"/>
+
+
+
+
+
+  <title> org-mode入门教程 | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2015/02/19/org-mode教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                org-mode入门教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-19T21:41:22+08:00">
+                2015-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2015/02/19/org-mode教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/02/19/org-mode教程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2015/02/19/org-mode教程/" class="leancloud_visitors" data-flag-title="org-mode入门教程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h1 id="org-mode-入门教程">org-mode 入门教程</h1>
+<p>　　org-mode是Emacs提供的一个强大的编辑模式，可以用于做会议笔记以及制作各种待办事项（GDT）。其语法类似于Markdown但是提供了比Markdown更多的操作，再加上Emacs强大的编辑功能，能给笔记增加很多动态的操作（能纯文本上实现折叠、展开、树状视图、表格求和、求代码运行结果等功能），可以说org-mode是最强大的标记语言。而org-mode的强大，也导致了他比markdown更加复杂，需要花些时间来练习，本文选出了org-mode最强大、实用的功能，进行最简单的介绍，下面介绍org-mode的使用方法。</p>
+<center>
+<img src="/blog/images/org-mode-unicorn-logo.png" alt="org-mode的logo">
+</center>
+<h2 id="安装">安装</h2>
+<p>　　<a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a>最新版本（24.4）自带org-mode，这就意味着只要打开一个后缀名为org的文件就会自动进入org-mode。因此我们只需要下载最新版的Emacs即可。 　　 windows用户：到http://ftp.gnu.org/gnu/emacs/windows/ 下载最新版 ubuntu系列：在终端中输入：<code>sudo apt-get install emacs</code> ## 配置 　　org-mode功能基本比较完善，不需要更多的配置，但是org模式下默认没有自动换行的功能，我们在.emacs文件里面添加如下代码，实现自动换行：</p>
+<pre><code>(add-hook &#39;org-mode-hook (lambda () (setq truncate-lines nil)))</code></pre>
+<p>　　</p>
+<h2 id="实例教程">实例教程</h2>
+<p>　　以下分别讲解org-mode下几个实用的功能，更完整的教程可以参考<a href="http://orgmode.org/orgguide.pdf" target="_blank" rel="noopener">官网教程</a>。下面一步一步完成我们的org文件。（本教程中我们定义 <code>C-x</code> 表示按Ctrl+x，<code>M+x</code>标识Alt+x，<code>S+x</code>代表Shift+x，这也是Emacs的标准定义）</p>
+<h3 id="新建文件">新建文件</h3>
+<ol type="1">
+<li>打开Emacs</li>
+<li>输入 <code>C-x C-f ～/test/test.org</code></li>
+</ol>
+<a id="more"></a>
+<p>注意文件后缀名为org，该命令新建了一个名为test.org的文件。</p>
+<p>新建完文件后，我们就可以输入相应的内容了。以下是org-mode语法的具体介绍。</p>
+<h3 id="章节">章节</h3>
+<p>　　org-mode用<code>*</code> 标识章节，一个<code>*</code> 代表一级标题，两个<code>*</code> 代表两级标题，以此类推。</p>
+<p>　　在Emacs中输入以下内容：</p>
+<pre><code>* 标题一
+** 标题二</code></pre>
+<p>　　注意型号后面有空格。可以发现，不同层级标题的颜色是不一样的。按Alt加左右键能够升降标题的层级。一些常用快捷键如下：</p>
+<ul>
+<li><code>S+Tab</code> 展开、折叠所有章节</li>
+<li><code>Tab</code> 对光标所在章节进行展开、折叠</li>
+<li><code>M+left/right</code> 升级/降级标题</li>
+</ul>
+<h3 id="列表">列表</h3>
+<p>　　列表是文本中一个比较常用的元素，可以列出各种待完成的事项等。org-mode提供了一种很独特的功能，可以加入checkbok（实际就是加入一对中间有空格的方括号<code>[ ]</code>）标记任务的完成状况，而且如果一个总任务有多个子任务，还可以根据子任务的完成情况计算总进度（只需要在总任务后面添加一对方括号，里面加上<code>%</code>或<code>/</code> 如<code>[%],[/]</code>）。列表分为有序和无序两种，有序列表以<code>1.</code>或 <code>1)</code>开头，无序列表以<code>+</code>或<code>-</code>开头 后面，同样，后面要跟一个空格。 　　 　　我们输入一个无序列表：</p>
+<pre><code>+ treeroot  
+    + branch1
+    + branch2</code></pre>
+<p>　　在输入的时候，我们按<code>M-RET</code>（Alt+回车）可以自动输入同级的条目，按<code>M+left/right</code>调整层级。同理，我们还可以输入一个有序列表：</p>
+<pre><code>1) [-] 任务1 [33%]
+   1) [ ] 子任务1
+   2) [X] 子任务2
+   3) [ ] 子任务3
+2) [ ] 任务2</code></pre>
+<p>　　我们按<code>M-S-RET</code> 可以输入一个带checkbox的列表项，而在总任务后面可以输入一个<code>[%]</code>或者<code>[/]</code>则能自动计算总任务进度。最后结果如图所示。</p>
+<center>
+<img src="/blog/images/orgmode5.png" alt="orgmode5.png">
+</center>
+<p>　　 常用快捷键： - <code>M-RET</code> 插入同级列表项 - <code>M-S-RET</code> 插入有 checkbox的同级列表项 - <code>C-c C-c</code> 改变 checkbox状态 - <code>M-left/right</code> 改变列表项层级关系 - <code>M-up/dowm</code> 上下移动列表项</p>
+<h3 id="脚注">脚注</h3>
+<p>　　用<code>[fn:1]</code>的方式插入脚注，而在最下面插入　</p>
+<pre><code> [fn:1]本文参考自http://orgmode.org/orgguide.pdf</code></pre>
+<p>这个标签是可以点击的。</p>
+<h3 id="表格">表格</h3>
+<p>　　表格常用于数据展示，org-mode提供了方便的列表操作。其中最独特的是支持类似于Excel的表格函数，可以完成简单的求和等操作 创建表格时，在新建表格时，首先输入表头：</p>
+<pre><code>input | Name  |  Phone | sub1 | sub2 | total |
+|-</code></pre>
+<p>然后在第二行后面按 tab，表格就会自动生成：</p>
+<pre><code>| Name    |  Phone | sub1 | sub2 | total |
+|---------+--------+------+------+-------|
+|         |        |      |      |       |</code></pre>
+<p>下面我们填入一些数据，在填写的过程中，按Tab键可以调到右方表格，按Enter则能跳到下方表格。如果同时按住Shift，则是反方向跳。输入表格完成后，按 <code>C-c C-c</code>则能自动对齐表格，出入完成对齐后，表格如下：</p>
+<pre><code>| Name        |  Phone | sub1 | sub2 | total |
+|-------------+--------+------+------+-------|
+| maple       | 134... |   89 |   98 |       |
+| wizard      | 152... |   78 |   65 |       |
+| Hello World | 123... |   76 |   87 |       |
+| hehe        | 157... |   87 |   78 |       |</code></pre>
+<p>下面我们来体验下org-mode的强大的表格函数。我们在total列任选一个位置，输入<code>=$3+$4</code> ，然后按<code>C-u C-c C-c</code> ，org-mode便能自动为我们计算所有三列加四列的和，并放到第五列。最后完成的表格如下</p>
+<pre><code>| Name        |  Phone | sub1 | sub2 | total |
+|-------------+--------+------+------+-------|
+| maple       | 134... |   89 |   98 |   187 |
+| wizard      | 152... |   78 |   65 |   143 |
+| Hello World | 123... |   76 |   87 |   163 |
+| hehe        | 157... |   87 |   78 |   165 |
+# +TBLFM: $5=$3+$4</code></pre>
+<center>
+<img src="/blog/images/orgmode4.png" alt="orgmode4.png">
+</center>
+<p>　　如果要插入行和列，可在表头添加一个标签或者新起一行，输入|再调整格式即可。其中最后一行是ogr-mode自动添加的。一些快捷键如下：</p>
+<ul>
+<li><code>C-c |</code> 通过输入大小的方式插入表格</li>
+<li><code>C-c C-c</code> 对齐表格</li>
+<li><code>Tab</code> 调到右边一个表格</li>
+<li><code>enter</code> 跳到下方的表格</li>
+<li><code>M-up/right/left/right</code> 上下左右移动行（列）</li>
+<li><code>M-S-up/right/left/right</code> 向上下左右插入行（列）</li>
+</ul>
+<h3 id="链接">链接</h3>
+<p>　　链接用于链接一些资源地址，如图片、文件、URL等。 链接的格式是：</p>
+<pre><code>[[链接地址][链接内容]]</code></pre>
+<p>如：</p>
+<pre><code> [[http://orgmode.org/orgguide.pdf][grgguid.pdf]]]
+ [[file:/home/maple/图片/test.jpg][a picture]]</code></pre>
+<p>如果去掉标签，则能直接显示图片：</p>
+<pre><code>[[file:/home/maple/图片/test.jpg]]</code></pre>
+<p>　　直接显示的图片在Emacs里默认不显示，需按<code>C-c C-x C-v</code>才能显示，在输出成其他格式（html、pdf……）后也能看到。 　　 常用快捷键： - <code>C-c C-x C-v</code> 直接预览图片。</p>
+<h3 id="待办事项todo">待办事项（TODO ）</h3>
+<p>　　TODO是org-mode最具特色的一个功能，也是org-mode设计的初衷，org-mode的作者本意是用其来完成一个个人时间管理程序（GDT）。因此，可以用org-mode来做一个个人时间管理工具！ 　　下面我们来看怎么写TODO。TODO 也是一类标题，因此也需要用<code>*</code>开头，在Emacs中输入：</p>
+<pre><code>** TODO 洗衣服</code></pre>
+<p>可以看到当中的TODO变成了红色，我们讲光标移到该行，按<code>C-c C-t</code>，则发现TODO变成了DONE（这个序列可以自己定义，详见org-mode手册）。org-mode兼有了标题和列表的功能，也可以添加checkbox和完成进度，除此之外，还可以设计优先级。 我们输入：</p>
+<pre><code>*** TODO [# A] 任务1
+*** TODO [# B] 任务2
+*** TODO 总任务 [33%]
+**** TODO 子任务1
+**** TODO 子任务2 [0%]
+      - [-] subsub1 [1/2]
+       - [ ] subsub2
+       - [X] subsub3
+    **** DONE 一个已完成的任务</code></pre>
+<p>一些常用操作如下： - <code>C-c C-t</code> 变换TODO的状态 - <code>C-c / t</code>以树的形式展示所有的 TODO - <code>C-c C-c</code> 改变 checkbox状态 - <code>C-c</code>, 设置优先级（方括号里的ABC） - <code>M-S-RET</code> 插入同级TODO标签</p>
+<h2 id="标签tags">标签Tags</h2>
+<p>在org-mode中，可以给每一章节添加一个标签，我们可以通过树的结构来查看所有带标签的章节。在每一节中，子标题的标签会继承父标题标签。 输入：</p>
+<pre><code>*** 章标题   :work:learn:
+**** 节标题1     :fly:plane:
+**** 节标题2     :car:run:</code></pre>
+<p>一些常用命令如下： - <code>C-c C-q</code> 为标题添加标签 - <code>C-c / m</code> 生成带标签的树</p>
+<h3 id="时间">时间</h3>
+<p>org-mode可以利用Emacs的时间空间插入当前时间。 输入<code>C-c .</code> 会出现一个日历，我们点选相应的时间即可插入。</p>
+<pre><code>&lt;2015-02-17 二&gt;</code></pre>
+<p>时间前可以加DEADLINE:和SCHEDULED:表示时间的类型如：</p>
+<pre><code>DEADLINE:&lt;2015-02-12 四&gt;</code></pre>
+<p>下面给出一个常见的TODO标签的模板：</p>
+<pre><code>*** TODO    洗衣服
+SCHEDULED: &lt;2015-02-19 四&gt;
+DEADLINE: &lt;2015-03-01 日&gt;</code></pre>
+<p>常用命令如下： - <code>C-c .</code>插入时间</p>
+<h3 id="一些特殊文本格式">一些特殊文本格式</h3>
+<p>和其他标记语言一样，org-mode也支持各种特殊文本格式（如斜体、下划线等）。如下所示：</p>
+<pre><code>*bold*
+/italic/
+_underlined_
+=code=
+~verbatim~
++strike-through+</code></pre>
+<h3 id="富文本导出">富文本导出</h3>
+<p>org-mode的强大之处还在于它能到出成各种不同的格式，例如html、pdf等，在导出时，可以加入一些说明符号，来制定导出选项，常用导出符号如下：</p>
+<p>设置标题和目录：</p>
+<pre><code># +TITLE: This is the title of the document
+# +OPTIONS: toc:2 (only to two levels in TOC)
+# +OPTIONS: toc:nil (no TOC at all)</code></pre>
+<p>添加引用：</p>
+<pre><code># +BEGIN_QUOTE
+Everything should be made as simple as possible,
+but not any simpler -- Albert Einstein
+# +END_QUOTE</code></pre>
+<p>设置居中：</p>
+<pre><code># +BEGIN_CENTER
+    Everything should be made as simple as possible,but not any simpler
+# +END_CENTER</code></pre>
+<p>设置样例（在这里面的内容将会被直接输出，不会被转义）</p>
+<pre><code># +BEGIN_EXAMPLE
+这里面的字符不会被转义
+# +END_EXAMPLE</code></pre>
+<p>注释，这些内容不会被导出</p>
+<pre><code>注释的用法#  this is comment
+
+# +BEGIN_COMMENT
+这里的注释不会被导出
+# +END_COMMENT</code></pre>
+<p>Latex使用，org-mode能支持直接输入LaTeX，在导出后LaTeX能被正确解释：</p>
+
+<h4 id="插入源代码">插入源代码</h4>
+<p>org-mode除了可以直接插入源代码之外，可以直接求出运行结果，这也是其强大之处，在使用之前，需要在.emacs配置文件中设置加载的运行语言：</p>
+<pre><code>(org-babel-do-load-languages
+ &#39;org-babel-load-languages
+ &#39;(
+   (sh . t)
+   (python . t)
+   (R . t)
+   (ruby . t)
+   (ditaa . t)
+   (dot . t)
+   (octave . t)
+   (sqlite . t)
+   (perl . t)
+   (C . t)
+   ))</code></pre>
+<p>设置好之后输入：</p>
+<pre><code># +BEGIN_SRC emacs-lisp
+(+ 1 2 3 4)
+# +END_SRC</code></pre>
+<p>将光标移到代码块内，按<code>C-c C-c</code>，org-mode会自动添加如下一行：</p>
+<pre><code># +RESULTS:
+: 10</code></pre>
+<p>这正是该代码的计算结果。下面试一试Python代码：</p>
+<pre><code># +BEGIN_SRC python :results output
+a = 1+1
+print a
+# +END_SRC
+
+# +RESULTS:
+: 2</code></pre>
+<p>下面测试一下C语言</p>
+<pre><code># +begin_src C++ :includes &lt;stdio.h&gt;
+  int a=1;
+  int b=1;
+  printf(&quot;%d\n&quot;, a+b);
+# +end_src
+
+# +RESULTS:
+: 2</code></pre>
+<p>常用快捷键： - <code>C-c C-c</code> 对当前代码块求值</p>
+<h4 id="关于导出">关于导出</h4>
+<p>org-mode导出pdf需要LaTeX支持，而导出html很方便，但是导出的html美柚任何样式，org-mode为每个模块都添加了css的标签，我们可以将现成的css文件直接加入，便能得到一个好看的输出样式了：</p>
+<p>在头部加入</p>
+<pre><code># +HTML_HEAD: &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style1.css&quot; /&gt;</code></pre>
+<p>该代码加载我们的css。下面我们来将我们的文件导出成html。按<code>C-c C-e</code>会出现一个如图的提示框，问我们导出那种格式，我们选<code>h</code>导出html。</p>
+<center>
+<img src="/blog/images/orgmode6.png" alt="orgmode6.png">
+</center>
+<p>常用快捷键： - <code>C-c C-e</code> 选择相应的导出格式</p>
+<h2 id="结论">结论</h2>
+<p>　　org-mode是Emacs非常重要的一个模式，自其诞生之后，受到了各种Emacs粉丝的追捧，甚至在VIM上也衍生出了org-mode的分支，足见它的人气。通过本教程介绍，我们已经见识到了org-mode 的强大功能，而这仅仅只是org-mode功能的一小部分，org-mode更多的功能等待这我们去探索、发现。更多文章请访问<a href="http://www.fuzihao.org" target="_blank" rel="noopener">切问录</a> http://www.fuzihao.org</p>
+<h2 id="附件">附件</h2>
+<p>org文件<a href="/blog/attachment/tutorial.org">tutorial.org</a> 导出html文件<a href="/blog/attachment/tutorial.html">tutorial.html</a> (直接点击可以看到效果，点右键另存为即是编译后的文件) ## 参考文献 [1]org-mode 官方教程 http://orgmode.org/orgguide.pdf</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Emacs/" rel="tag"># Emacs</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015/01/17/互信息的理解/" rel="next" title="互信息的理解">
+                <i class="fa fa-chevron-left"></i> 互信息的理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015/02/25/hexo搬迁域名/" rel="prev" title="hexo搬迁域名">
+                hexo搬迁域名 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#org-mode-入门教程"><span class="nav-number">1.</span> <span class="nav-text">org-mode 入门教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例教程"><span class="nav-number">1.2.</span> <span class="nav-text">实例教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">新建文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#章节"><span class="nav-number">1.2.2.</span> <span class="nav-text">章节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">1.2.3.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚注"><span class="nav-number">1.2.4.</span> <span class="nav-text">脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格"><span class="nav-number">1.2.5.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">1.2.6.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#待办事项todo"><span class="nav-number">1.2.7.</span> <span class="nav-text">待办事项（TODO ）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签tags"><span class="nav-number">1.3.</span> <span class="nav-text">标签Tags</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间"><span class="nav-number">1.3.1.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些特殊文本格式"><span class="nav-number">1.3.2.</span> <span class="nav-text">一些特殊文本格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#富文本导出"><span class="nav-number">1.3.3.</span> <span class="nav-text">富文本导出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入源代码"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">插入源代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于导出"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">关于导出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">1.4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附件"><span class="nav-number">1.5.</span> <span class="nav-text">附件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2015/02/19/org-mode教程/';
+          this.page.identifier = '2015/02/19/org-mode教程/';
+          this.page.title = 'org-mode入门教程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

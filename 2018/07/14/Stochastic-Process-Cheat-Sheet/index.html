@@ -1,0 +1,1060 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  Poisson Process counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. \(P(N(s+t)-N(s)|N(s))=P(N(s+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stochastic Process Cheat Sheet">
+<meta property="og:url" content="http://yoursite.com/2018/07/14/Stochastic-Process-Cheat-Sheet/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Poisson Process counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. \(P(N(s+t)-N(s)|N(s))=P(N(s+">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-14T13:44:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stochastic Process Cheat Sheet">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Poisson Process counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. \(P(N(s+t)-N(s)|N(s))=P(N(s+">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/14/Stochastic-Process-Cheat-Sheet/"/>
+
+
+
+
+
+  <title> Stochastic Process Cheat Sheet | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Stochastic Process Cheat Sheet
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T17:29:55+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/14/Stochastic-Process-Cheat-Sheet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/" class="leancloud_visitors" data-flag-title="Stochastic Process Cheat Sheet">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h3 id="poisson-process">Poisson Process</h3>
+<p>counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. <span class="math inline">\(P(N(s+t)-N(s)|N(s))=P(N(s+t)-N(s))\)</span>,<span class="math inline">\(P(X_i|X_j)=P(X_i)\)</span> counting process stationary increments: if the distribution of the number of events that occur in any interval of time depends only on the length of the time interval.</p>
+<h4 id="define-1">Define 1</h4>
+<p>The counting process <span class="math inline">\(\{N(t), t\ge 0\}\)</span> is said to be a Poisson process having rate <span class="math inline">\(\lambda, \lambda &gt; 0\)</span>, if (i) <span class="math inline">\(N(0)= 0\)</span> (ii) The process has independent increments (iii) The number of events in any interval of length <span class="math inline">\(t\)</span> is Poisson distributed with mean <span class="math inline">\(\lambda t\)</span> Thatis,for all <span class="math inline">\(s,t\ge0\)</span>, <span class="math inline">\(P\{N(t+s)- N(s)=n\}= e^{-\lambda t}\frac{(\lambda t)^n}{n!}, \ \  n=0,1,\cdots\)</span> From (iii), we have: <span class="math inline">\(E[N(t)] = \lambda t\)</span></p>
+<h4 id="define-2">Define 2</h4>
+<ol type="i">
+<li><span class="math inline">\(N(0)= 0\)</span></li>
+<li>The process has stationary and independent increments.</li>
+<li>$P{N(h) = 1} = h + o(h) $</li>
+<li><span class="math inline">\(P\{N(h) &gt; 2\} = o(h)\)</span></li>
+</ol>
+<h4 id="interarrival">Interarrival</h4>
+<p><span class="math inline">\(X_n\)</span>denote the time between the <span class="math inline">\((n- 1)\)</span>st and the <span class="math inline">\(n\)</span>th event. <span class="math inline">\(P\{X_1&gt;t\}=P\{N(t) =0\}=e^{-\lambda t}\)</span>, <span class="math inline">\(P\{X_2&gt;t|X_1=s\}=e^{-\lambda t}\)</span>. <span class="math inline">\(X_i\)</span> i.i.d, mean=<span class="math inline">\(1/\lambda\)</span> r.v. <span class="math inline">\(S_n\)</span> is the arrival time of the <span class="math inline">\(n\)</span>th event, <span class="math inline">\(S_n=\sum_{i=1}^nX_i,n\ge1\)</span>. <span class="math inline">\(S_n\)</span> has a gamma distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\lambda\)</span>,<span class="math inline">\(P\{S_n\le t \} =P\{ N( t ) \ge n\}=\sum_{j=n}^\infty e^{-\lambda t}\frac{(\lambda t)^j}{j!} \Rightarrow f(t)=\lambda e^{-\lambda t}\frac{(\lambda t)^{n-1}}{(n-1)!},t\ge0\)</span></p>
+<h4 id="conditional-distribution-of-the-arrival-times">Conditional Distribution of the Arrival Times</h4>
+<p>Known at <span class="math inline">\(t\)</span>, one event happen, give the distribution of the time that the event happen. It’s uniform dist.<span class="math inline">\(P\{X_1&lt;s|N(t) = 1\}=s/t\)</span> Generalization: Given that <span class="math inline">\(N(t) = n\)</span>, the <span class="math inline">\(n\)</span> arrival times <span class="math inline">\(S_1,...,S_n\)</span>, have the same distribution as the order statistics corresponding to n independent random variables uniformly distributed on the interval <span class="math inline">\((0,t)\)</span> <span class="math inline">\(f(t_1,...,t_n)=P\{t_i\le S_i \le t_i+h,i=1,...,n|N(t)=n\}/(h_1h_2\cdots h_n)=n!/t^n\)</span> <a id="more"></a></p>
+<h4 id="nonhomogeneous">Nonhomogeneous</h4>
+<ol type="i">
+<li><span class="math inline">\(N(0) = 0\)</span></li>
+<li><span class="math inline">\(\{N(t),t \ge 0\}\)</span> has independent increments</li>
+<li><span class="math inline">\(P\{N(t +h) - N(t) \ge 2\}= o(h)\)</span></li>
+<li><span class="math inline">\(P\{N(t+h)- N(t)=1\}=\lambda(t)h+o(h)\)</span> let <span class="math inline">\(m(t)=\int_0^t\lambda(s)ds\)</span>, we have <span class="math inline">\(P\{N(t+s)-N(t)=n\}=\)</span> <span class="math inline">\(\exp\{-(m(t+s)-m(t))\}[m(t+s)-m(t)]^n/n!\)</span>. The form is substitute <span class="math inline">\(\lambda t\)</span> with <span class="math inline">\(m(t+s)-m(t)\)</span>. We can think of the non-homo­geneous process as being a random sample from a homogeneous Poi sson process with probability <span class="math inline">\(\frac{\lambda(t)}{\lambda}\)</span>.</li>
+</ol>
+<h4 id="compound-poisson-random-variables">Compound Poisson Random Variables</h4>
+<p><span class="math inline">\(W=\sum_{i=1}^NX_i,N\sim poisson(\lambda)\)</span>, generating function of <span class="math inline">\(W\)</span> is <span class="math inline">\(E[e^{tW}]=\)</span> <span class="math inline">\(\sum_{n=0}^\infty E[e^{tW}|N=n]P\{N=n\}=\)</span> <span class="math inline">\(\exp\{\lambda(\phi_X(t)-1)\},\phi_X(t)=\)</span> <span class="math inline">\(E[e^{tX_i}]\)</span> <span class="math inline">\(E[W]=\lambda E[X],Var(W)=\lambda E[X^2]\)</span> property: <span class="math inline">\(E[Wh(W)]=\lambda E[Xh(W+X)]\)</span>, we can get: <span class="math inline">\(E[W]=\lambda E[X],E[W^2]=\)</span> <span class="math inline">\(\lambda E[X^2]+\lambda^2(E[X])^2,E[W^3]=\)</span> <span class="math inline">\(\lambda E[X^3]+3\lambda ^2E[X]E[X^2]+\lambda^3(E[X])^3\)</span></p>
+<h3 id="markov-chains">Markov Chains</h3>
+<p><span class="math inline">\(P_{ij}\)</span> from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span>. <span class="math inline">\(\sum_{j=0}^\infty P_{ij}=1\)</span></p>
+<h4 id="chapman-kolmogorov-equations">Chapman-Kolmogorov Equations</h4>
+<p><span class="math inline">\(P_{ij}^n=P\{X_{n+m}=j|X_m=i\}, n\ge 0, i,j \ge 0\)</span>. We have <span class="math inline">\(P_{ij}^{n+m}=\)</span> <span class="math inline">\(\sum_{k=0}^\infty P_{ik}^nP_{kj}^m\)</span> in matrix form <span class="math inline">\(P^{(n+m)}=P^{(n)}P^{(m)}\)</span>. Proof: <span class="math inline">\(P_{ij}^{n+m}=\)</span> <span class="math inline">\(P\{X_{n+m}=j|X_0=i\}\)</span> <span class="math inline">\(=\sum_{k=0}^\infty P\{X_{n+m}=j,X_n=k|X_0=i\}\)</span> <span class="math inline">\(=\sum_{k=0}^\infty P\{X_{n+m}=j|X_n=k,X_0=i\}P\{X_{n}=k|X_0=i\}\)</span> <span class="math inline">\(=...\)</span></p>
+<p><strong>accessible</strong> : <span class="math inline">\(j\)</span> is accessible from state <span class="math inline">\(i\)</span> if <span class="math inline">\(\exists n\ge 0, s.t. P_{ij}^n&gt;0\)</span>.</p>
+<p><strong>communicate</strong>: states <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> accessible to each other. (i)<span class="math inline">\(i \leftrightarrow i\)</span>; (ii)<span class="math inline">\(if i \leftrightarrow j, then j \leftrightarrow i\)</span>; (iii) <span class="math inline">\(if i \leftrightarrow j and j \leftrightarrow k, then i \leftrightarrow k\)</span>(Proof: <span class="math inline">\(P_{ij}^{n+m}=\sum_{k=0}^\infty P_{ik}^nP_{kj}^m\)</span> <span class="math inline">\(\ge P_{ij}^nP_{jk}^m&gt;0\)</span>).</p>
+<p><strong>class</strong> : Two states that communicate are said to be in the same class.</p>
+<p><strong>irreducible</strong> : if there is only one class in a markov chain.</p>
+<p><strong>period</strong>: State <span class="math inline">\(i\)</span> is said to have period <span class="math inline">\(d\)</span> if <span class="math inline">\(P_{ii}^n=0\)</span> when ever <span class="math inline">\(n\)</span> is not divisible by <span class="math inline">\(d\)</span> and <span class="math inline">\(d\)</span> is the greatest integer with this property. If <span class="math inline">\(i \leftrightarrow j\)</span>, then <span class="math inline">\(d(i)=d(j)\)</span>. Perid is a class property.</p>
+<p><strong>aperiodic</strong>: A state with period 1 is said to be aperiodic.</p>
+<p><strong>first passage time</strong>:<span class="math inline">\(f_{ij}^n\)</span> to be the probability that, starting in <span class="math inline">\(i\)</span>, the first transition into <span class="math inline">\(j\)</span> occurs at time <span class="math inline">\(n\)</span>. <span class="math inline">\(f_{ij}=\sum_{n=1}^\infty f_{ij}^n\)</span>.</p>
+<p>In recursive form: <span class="math inline">\(f_{ij}^n=\sum_{k\ne j}p_{ik}f_{kj}^{(n-1)}\)</span>.</p>
+<p>If <span class="math inline">\(\sum_{n=1}^\infty f_{ij}^{(n)}&lt;1\)</span>, means there exists probability that start from <span class="math inline">\(i\)</span> and never arrive at <span class="math inline">\(j\)</span>. Denote the expected first passage time from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> as <span class="math inline">\(\mu_{ij}=\)</span> <span class="math inline">\(\infty (if \sum_{n=1}^\infty f_{ij}^{(n)}&lt;1);\)</span> <span class="math inline">\(=\sum_{n=1}^\infty nf_{ij}^{(n)}(if \sum_{n=1}^\infty f_{ij}^{(n)}=1)\)</span></p>
+<p>recursive form: <span class="math inline">\(\mu_{ij}=1+\sum_{k\ne j}p_{ik}\mu_{kj}\)</span></p>
+<p><strong>recurrent</strong>: <span class="math inline">\(f_{jj}=1\)</span>,</p>
+<p><strong>transient</strong> otherwise. <span class="math inline">\(j\)</span> is recurrent iff <span class="math inline">\(\sum_{n=1}^\infty P_{jj}^n=\infty\)</span>. recurrent implies that the visit time to the node is infinity: <span class="math inline">\(E[\text{number of visit to j}|X_0=j]=\infty\)</span>. In a finite-state Markov chain not all states can be transient. If <span class="math inline">\(i \leftrightarrow j\)</span> and <span class="math inline">\(i\)</span> is recurrent, then j is recurrent. Same with transient.</p>
+<p>If <span class="math inline">\(i \leftrightarrow j\)</span> and <span class="math inline">\(j\)</span> is recurrent, then <span class="math inline">\(f_{ij}=1\)</span>.</p>
+<p><strong>transient</strong>: iff there exists a state <span class="math inline">\(j ( j \ne i)\)</span> that is accessible from state <span class="math inline">\(i\)</span> but not vice versa, that is, state <span class="math inline">\(i\)</span> is not accessible from state <span class="math inline">\(j\)</span>.</p>
+<p>upon entering this state, the process might never return to this state again. Transient is a class property.</p>
+<p><strong>recurrent</strong>: not transient. is a class property.</p>
+<p><strong>absorbing state</strong>: A state that is never left once the process enters that state.</p>
+<h4 id="limit-theorems">Limit Theorems</h4>
+<p><span class="math inline">\(\mu_{jj}\)</span> denote the expected number of transitions needed to return to state j. <span class="math inline">\(\mu_{jj}=\infty (\text{j is transient});\)</span> <span class="math inline">\(=\sum_{n=1}^\infty nf_{jj}^n (\text{j is recurrent})\)</span> <span class="math inline">\(\pi_j=\lim_{n\rightarrow \infty}P_{jj}^{nd(j)}\)</span> <span class="math inline">\(\mu_{ii}=1/\pi_i\)</span> if <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> communicate, then (i) <span class="math inline">\(P\{\lim_{t\rightarrow \infty}N_j(t)/t=1/\mu_{jj}|X_0=i\}=1\)</span> (ii)<span class="math inline">\(\lim_{n\rightarrow\infty}\sum_{k=1}^nP_{ij}^k/n=1/\mu_{jj}\)</span> (iii) If <span class="math inline">\(j\)</span> is aperiodic, then <span class="math inline">\(\lim_{n\rightarrow \infty}P_{ij}^n=1/\mu_{jj}\)</span> (iv) If <span class="math inline">\(j\)</span> has period d, then <span class="math inline">\(\lim_{n\rightarrow \infty}P_{ij}^{nd}=d/\mu_{jj}\)</span></p>
+<p><strong>positive recurrent</strong> : <span class="math inline">\(\mu_{jj}&lt;\infty\)</span>. Is a class property. <span class="math inline">\(\pi_j&gt;0\)</span></p>
+<p><strong>null recurrent</strong> :<span class="math inline">\(\mu_{jj}=\infty\)</span>. Is a class property.<span class="math inline">\(\pi_j=0\)</span></p>
+<p><strong>ergodic</strong>: positive recurrent states that are aperiodic are called ergodic states.</p>
+<p><strong>stationary</strong>: A probability distribution <span class="math inline">\(\{P_j, j \ge 0\}\)</span> is said to be stationary for the Markov chain if <span class="math inline">\(P_j=\sum_{i=0}^\infty P_iP_{ij},j\ge 0\)</span>. If the initial probability distribution is the stationary distribution, then <span class="math inline">\(X_n\)</span> will have the same distribution for all <span class="math inline">\(n\)</span>.</p>
+<h3 id="continuous-time-markov-chains">Continuous Time Markov Chains</h3>
+<p>Markovian property</p>
+<ol type="a">
+<li><p>indepent of previous states： <span class="math inline">\(P\{X(t+s)=j|X(s)=i,X(r)=x(r)\}=P\{X(t+s)=j|X(s)=i\}\)</span> <span class="math inline">\(\forall r&lt;s,t&gt;0\)</span></p></li>
+<li><p>Independent of initial time <span class="math inline">\(P\{X(t+s)=j|X(s)=i\}=P\{X(t)=j|X(0)=i\}\)</span> If, <span class="math inline">\(P{ X( t + s ) = j | X( s) = i}\)</span> is independent of <span class="math inline">\(s\)</span>, then the continuous-time Markov chain is said to have stationary or homogeneous transition probabilities.</p></li>
+</ol>
+<p><strong>transition probability function</strong> <span class="math inline">\(p_{ij}(t)=P\{X(t)=j|X(0)=i\}\)</span>, <span class="math inline">\(\lim_{t\rightarrow 0}p_{ij}(t)=1(i=j);=0(i\ne j)\)</span></p>
+<p><strong>Time staying at some state</strong> By Markovian, $P{T_i&gt;t+s|T_i&gt;s}=P{T_i&gt;t} $ <span class="math inline">\(\Rightarrow P\{T_i\le t\}=1-e^{-q_it}\)</span>, <span class="math inline">\(q_i=1/E[T_i]\)</span> is leaving times in unit time，denote <span class="math inline">\(q_{ij}\)</span> the times leaving i and enter j，we have <span class="math inline">\(q_i=\sum_{j\ne i}q_{ij}\)</span>.</p>
+<p><strong>Chapman-Kolmogorov</strong> <span class="math inline">\(p_{ij}(t)=\sum_{k=0}^M p_{ik}(s)p_{kj}(t-s)\)</span></p>
+<p><strong>stead state</strong> <span class="math inline">\(\lim_{t\rightarrow\infty}p_{ij}(t)=\pi_j\)</span>, <span class="math inline">\(\pi_j=\sum_{k=0}^M\pi_ip_{ij}(t)\)</span>,Usually use a more easy equations：<span class="math inline">\(\pi_jq_j=\sum_{i\ne j}\pi_i q_{ij},\sum_{j=0}^M\pi_j=1\)</span></p>
+<h3 id="martingales">Martingales</h3>
+<p><strong>Martingales</strong>: <span class="math inline">\(\{Z_n,n\ge1\}\)</span> is a martingale if <span class="math inline">\(E[|Z_n|]&lt;\infty,\forall n\)</span> and <span class="math inline">\(E[Z_{n+1}|Z_1,Z_2,\cdots,Z_n]=Z_n\)</span>.</p>
+<p>take expectation get: <span class="math inline">\(E[Z_{n+1}]=E[Z_n]\)</span> then <span class="math inline">\(E[Z_n]=E[Z_1],\forall n\)</span></p>
+<p><strong>Conditional Expectation</strong>: <span class="math inline">\(E(aY_1+bY_2|F_n)=aE(Y_1|F_n)+bE(Y_2|F_n)\)</span>； If <span class="math inline">\(Y\)</span> is the function about <span class="math inline">\(X_1,\ldots,X_n\)</span>，then <span class="math inline">\(E[Y|F_n]=Y\)</span>；if <span class="math inline">\(Y\)</span> is an arbitary r.v. ，<span class="math inline">\(Z\)</span> is a measurable r.v. about <span class="math inline">\(X_1,\ldots,X_n\)</span>，then <span class="math inline">\(E[YZ|F_n]=ZE[Y|F_n]\)</span>。</p>
+<p><strong>0 mean independent r.v. sum is martingale</strong>: <span class="math inline">\(X_i\)</span> is independent r.v. with 0 mean; <span class="math inline">\(Z_n=\sum_{i=1}^nX_i\)</span> is a martingale. Since <span class="math inline">\(E[Z_{n+1}|Z_1,\cdots,Z_n]\)</span> <span class="math inline">\(=E[Z_n+X_{n+1}|Z_1,\cdots,Z_n]\)</span> <span class="math inline">\(=E[Z_n|Z_1,\cdots,Z_n]+E[X_{n+1}|Z_1,\cdots,Z_n]\)</span> <span class="math inline">\(=Z_n+E[X_{n+1}]=Z_n\)</span>，note: <span class="math inline">\(Z_n=E[Z_n|Z_1,\cdots,Z_n],\because Z_n\)</span> is given</p>
+<p><strong>1 mean independent r.v. product is martingale</strong>: <span class="math inline">\(X_i\)</span> is independent r.v. with 1 mean; <span class="math inline">\(Z_n=\prod_{i=1}^nX_i\)</span> is a martingale. Since <span class="math inline">\(E[Z_{n+1}|Z_1,\cdots,Z_n]\)</span> <span class="math inline">\(=E[Z_nX_{n+1}|Z_1,\cdots,Z_n]\)</span> <span class="math inline">\(=Z_nE[X_{n+1}|Z_1,\cdots,Z_n]\)</span> <span class="math inline">\(=Z_nE[X_{n+1}]=Z_n\)</span></p>
+<h3 id="queueing-theory">Queueing Theory</h3>
+<p>Distribution of interarrival times/Distribution of service times/Number of servers Example: M/M/s，M/G/1。M=exponential distribution (Markovian)；D=degenerate distribution (constant times)；<span class="math inline">\(E_k\)</span>=Erlang distribution (shape parameter k)；G=general distribution (any arbitrary distribution allowed)</p>
+<h3 id="stochastic-process-models">Stochastic Process Models</h3>
+<h4 id="mg1-queue">M/G/1 Queue</h4>
+<p>Interarrival times is exponential. let <span class="math inline">\(X_n\)</span> denote the number of customers left behind by the <span class="math inline">\(n\)</span>th depar­ture. Also, let <span class="math inline">\(Y_n\)</span> denote the number of customers arriving during the service period of the <span class="math inline">\((n + 1)\)</span>st customer. We have <span class="math inline">\(X_{n+1}=X_n-1+Y_n (X_n &gt; 0);=Y_n (X_n=0)\)</span>. <span class="math inline">\(P\{Y_n=j\}=\int_0^\infty e^{-\lambda x}(\lambda x)^j/j!dG(x)\)</span>. <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(P_{0j}=\int_0^\infty e^{-\lambda x}(\lambda x)^j/j!dG(x)\)</span>. <span class="math inline">\(P_{ij}=\int_0^\infty e^{-\lambda x}(\lambda x)^{j-i+1}/(j-i+1)!dG(x)\)</span>,<span class="math inline">\((j\ge i-1, i\ge 1)\)</span>, $P_{ij}=0 $(otherwise).</p>
+<h4 id="gm1-queue">G/M/1 Queue</h4>
+<p>Let <span class="math inline">\(X_n\)</span> denote the number of customers in the system as seen by the <span class="math inline">\(n\)</span>th arrival. <span class="math inline">\(P_{i,i+1-j}=\int_0^\infty e^{-\mu t}(\mu t)^j/j!dG(x)\)</span>, <span class="math inline">\(j=0,\cdots,i\)</span>. <span class="math inline">\(P_{i0}=\int_0^\infty \sum_{k=i+1}^\infty e^{-\mu t}(\mu t)^k/k!dG(x), i\ge 0\)</span></p>
+<h4 id="gamblers-ruin-problem">Gambler’s Ruin Problem</h4>
+<p><span class="math inline">\(p_{0,0}=p_{N,N}=1,p_{i,i+1}=p=1-p_{i,i-1}\)</span> Solution: Let <span class="math inline">\(f_i\)</span> denote the probability that starting with i, the fortune will eventually reach N. We obtain: <span class="math inline">\(f_i=pf_{i+1}+qf_{i-1}\)</span> <span class="math inline">\(\Rightarrow f_{i+1}-f_i=q/p(f_i-f_{i-1}),\ldots, f_N-f_{N-1}=(q/p)^{N-1}f_1\)</span> <span class="math inline">\(\Rightarrow f_i-f_1=f_1[q/p+(q/p)^2+\cdots+(q/p)^{i-1}]\)</span> <span class="math inline">\(\Rightarrow f_i=(1-(q/p)^i)/(1-(q/p)^N),if p\ne 1/2;=i/N elif p=1/2\)</span>. The probability of stop at 0 is <span class="math inline">\(1-f_i\)</span></p>
+<h4 id="alarm-clock-problem">Alarm Clock Problem</h4>
+<p>n clock are exponential distributed with parameters : <span class="math inline">\(b_1,\ldots,b_n\)</span>。<span class="math inline">\(P(T_i&gt;t)=\exp(-b_i t)\)</span>. R.v. <span class="math inline">\(T=\min\{T_1,\ldots,T_n\}\)</span> <span class="math inline">\(P(T\ge t)=P(T_1\ge t)P(T_2\ge t)\cdots P(T_n\ge t)=\exp(-(b_1+\cdots+b_n)t)\)</span></p>
+<p>Probability that <span class="math inline">\(T_1\)</span> ring first ：<span class="math inline">\(P(T_1=T)=\int_0^\infty P(T_2&gt;t,\cdots,T_n&gt;t)P(T_1=t)dt\)</span> <span class="math inline">\(=\int_0^\infty \exp(-(b_2+\cdots+b_n)t)b_1\exp(-b_1 t)dt=b_1/(b_1+\cdots+b_n)\)</span></p>
+<h4 id="absolute-value-of-simple-random-walk">Absolute Value of Simple Random Walk</h4>
+<p><span class="math inline">\(S_n=\sum_1^nX_n\)</span>, <span class="math inline">\(P\{X_i =1\}=p\)</span>, <span class="math inline">\(P\{X_i =-1\}=1-p=q\)</span>. Let <span class="math inline">\(j=\max\{k:0\le k\le n,i_k=0\}\)</span>, <span class="math inline">\(\therefore P\{S_n=i||S_n|=i,\cdots,|S_1|=i_1\}=\)</span> <span class="math inline">\(P\{S_n=i||S_n|=i,\cdots,|S_j|=0\}\)</span>, <span class="math inline">\(\therefore P(S_n=i|...)=p^{(n-j)/2+i/2}q^{(n-j)/2-i/2}\)</span> <span class="math inline">\(\therefore P(S_n=-i|...)=p^{(n-j)/2-i/2}q^{(n-j)/2+i/2}\)</span> <span class="math inline">\(P(S_n=i|...)=P(S_n=i|...)/(P(S_n=i|...)+P(S_n=-i|...))\)</span> <span class="math inline">\(=p^i/(p^i+q^i)\)</span> <span class="math inline">\(\therefore P\{|S_{n+1}|=i+1||S_n|=i,|S_{n-1},\cdots,|S_1|\}\)</span> <span class="math inline">\(=P\{S_{n+1}=i+1|S_n=i\}p^i/(p^i+q^i)\)</span> <span class="math inline">\(+P\{S_{n+1}=-(i+1)|S_n=-i\}q^i/(p^i+q^i)\)</span> <span class="math inline">\(=(p^{i+1}+q^{i+1})/(p^i+q^i)\)</span> <span class="math inline">\(\therefore P_{i,i+1}=(p^{i+1}+q^{i+1})/(p^i+q^i)\)</span> <span class="math inline">\(=1-P_{i,i-1},i&gt;0\)</span> <span class="math inline">\(P_{01}=1\)</span></p>
+<h4 id="simple-random-walk">Simple Random Walk</h4>
+<p><span class="math inline">\(P_{i,i+1}=p=1-P_{i,i-1}\)</span>. Firstly, step number cannot be even, i.e. <span class="math inline">\(P_{00}^{2n+1}=0\)</span>. <span class="math inline">\(P_{00}^{2n}=\binom{2n}{n}p^n(1-p)^n\)</span> <span class="math inline">\(=\frac{(2n)!}{n!n!}(p(1-p))^n\)</span>. By Stirling, <span class="math inline">\(P_{00}^{2n}\sim (4p(1-p))^n/\sqrt{\pi n}\)</span>. $$ if <span class="math inline">\(\sum_{n=1}^\infty (4p(1-p))^n/\sqrt{\pi n}=\infty\)</span> (only when <span class="math inline">\(p=1/2\)</span>) it will be recurrent. otherwise transient.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/07/14/随机过程题型总结/" rel="next" title="随机过程题型总结">
+                <i class="fa fa-chevron-left"></i> 随机过程题型总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#poisson-process"><span class="nav-number">1.</span> <span class="nav-text">Poisson Process</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#define-1"><span class="nav-number">1.1.</span> <span class="nav-text">Define 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#define-2"><span class="nav-number">1.2.</span> <span class="nav-text">Define 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#interarrival"><span class="nav-number">1.3.</span> <span class="nav-text">Interarrival</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conditional-distribution-of-the-arrival-times"><span class="nav-number">1.4.</span> <span class="nav-text">Conditional Distribution of the Arrival Times</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nonhomogeneous"><span class="nav-number">1.5.</span> <span class="nav-text">Nonhomogeneous</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#compound-poisson-random-variables"><span class="nav-number">1.6.</span> <span class="nav-text">Compound Poisson Random Variables</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markov-chains"><span class="nav-number">2.</span> <span class="nav-text">Markov Chains</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chapman-kolmogorov-equations"><span class="nav-number">2.1.</span> <span class="nav-text">Chapman-Kolmogorov Equations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#limit-theorems"><span class="nav-number">2.2.</span> <span class="nav-text">Limit Theorems</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#continuous-time-markov-chains"><span class="nav-number">3.</span> <span class="nav-text">Continuous Time Markov Chains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#martingales"><span class="nav-number">4.</span> <span class="nav-text">Martingales</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#queueing-theory"><span class="nav-number">5.</span> <span class="nav-text">Queueing Theory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stochastic-process-models"><span class="nav-number">6.</span> <span class="nav-text">Stochastic Process Models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mg1-queue"><span class="nav-number">6.1.</span> <span class="nav-text">M/G/1 Queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gm1-queue"><span class="nav-number">6.2.</span> <span class="nav-text">G/M/1 Queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gamblers-ruin-problem"><span class="nav-number">6.3.</span> <span class="nav-text">Gambler’s Ruin Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#alarm-clock-problem"><span class="nav-number">6.4.</span> <span class="nav-text">Alarm Clock Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#absolute-value-of-simple-random-walk"><span class="nav-number">6.5.</span> <span class="nav-text">Absolute Value of Simple Random Walk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#simple-random-walk"><span class="nav-number">6.6.</span> <span class="nav-text">Simple Random Walk</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/07/14/Stochastic-Process-Cheat-Sheet/';
+          this.page.identifier = '2018/07/14/Stochastic-Process-Cheat-Sheet/';
+          this.page.title = 'Stochastic Process Cheat Sheet';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

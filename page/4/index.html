@@ -1,0 +1,2578 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
+<meta property="og:type" content="website">
+<meta property="og:title" content="切问录">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="切问录">
+<meta name="twitter:description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/4/"/>
+
+
+
+
+
+  <title> 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2015/01/17/互信息的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2015/01/17/互信息的理解/" itemprop="url">
+                  互信息的理解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-17T13:59:25+08:00">
+                2015-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2015/01/17/互信息的理解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/17/互信息的理解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2015/01/17/互信息的理解/" class="leancloud_visitors" data-flag-title="互信息的理解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>我们在之前研究过两个随机变量的独立性，我们定义若两个随机变量<span class="math inline">\(X,Y\)</span>满足 <span class="math display">\[P(X,Y)=P(X)P(Y)\]</span> 则我们说随机变量<span class="math inline">\(X,Y\)</span>独立。下面来直观地理解这个公式，可以发现，如果<span class="math inline">\(X,Y\)</span>独立，那么已知<span class="math inline">\(X\)</span>，将不会对<span class="math inline">\(Y\)</span>的分布产生任何影响，即是说<span class="math inline">\(P(Y)=P(Y|X)\)</span>，这个结果的证明也很简单，由贝叶斯公式： <span class="math display">\[P(Y|X)=\frac{P(X,Y)}{P(X)}=\frac{P(X)P(Y)}{P(X)}=P(Y)\]</span> 即证。</p>
+<p>由此可以看出，独立性反应了已知<span class="math inline">\(X\)</span>的情况下，<span class="math inline">\(Y\)</span>的分布是否会改变，或者说，在给定随机变量<span class="math inline">\(X\)</span>之后，能否为<span class="math inline">\(Y\)</span>带来额外的信息。然而独立性只能表示出两个随机变量之间是否会有关系，但是却不能刻画他们的关系大小。下面我们引入互信息，它不仅能说明两个随机变量之间是否有关系，也能反应他们之间关系的强弱。我们定义互信息<span class="math inline">\(I(X,Y)\)</span>： <span class="math display">\[I(X;Y)=\int_X \int_Y P(X,Y)\log\frac{P(X,Y)}{P(X)P(Y)}\]</span></p>
+<p>我们来稍微理解一下，log里面就是<span class="math inline">\(X,Y\)</span>的联合分布和边际分布的比值，如果对所有<span class="math inline">\(X,Y\)</span>，该值等于1，即是说他们独立的情况下，互信息<span class="math inline">\(I(X;Y)=0\)</span>，即是说这两个随机变量引入其中一个，并不能对另一个带来任何信息，下面我们来稍稍对该式做一个变形 <span class="math display">\[\begin{aligned}
+I(X;Y)&amp;=\int_X \int_Y P(X,Y)\log\frac{P(X,Y)}{P(X)P(Y)}\\
+&amp;=\int_X \int_Y P(X,Y)\log\frac{P(X,Y)}{P(X)}-\int_X \int_Y P(X,Y)\log{P(Y)}\\
+&amp;=\int_X \int_Y P(X)P(Y|X)\log P(Y|X) -\int_Y \log{P(Y)}\int_X P(X,Y)\\
+&amp;=\int_X P(X)\int_Y P(Y|X)\log P(Y|X)-\int_Y \log{P(Y)}P(Y)\\
+&amp;=-\int_X P(X)H(Y|X=x)+H(Y)\\
+&amp;=H(Y)-H(Y|X)\\
+\end{aligned}\]</span></p>
+<p>其中，<span class="math inline">\(H(Y)\)</span>是<span class="math inline">\(Y\)</span>的熵，定义为 <span class="math display">\[H(Y)=-\int_Y P(Y)\log{P(Y)}\]</span> 衡量的是<span class="math inline">\(Y\)</span>的不确定度，即使说，<span class="math inline">\(Y\)</span>分布得越离散，<span class="math inline">\(H(Y)\)</span>的值越高，而<span class="math inline">\(H(Y|X)\)</span>则表示在已知<span class="math inline">\(X\)</span>的情况下，<span class="math inline">\(Y\)</span>的不确定度，而<span class="math inline">\(I(X;Y)\)</span>则表示由<span class="math inline">\(X\)</span>引入而使<span class="math inline">\(Y\)</span>的不确定度减小的量，因而如果<span class="math inline">\(X,Y\)</span>关系越密切，<span class="math inline">\(I(X;Y)\)</span>越大，<span class="math inline">\(I(X;Y)\)</span>最大的取值是<span class="math inline">\(H(Y)\)</span>，也就是说，<span class="math inline">\(X,Y\)</span>完全相关，由于X的引入，<span class="math inline">\(Y\)</span>的熵由原来的<span class="math inline">\(H(Y)\)</span>减小了<span class="math inline">\(I(X;Y)=H(Y)\)</span>，变成了0，也就是说如果<span class="math inline">\(X\)</span>确定，那么<span class="math inline">\(Y\)</span>就完全确定了。而当<span class="math inline">\(X,Y\)</span>独立时，<span class="math inline">\(I(X;Y)=0\)</span>引入<span class="math inline">\(X\)</span>，并未给<span class="math inline">\(Y\)</span>的确定带来任何好处。</p>
+<p>总结下<span class="math inline">\(I(X;Y)\)</span>的性质： 1）<span class="math inline">\(I(X;Y)\geqslant 0\)</span> 2）<span class="math inline">\(H(X)-H(X|Y)=I(X;Y)=I(Y;X)=H(Y)-H(Y|X)\)</span> 3）当<span class="math inline">\(X,Y\)</span>独立时，<span class="math inline">\(I(X;Y)=0\)</span> 4）当<span class="math inline">\(X,Y\)</span>知道一个就能推断另一个时，<span class="math inline">\(I(X;Y)=H(X)=H(Y)\)</span></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/10/23/仿射空间与仿射变换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/10/23/仿射空间与仿射变换/" itemprop="url">
+                  仿射空间与仿射变换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-23T19:19:53+08:00">
+                2014-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/10/23/仿射空间与仿射变换/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/10/23/仿射空间与仿射变换/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/10/23/仿射空间与仿射变换/" class="leancloud_visitors" data-flag-title="仿射空间与仿射变换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>　　　　　　 ## 为什么需要仿射变换？　　</p>
+<p>　　仿射空间与仿射变换在计算机图形学中有着很重要的应用。在线性空间中，我们用矩阵乘向量的方法，可以表示各式各样的线性变换，完成诸多的功能，但是有一种极其常用的变换却不能用线性变换的方式表示，那就是平移，一个图形的平移是非线性的！（这一点只需要看平移前各点与原点的连线和平移后各点与原点之间的连线可知，或者记平移变换为<span class="math inline">\(\mathcal{F}\)</span>，有<span class="math inline">\(\mathcal{F}（\boldsymbol{v_1}+\boldsymbol{v_2}）\not =\mathcal{F}（\boldsymbol{v_1})+\mathcal{F}(\boldsymbol{v_2}））\)</span> 　　　　　　 ## 放射空间与仿射组合</p>
+<p>　　为了用数学的方式来描述这种变换，就需要用到仿射变换（平移不是线性变换而是仿射变换）。下面先讲仿射空间。形象地来讲，仿射空间就是没有原点的线性空间。在线性空间中，两个点相加，可以定义为原点到两个点的向量线性相加，而在仿射空间中，由于没有原点，因此不能定义相加，没有线性组合。但我们可以定义一个仿射组合来用若干基表出某个点。我们定义仿射组合： <span class="math display">\[\boldsymbol{p}=\sum_{i=1}^N \lambda_i \boldsymbol{v_i}\quad\quad(\sum_{i=1}^N \lambda_i=1)\]</span> 我们不妨在线性空间中来看这个式子，假设就两个向量<span class="math inline">\(\boldsymbol{v_1,v_2}\)</span>我们任意指定一个原点<span class="math inline">\(\boldsymbol{q}\)</span>，设<span class="math inline">\(\boldsymbol{v_1}\)</span>的系数为<span class="math inline">\(\lambda\)</span>，则<span class="math inline">\(\boldsymbol{v_2}\)</span>的系数为<span class="math inline">\(1-\lambda\)</span>，那么<span class="math inline">\(\boldsymbol{p}=\boldsymbol{q}+\lambda(\boldsymbol{v_1}-\boldsymbol{q})+(1-\lambda)(\boldsymbol{v_2}-\boldsymbol{q})=\lambda \boldsymbol{v_1}+(1-\lambda)(\boldsymbol{v_2})\)</span>。通过推导，原点<span class="math inline">\(\boldsymbol{q}\)</span>被消去了，也就是说，仿射组合跟原点的选择没有任何关系！ 　　　　　　 ## 仿射变换</p>
+<p>　　有了仿射组合，就可以仿照线性组合来定义仿射变换：</p>
+<blockquote>
+<p>给定两个仿射空间<span class="math inline">\(\mathcal{A},\mathcal{B}\)</span>，一个函数<span class="math inline">\(f:\mathcal{A}\rightarrow \mathcal{B}\)</span>是仿射变换，当且仅当对仿射组合 <span class="math display">\[\sum_{i=1}^N \lambda_i \boldsymbol{v_i}\quad\quad(\sum_{i=1}^N \lambda_i=1)\]</span>都有 <span class="math display">\[f(\sum_{i=1}^N \lambda_i \boldsymbol{v_i})=\sum_{i=1}^N \lambda_if(\boldsymbol{v_i})\quad\quad(\sum_{i=1}^N \lambda_i=1)\]</span></p>
+</blockquote>
+<p>这种系数又叫质心坐标，哪个点的系数大，就相当于质量大，质心就离那个点近。仿射变换得到的结果就是给定点按质量加权的质心，质心的仿射变换等于每个点进行放射变换后再求质心。 　　　　　　 ## 用线性变换表示仿射变换</p>
+<p>下面来看如何表示仿射变换，我们定义<span class="math inline">\(\mathbb{R}^n\)</span>中一个向量<span class="math inline">\(\boldsymbol{v}\)</span>的齐次形式为<span class="math inline">\(\mathbb{R}^{n+1}\)</span>中的<span class="math inline">\(\overset{\sim}{\boldsymbol{v}}=\left[\begin{aligned}\boldsymbol{v} \\ 1\end{aligned}\right]\)</span>那么，仿射组合与系数和为1的要求可统一表示为 <span class="math display">\[\left[\begin{aligned}\boldsymbol{y} \\ 1\end{aligned}\right]=c_1\left[\begin{aligned}\boldsymbol{v_1} \\ 1\end{aligned}\right]+c_2\left[\begin{aligned}\boldsymbol{v_2} \\ 1\end{aligned}\right]+\cdots+c_n\left[\begin{aligned}\boldsymbol{v_n} \\ 1\end{aligned}\right]\]</span> 也就是说，仿射组合可以写成高一维对应齐次坐标的线性组合形式。那么对于一个附加平移的变换 <span class="math display">\[\boldsymbol{y}=A\boldsymbol{x}+\boldsymbol{b}\]</span> 我们可以将其改写成其次坐标的形式 <span class="math display">\[\left[\begin{aligned}\boldsymbol{y} \\ 1\end{aligned}\right]=\left[\begin{aligned}&amp;A &amp;\boldsymbol{b} \\ &amp;0 &amp;1\end{aligned}\right]\cdot\left[\begin{aligned}\boldsymbol{x} \\ 1\end{aligned}\right]\]</span>这也是在计算机图形学中对平移的处理方式。下面一个摘自维基百科的图形象地说明了这一过程</p>
+<center>
+<img src="/blog/images/affinetransofrmation.gif" alt="affinetransofrmation.gif">
+</center>
+<p>　　　　　　　　　　 ## 其它</p>
+<p>　　我们再来看看质心坐标（Barycentric Coordinates），采用质心坐标的好处在于它能够表示每一点受周围点的影响，质心坐标的系数越大，影响越大，因此在线性插值时，可以直接用质心坐标来乘以每一点的值，得出的就是插值后的结果，在计算机图形学中进行渲染时，颜色差值就用这种算法。 　　　　　　　　　　　　　　　　　　 ## 参考文献</p>
+<p>[1]D C.Clay Linear Algebra and its application 4th edition [2]http://en.wikipedia.org/wiki/Affine_space [3]http://en.wikipedia.org/wiki/Affine_transformation</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/10/23/用chrome修改js代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/10/23/用chrome修改js代码/" itemprop="url">
+                  用chrome修改js代码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-23T14:48:19+08:00">
+                2014-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/工具应用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具应用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/10/23/用chrome修改js代码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/10/23/用chrome修改js代码/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/10/23/用chrome修改js代码/" class="leancloud_visitors" data-flag-title="用chrome修改js代码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+　　网页中大部分的限制都是由js编写的，而chrome提供了一个修改js代码的工具，利用这个工具可以轻松解决各种时间等待之类的限制。本文主要通过利用chrome命令行修改变量值得方式，控制运行流程。
+<center>
+<img src="/blog/images/chrome_button.PNG" alt="chrome_button.PNG">
+</center>
+如图，我们看到该网站有一个阅读等待时间，而且一直没有任何变化，我们的目的是跳过这个等待时间。步骤如下： 1、按F12，打开调试面板； 2、打开source面板，找到相对应的代码；
+<center>
+<img src="/blog/images/chrome_panel.PNG" alt="chrome_panel.PNG">
+</center>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/10/23/用chrome修改js代码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/10/08/从Logistic回归到神经网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/10/08/从Logistic回归到神经网络/" itemprop="url">
+                  从Logistic回归到神经网络
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-08T22:24:43+08:00">
+                2014-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/10/08/从Logistic回归到神经网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/10/08/从Logistic回归到神经网络/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/10/08/从Logistic回归到神经网络/" class="leancloud_visitors" data-flag-title="从Logistic回归到神经网络">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="sigmoid函数">sigmoid函数</h2>
+<p>sigmoid函数定义为 <span class="math display">\[g(z)=\frac{1}{1+e^{-z}}\]</span> 对于一般的模型，通常有<span class="math inline">\(z=\theta^{\mathrm{T}}x\)</span>，可以看做是样本各属性的加权。sigmoid函数求导有<span class="math inline">\(g&#39;(z)=g(z)(1-g(z))\)</span>，这个在神经网络推导的时候会用到。 ## Logistic回归 Logistic回归是针对二分类问题常用的一种回归，其回归模型为： <span class="math display">\[h_\theta(x)=\frac{1}{1+e^{-\theta^{\mathrm{T}}x}}\]</span> 其中<span class="math inline">\(x\)</span>是某个样本的属性向量，<span class="math inline">\(\theta\)</span>是参数向量。在用Logistic回归时，需要找到合适的参数<span class="math inline">\(\theta\)</span>，使得能量函数（误差）<span class="math inline">\(J(\theta)\)</span>最小，在使用梯度下降法更新参数<span class="math inline">\(\theta\)</span>的更新过程中需要使用到梯度，然后在每一步执行<span class="math inline">\(\theta:=\theta-\alpha\nabla_\theta J(\theta)\)</span>，其中<span class="math inline">\(\alpha是学习速度\)</span>，能量函数被定义为： <span class="math display">\[J(\theta)=-\frac{1}{m}\sum_{i=1}^m\left[y^{(i)}\log h_{\theta}(x^{(i)})+(1-y^{(i)})\log (1-h_{\theta}(x^{(i)}))\right]\]</span> 其中 <span class="math display">\[h_{\theta}(x^{(i)})=\frac{1}{1+e^{-\theta^{\mathrm{T}}x^{(i)}}}\]</span> 下面来给出其梯度的推导
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/10/08/从Logistic回归到神经网络/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/08/30/从力做功到质能方程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/08/30/从力做功到质能方程/" itemprop="url">
+                  从力做功到质能方程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-30T23:30:56+08:00">
+                2014-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/物理随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">物理随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/08/30/从力做功到质能方程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/08/30/从力做功到质能方程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/08/30/从力做功到质能方程/" class="leancloud_visitors" data-flag-title="从力做功到质能方程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<blockquote>
+<p><span class="math inline">\(\mathcal{Everything~should~be~made~as~simple~as~possible,~but~not~ simpler.}\)</span></p>
+</blockquote>
+<blockquote>
+<p>　　　　　　　　　　　　　　　　　　　　　　　　　　　<span class="math inline">\(–\mathcal{Albert\quad Einstein}\)</span></p>
+</blockquote>
+<p><span class="math display">\[\begin{align}
+E&amp;=\int_0^xFdx
+=\int_0^x\frac{d}{dt}(mv)dx
+=\int_0^t\frac{d}{dt}(mv)vdt
+=\int_0^{mv}vd(mv)
+=\int_0^v vd\left(\frac{m_0v}{\sqrt{1-(v/c)^2}}\right)\\
+&amp;=m_0\int_0^v\left(\frac{v}{[1-(v/c)^2]^{1/2}}+\frac{v^3/c^2}{[1-(v/c)^2]^{3/2}}\right)dv
+=m_0\int_0^v\frac{vdv}{[1-(v/c)^2]^{3/2}}\\
+&amp;=m_0c^2\left(\frac{1}{[1-(v/c)^2]^{1/2}}-1\right)
+=(mc^2-m_0c^2)
+=(m-m_0)c^2\Rightarrow
+\end{align}\]</span> <span class="math display">\[E=mc^2\]</span></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/08/27/C++语言精要/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/08/27/C++语言精要/" itemprop="url">
+                  C++语言精要
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-27T21:01:18+08:00">
+                2014-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/08/27/C++语言精要/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/08/27/C++语言精要/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/08/27/C++语言精要/" class="leancloud_visitors" data-flag-title="C++语言精要">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h3 id="几种必考虑的情况">几种必考虑的情况</h3>
+<ul>
+<li>只要有除法，就一定要讨论分母为0；</li>
+<li>一定要判断函数输入参数是否合法；</li>
+<li>指针使用时判断是否非0，用完了置为0。</li>
+</ul>
+<h3 id="函数压栈顺序">函数压栈顺序</h3>
+<p>从右往左。 所以</p>
+<pre><code>int g = 1;
+printf(&quot;%d, %d&quot;, g, ++g);</code></pre>
+<p>结果为2,2</p>
+<pre><code>int g = 1;
+printf(&quot;%d, %d&quot;, g, g++);</code></pre>
+<p>结果为2,1，说明g++.exe是解析一个参数就加一次，不是解析完一行再加。</p>
+<h3 id="条件解析顺序">条件解析顺序</h3>
+<p>从左往右，如果当前已经足以判断（&amp;&amp;前面是False或||前面是True），则不会计算后续条件。</p>
+<h3 id="boolalpha">boolalpha</h3>
+<p>函数名称，功能是把bool值显示为true或false。</p>
+<pre><code>cout &lt;&lt; boolalpha &lt;&lt; ( str1==str2 ) &lt;&lt; endl;</code></pre>
+<h3 id="int">(int &amp;)</h3>
+<p>float a = 1.0f cout&lt;&lt;(int &amp;)a 从a的起始地址开始，读取sizeof(int)长度，当整数输出</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/08/27/C++语言精要/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/07/21/拉普拉斯变换中的s是什么/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/07/21/拉普拉斯变换中的s是什么/" itemprop="url">
+                  拉普拉斯变换中的s是什么
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-21T19:50:45+08:00">
+                2014-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/07/21/拉普拉斯变换中的s是什么/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/07/21/拉普拉斯变换中的s是什么/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/07/21/拉普拉斯变换中的s是什么/" class="leancloud_visitors" data-flag-title="拉普拉斯变换中的s是什么">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>　　今天重新研究了下拉普拉斯变换，很多资料只是给出了其公式，并没有给出其来历，特别是那个<span class="math inline">\(s\)</span>的出现显得非常莫名其妙。本文旨在给出拉普拉斯变换的一个直观上的理解，对严谨性不做保证。 　　我们在研究很多数学问题的时候，特别是一些复杂的问题的时候，无法直接入手，而是将问题分解到许多维度上去，在这些简单的维度去进行处理，因此我们有了泰勒展开，有了幂级数、傅里叶级数，我们将傅里叶技级数再往连续域上推广，又有了傅里叶变换。而拉普拉斯变换，可以从幂级数的概念中推广出来，下面给出其推广过程。 一个函数可以用幂级数的形式表出： <span class="math display">\[A(x)=\sum_{i=1}^\infty a_ix^i\]</span> 我们可以看出，构造一个函数<span class="math inline">\(A(x)\)</span>的过程，我们输入了一个序列<span class="math inline">\(\{a_1,a_2,\cdots\}\)</span>，输出了一个函数<span class="math inline">\(A(x)\)</span>，（这个地方的<span class="math inline">\(x\)</span>是输出的函数的自变量，和拉普拉斯变换的定义还稍有不同，我们一会来解决这个问题），其实这个序列可以看成是一个特殊的函数，即自变量只取整数的函数，那么我们将其推广为一般函数会有什么效果？将离散自变量<span class="math inline">\(i\)</span>用连续自变量<span class="math inline">\(t\)</span>代替，求和推广为积分，我们有： <span class="math display">\[A(x)=\int_0^{+\infty} f(t)x^tdt\]</span> 而在微积分中，我们常常引入自然指数来方便运算，有： <span class="math display">\[\begin{aligned}A(x)&amp;=\int_0^{+\infty} f(t)x^tdt\\
+&amp;=\int_0^{+\infty} f(t)(e^{\ln x})^tdt
+\end{aligned}\]</span> 在这里，我们需要对<span class="math inline">\(x\)</span>做一些限定，因为幂级数存在收敛半径的，对于一般的自然界中存在的实际函数（如信号）是不能发散到正无穷的，因此该函数有上界，因而，对于<span class="math inline">\(x\lt 1\)</span>的幂级数一定收敛（可以用<span class="math inline">\(\sqrt[n]{a_n}\)</span>那个半径判据），即幂级数收敛半径为1，而由于为了避免负的幂带来的困扰，我们要求<span class="math inline">\(x\gt 0\)</span>。由于<span class="math inline">\(0\lt x \lt 1\)</span>，而<span class="math inline">\(\ln x \in (-\infty,0)\)</span>。也就是说，这样我们得到的变换的函数对其自变量的范围有所限制，为<span class="math inline">\(x \in (0,1)\)</span>，这当然很不好看，因此我们做一个代换，令 <span class="math display">\[-s=\ln x\]</span> 将<span class="math inline">\(A(x)\)</span>用<span class="math inline">\(F(x)\)</span>代替，因此原始变为 <span class="math display">\[F(x)=\int_0^{+\infty}f(t)e^{-st}dt\quad s \in(0,+\infty)\]</span> 这正是拉普拉斯变换！ 　　注意了，这里，我们变换后的函数本来是<span class="math inline">\(F(x),x\in(0,1)\)</span>，但是，这种形式很难看，在操作时也很麻烦，因此我们做了变量代换，得到了变换后的函数<span class="math inline">\(F(s),s\in(0,+\infty)\)</span>两个其实是一回事。将拉普拉斯变换用符号<span class="math inline">\(\mathcal{L}\)</span>表示，记作： <span class="math display">\[\mathcal{L}(f(t))=F(s)\]</span></p>
+<p>参考文献： [1] 微分方程公开课.Massachusetts Institute of Technology.Arthur Mattuck</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/" itemprop="url">
+                  为什么最小二乘法对误差的估计要用平方？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-13T20:34:58+08:00">
+                2014-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/06/13/为什么最小二乘法对误差的估计要用平方/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/" class="leancloud_visitors" data-flag-title="为什么最小二乘法对误差的估计要用平方？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>　　以前上高中的时候问过数学老师这个问题，被老师骂了一顿，说这是规定，后来也就没太在意。今天看了Stanford Andrew Ng讲的《机器学习》，明白了为什么最小二乘法对误差的估计要用平方，而不是绝对值或是四次方。</p>
+<p>　　简单地说，之所以要用这种规定，是因为，取二次方的时候，对参数的估计是当前样本下的最大似然估计。下面给出证明。</p>
+<p>　　记样本为<span class="math inline">\((x^{(i)},y^{(i)})\)</span>，对样本的预测为<span class="math inline">\(\hat y^{(i)}|_\boldsymbol{\theta}\)</span>该记法表示该预测依赖于参数<span class="math inline">\(\boldsymbol{\theta}\)</span>的选取。我们有： 　　<span class="math display">\[\boldsymbol{y}=\boldsymbol{\hat y|_\theta}+\boldsymbol{\epsilon}\]</span> 　　其中，<span class="math inline">\(\boldsymbol{\epsilon}\)</span>是一个误差函数，我们通常认为其服从正态分布即 　　<span class="math display">\[\boldsymbol{\epsilon }\sim N(0,\sigma^2)\]</span> 因此有 　　<span class="math display">\[\begin{aligned}\boldsymbol{y}-\boldsymbol{\hat y|_\theta}&amp;\sim N(0,\sigma^2)\\ \boldsymbol{y}&amp;\sim N(\boldsymbol{\hat y|_\boldsymbol{\theta}},\sigma^2)\end{aligned}\]</span> 要求<span class="math inline">\(\boldsymbol{\theta}\)</span>的极大似然估计，即是说，我们现在得到的这个真实存在的<span class="math inline">\(\boldsymbol{y}\)</span>在<span class="math inline">\(\boldsymbol{\theta}\)</span>不同的取值下，出现概率最大，我们来看这个概率。令 <span class="math display">\[L(\boldsymbol{\theta})=P(\boldsymbol{y}|\boldsymbol{x};\boldsymbol{\theta})=\prod_{i=1}^m\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\hat y^{(i)}|_\boldsymbol{\theta})^2}{2\sigma})\]</span> 为了简化计算，令 <span class="math display">\[\begin{aligned}l(\boldsymbol{\theta})&amp;=\log L(\boldsymbol{\theta})\\&amp;=m\log \frac{1}{\sqrt{2\pi}}+\sum_{i=0}^m-\frac{(y^{(i)}-\hat y^{(i)}|_\boldsymbol{\theta})^2}{2\sigma}\end{aligned}\]</span> 要让<span class="math inline">\(L(\boldsymbol{\theta})\)</span>最大，即需让<span class="math inline">\(l(\boldsymbol{\theta})\)</span>最大，即让<span class="math inline">\(\sum_{i=0}^m(y^{(i)}-\hat y^{(i)}|_\boldsymbol{\theta})^2\)</span>取到最小值。</p>
+<p>　　综上，当误差函数定为平方时，参数<span class="math inline">\(\boldsymbol{\theta}\)</span>是样本的极大似然估计。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/05/07/基于奇异值分解的图像压缩/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/05/07/基于奇异值分解的图像压缩/" itemprop="url">
+                  基于奇异值分解的图像压缩
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-07T13:18:35+08:00">
+                2014-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/图像处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图像处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/05/07/基于奇异值分解的图像压缩/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/05/07/基于奇异值分解的图像压缩/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/05/07/基于奇异值分解的图像压缩/" class="leancloud_visitors" data-flag-title="基于奇异值分解的图像压缩">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+最近学习线性代数的有关东西，在看到奇异值分解（svd）时，发现了一个在图像压缩上的应用。 奇异值分解：在线性代数中，我们知道对任意一个矩阵都存在奇异值分解，<span class="math inline">\(\boldsymbol{A}=\boldsymbol{U\Sigma V^\mathrm{T}}\)</span>，其中<span class="math inline">\(\boldsymbol{U}\)</span>和<span class="math inline">\(\boldsymbol{V}\)</span>是标准正交矩阵，而<span class="math inline">\(\boldsymbol{\Sigma}\)</span>是一个对角矩阵，每一个对角元是该矩阵的一个奇异值，奇异值指的是矩阵的特征值开根号。其具体分解形式如下： <span class="math display">\[
+\boldsymbol{A}=\begin{bmatrix}u_1 &amp;u_2 &amp;\cdots &amp;u_m\end{bmatrix}\begin{bmatrix}\boldsymbol{D} &amp; \boldsymbol{0} \\\boldsymbol{0} &amp;\boldsymbol{0}\end{bmatrix}\begin{bmatrix}v_1^\mathrm{T}\\ v_2^\mathrm{T} \\ \vdots \\ u_n^\mathrm{T}\end{bmatrix}
+\]</span> 其中 <span class="math display">\[\boldsymbol{D}=\begin{bmatrix} \sigma_1 &amp;0 &amp;\cdots &amp;0 \\ 0 &amp; \sigma_2 &amp;\vdots &amp;0 \\ \vdots &amp;\vdots &amp;\ddots &amp;\vdots \\ 0 &amp;0 &amp;\cdots &amp;\sigma_r\end{bmatrix}\]</span> 将<span class="math inline">\(\boldsymbol{A}\)</span>展开得 <span class="math display">\[\boldsymbol{A}=\sigma_1\boldsymbol{u_1v_1^\mathrm{T}}+\sigma_2\boldsymbol{u_2v_2^\mathrm{T}}+\cdots+\sigma_r\boldsymbol{u_rv_r^\mathrm{T}}\]</span> 将<span class="math inline">\(\boldsymbol{A}\)</span>看成一个图像的矩阵，上面和式的每一个分量按大小排序，越大，说明越重要。而后面的权很小，可以舍去，如果只取前面k项，则数据量为<span class="math inline">\((m+n+1)k\ll mn\)</span>因而达到了压缩图像的目的。 通过对比发现，当$k= <span class="math inline">\(时，能基本看清图像。当\)</span>k= <span class="math inline">\(时基本看不出任何区别，对于长宽相等的图像，此时数据量占原数据量的\)</span>k= $,在测试图像中，这个数值为0.5 。可见图像压缩的效果是显著的。 处理结果如下： 原始图像：
+<center>
+<img src="/blog/images/svdori.png" alt="svdori.png">
+</center>
+k=1:
+<center>
+<img src="/blog/images/svdk=1.png" alt="svdk=1.png">
+</center>
+k=2:
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/05/07/基于奇异值分解的图像压缩/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/04/27/基于形态学的3D点云重建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/04/27/基于形态学的3D点云重建/" itemprop="url">
+                  基于形态学的3D点云重建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-27T10:55:28+08:00">
+                2014-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/图像处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图像处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/04/27/基于形态学的3D点云重建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/27/基于形态学的3D点云重建/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/04/27/基于形态学的3D点云重建/" class="leancloud_visitors" data-flag-title="基于形态学的3D点云重建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+这是一年前做的一个小算法，今天把它搬运过来。该算法的主要目的是利用灰度形态学腐蚀对3D点云进行曲面重建。 给定点云的数据文件（这是美国卫星的数据，能在官网上下载到），寻找一种方法，重建原来的曲面。点云数据为卫星扫描的las文件。 点云数据：
+<center>
+<img src="/blog/images/pointCloudOri.jpg" alt="pointCloudOri.jpg"> 原始点云
+</center>
+<center>
+<img src="/blog/images/pointCloudFinal.jpg" alt="pointCloudFinal.jpg"> 处理后的效果
+</center>
+由于是卫星得到的数据，因此可以发现数据点基本都是楼房的屋顶。 而他的平面视图如下：
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/04/27/基于形态学的3D点云重建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/blog/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/5/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

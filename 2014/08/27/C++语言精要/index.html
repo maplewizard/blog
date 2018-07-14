@@ -1,0 +1,1560 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  几种必考虑的情况  只要有除法，就一定要讨论分母为0； 一定要判断函数输入参数是否合法； 指针使用时判断是否非0，用完了置为0。  函数压栈顺序 从右往左。 所以 int g = 1; printf(&amp;quot;%d, %d&amp;quot;, g, ++g); 结果为2,2 int g = 1; printf(&amp;quot;%d, %">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++语言精要">
+<meta property="og:url" content="http://yoursite.com/2014/08/27/C++语言精要/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  几种必考虑的情况  只要有除法，就一定要讨论分母为0； 一定要判断函数输入参数是否合法； 指针使用时判断是否非0，用完了置为0。  函数压栈顺序 从右往左。 所以 int g = 1; printf(&amp;quot;%d, %d&amp;quot;, g, ++g); 结果为2,2 int g = 1; printf(&amp;quot;%d, %">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-18T03:01:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++语言精要">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  几种必考虑的情况  只要有除法，就一定要讨论分母为0； 一定要判断函数输入参数是否合法； 指针使用时判断是否非0，用完了置为0。  函数压栈顺序 从右往左。 所以 int g = 1; printf(&amp;quot;%d, %d&amp;quot;, g, ++g); 结果为2,2 int g = 1; printf(&amp;quot;%d, %">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/08/27/C++语言精要/"/>
+
+
+
+
+
+  <title> C++语言精要 | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/08/27/C++语言精要/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                C++语言精要
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-27T21:01:18+08:00">
+                2014-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/08/27/C++语言精要/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/08/27/C++语言精要/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/08/27/C++语言精要/" class="leancloud_visitors" data-flag-title="C++语言精要">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h3 id="几种必考虑的情况">几种必考虑的情况</h3>
+<ul>
+<li>只要有除法，就一定要讨论分母为0；</li>
+<li>一定要判断函数输入参数是否合法；</li>
+<li>指针使用时判断是否非0，用完了置为0。</li>
+</ul>
+<h3 id="函数压栈顺序">函数压栈顺序</h3>
+<p>从右往左。 所以</p>
+<pre><code>int g = 1;
+printf(&quot;%d, %d&quot;, g, ++g);</code></pre>
+<p>结果为2,2</p>
+<pre><code>int g = 1;
+printf(&quot;%d, %d&quot;, g, g++);</code></pre>
+<p>结果为2,1，说明g++.exe是解析一个参数就加一次，不是解析完一行再加。</p>
+<h3 id="条件解析顺序">条件解析顺序</h3>
+<p>从左往右，如果当前已经足以判断（&amp;&amp;前面是False或||前面是True），则不会计算后续条件。</p>
+<h3 id="boolalpha">boolalpha</h3>
+<p>函数名称，功能是把bool值显示为true或false。</p>
+<pre><code>cout &lt;&lt; boolalpha &lt;&lt; ( str1==str2 ) &lt;&lt; endl;</code></pre>
+<h3 id="int">(int &amp;)</h3>
+<p>float a = 1.0f cout&lt;&lt;(int &amp;)a 从a的起始地址开始，读取sizeof(int)长度，当整数输出</p>
+<a id="more"></a>
+<h3 id="类型长度">类型长度：</h3>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>长度（字节）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>void</td>
+<td>1(sizeof是1，但是有warning)</td>
+</tr>
+<tr class="even">
+<td>空类</td>
+<td>1（和void一样）</td>
+</tr>
+<tr class="odd">
+<td>bool</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>char</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>short</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>int</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>long</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>float</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>long long</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>double</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>long double</td>
+<td>12(32位系统)，16（64位系统）</td>
+</tr>
+<tr class="even">
+<td>所有指针</td>
+<td>4(32位系统)，8（64位系统）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="整数的存储方式">整数的存储方式</h3>
+<p>是倒着存的，如0xFFEEDDF7在内存中为F7 DD EE FF 所以：</p>
+<pre><code>unsigned int a = 0xFFEEDDF7;
+unsigned char *b = (unsigned char *)&amp;a;
+printf(&quot;%x&quot;,b[0]);</code></pre>
+<p>输出为F7</p>
+<h3 id="高精度赋值给低精度">高精度赋值给低精度</h3>
+<p>产生截断，类似于用低精度的指针直接指向高精度的首位，再赋值给低精度变量<code>unsigned char b = *((unsigned char *)&amp;a)</code>由于整数是倒着存放的，所以产生的是低位截断。</p>
+<pre><code>unsigned int a = 0xFFEEDDF7;
+unsigned char b = a;
+long long c = 0xAABBCCDD11223344;
+int d = c;
+printf(&quot;%x，%x&quot;,b,d);</code></pre>
+<p>输出为F7,11223344</p>
+<h3 id="运算符优先级">运算符优先级</h3>
+<p>逻辑非，按位取反&gt;乘除加减&gt;位移&gt;比较大小&gt;按位与异或或&gt;逻辑运算&gt;赋值运算</p>
+<h3 id="消去最低位的1">消去最低位的1</h3>
+<p><code>x=x&amp;(x-1)</code> 该表达式消去了x二进制数中最低端的1，可用于计算x二进制数中有几个1，或者判断x是否是2的N次方。</p>
+<h3 id="位运算的方法求平均数">位运算的方法求平均数</h3>
+<pre><code>int x = 729;
+int y = 271;
+cout&lt;&lt;((x&amp;y) + ((x^y)&gt;&gt;1));</code></pre>
+<p>输出为500，x&amp;y表示x和y中相同的位，也等于x，y中相同位的平均数（因为他们相同），x^y表示x、y中不同的位相加，&gt;&gt;1表示除以2取平均数。综上，这个表达式就是取两个数的平均数。</p>
+<h3 id="只用位运算实现加法">只用位运算实现加法</h3>
+<pre><code>int Add(int a, int b){
+if(0 == b)return a;//没有进位则返回
+int sum,carry;
+sum = a^b;//不考虑进位的加法
+carry = (a&amp;b)&lt;&lt;1;//算出要进位的地方，并左移到该加的位置
+return Add(sum,carry);//递归相加
+}</code></pre>
+<h3 id="交换两个数">交换两个数</h3>
+<pre><code>a^=b
+b^=a
+a^=b</code></pre>
+<h3 id="extern-c">extern “C”</h3>
+<p>C++实现重载函数是将这个函数进行改名，在后面加上参数，如foo（int，int）编译后变成_foo_int_int_，用C去调用这个函数会出问题，因此加上extern “C”之后，则编译后会得到一个符合C规范的名字。</p>
+<h2 id="用宏获取结构体中某个元素相对于结构体头的偏移地址">用宏获取结构体中某个元素相对于结构体头的偏移地址</h2>
+<pre><code># define FIND(struc,e) (size_t)&amp;(((struc*)0)-&gt;e)</code></pre>
+<p>先将0强制转化为struc*类型，这样，它的首地址就是0，因此偏移量就等于e的绝对地址，再将其转换为int型的即可。</p>
+<h3 id="用宏定义一年有多少秒">用宏定义一年有多少秒</h3>
+<pre><code># define (60 * 60 * 24 * 365)UL</code></pre>
+<p>注意后面的UL，以及在宏中，任何变量都应该用括号括起来</p>
+<h3 id="用宏定义min函数">用宏定义MIN函数</h3>
+<pre><code># define MIN(A,B) ((A)&lt;=(B)?(A):(B))</code></pre>
+<p>注意括号</p>
+<h3 id="关于const">关于const</h3>
+<table>
+<thead>
+<tr class="header">
+<th>申明</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>const int * a;</td>
+<td>指向的东西不能变</td>
+</tr>
+<tr class="even">
+<td>int const * a;</td>
+<td>通上</td>
+</tr>
+<tr class="odd">
+<td>int * const a;</td>
+<td>指针本身不能变</td>
+</tr>
+<tr class="even">
+<td>int f()const;</td>
+<td>该函数不能改变成员变量</td>
+</tr>
+<tr class="odd">
+<td>const int * f();</td>
+<td>该函数返回一个指针，不能通过指针来改变指向的变量</td>
+</tr>
+</tbody>
+</table>
+<p>总结： - 在<em>左边的const表示指向的东西不能变，在</em>右边的const表示指针不能再指向其他变量。 - const成员函数中，若需改变成员变量，则将需要改变的成员变量用mutable关键字修饰。</p>
+<h3 id="结构体对齐">结构体对齐</h3>
+<p>结构体为了读取方便，会对数据元素进行对齐，对齐方式就是取这里面最大的数据类型，为每一个数据所占的长度，其他的小的数据不够的话则补齐。 如有一下代码：</p>
+<pre><code>struct ST
+{
+int i;
+bool b;
+double d;
+};
+
+struct ST2
+{
+int i;
+double d;
+bool b;
+};
+cout&lt;&lt;sizeof(ST);//=16
+cout&lt;&lt;sizeof(ST2);//=24
+cout&lt;&lt;endl;
+cout&lt;&lt;FIND(ST,i)&lt;&lt;FIND(ST,b)&lt;&lt;FIND(ST,d)&lt;&lt;sizeof(ST);</code></pre>
+<p>输出 16 24 0 4 8 16 这里，double是最长的元素，所以对齐长度取8，其中bool型的被压缩在i没填完的地方里面了。可见，一个结构体中元素出现顺序不一样，结构体的大小不一样。</p>
+<table>
+<thead>
+<tr class="header">
+<th>i</th>
+<th>i</th>
+<th>i</th>
+<th>i</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>d</td>
+<td>d</td>
+<td>d</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+<p>用<code># pragma pack(n)</code>可以更改对齐方式，如果<span class="math inline">\(n=1\)</span>的话，那么尽量按1对齐，如果大于1，如double、int等，那么就按它本身大小对齐。</p>
+<h3 id="堆与栈">堆与栈</h3>
+<p>一个由c/C++编译的程序占用的内存分为以下几个部分 ：</p>
+<p>1、栈区（stack）― 由编译器自动分配释放 ，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈；</p>
+<p>2、堆区（heap） ― 一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵；</p>
+<p>3、全局区（静态区）（static）―，全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域， 未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。 - 程序结束后由系统释放 ；</p>
+<p>4、文字常量区 ―常量字符串就是放在这里的。 程序结束后由系统释放 ；</p>
+<p>5、程序代码区―存放函数体的二进制代码。 详见： http://zhidao.baidu.com/link?url=ejKPzQ9sYih1Q3sYirWst8L1JmYVGopR6WQrfu2_c5zpAbdgoOvpxfzdTOYusNKUG7k9UqVnCM9jy2BxTXskk_</p>
+<h3 id="内存分配">内存分配</h3>
+<p>malloc：值分配内存，返回的只有void指针，失败返回0 calloc：分配内存，并全部置0；参数为两个，一个是大小一个是多少 new：自动执行构造函数，自动计算内存大小，是运算符而不是函数，失败时抛出异常。</p>
+<h2 id="关于sizeof的一些补充">关于sizeof的一些补充</h2>
+<pre><code>char * p = &quot;123456&quot;;
+char a[] = &quot;123456&quot;;
+cout&lt;&lt;sizeof(p);
+cout&lt;&lt;sizeof(*p);
+cout&lt;&lt;sizeof(a);
+cout&lt;&lt;sizeof(*a);</code></pre>
+<p>输出4 1 7 1 1)注意sizeof一个数组名，得到的是数组占用空间大小，这是数组和指针的区别之一！</p>
+<p>2)sizeof 是运算符不是函数，因此可以sizeof一个类型，如果是变量的话可以不加括号！<code>sizeof a``sizeof (int)</code></p>
+<p>3)sizeof 的返回类型是size_t，是一个与机器有关的无符号整型</p>
+<p>4)数组传给sizeof的时候不退化，传给strlen时，退化为指针`,实际上，数组在传给任意函数之后都退化成了指针，在子函数中，不知道数组大小，需要在传一个参数进去。</p>
+<p>5）sizeof 类似于一个特殊的宏，在编译时会将所有的变量、表达式替换为其相应的类型，因此，在程序运行过程中，sizeof括号里的标的是得不到执行。<code>sizeof（a=4）;</code>a的值是不会改变的，同理<code>sizeof(f())</code>的f()也得不到执行。</p>
+<p>6)sizeof不能用于计算动态数组的大小</p>
+<h3 id="虚函数">虚函数</h3>
+<p>作用：用基类指针去调用子类函数，实现多态。 实现方法：虚函数表，在一个有虚函数的类的开头有虚函数指针，里面指向了一个虚函数的列表如图：</p>
+<p>对于多重继承就会有多个虚函数表的指针，就像这样：</p>
+<p>因此对于一个没有虚函数的类，sizeof(B)=1，对于单继承的有虚函数的类，sizeof(D)=4，而对于多继承则sizeof(D)=4*n 一般来讲，虚函数指针放在对象的第一个位置，因此其的地址就是类的地址。我们可以通过函数指针强行指向类的第一个指针指向的函数地址，来实现调用，这种方法可以直接调用private函数，是C++的一个bug。 详见 http://blog.csdn.net/haoel/article/details/1948051/</p>
+<h3 id="内联函数">内联函数</h3>
+<p>编译器会将代码直接替换到调用的地方，会做检查，而宏则不会。<code>inline</code>应与函数定义放在一起，而不是声明。内联函数常用于一些大型工程。 ## 指针 ### 指针和数组名的区别 指针占空间，数组名不占空间</p>
+<pre><code>char * c=&quot;hello&quot;;//&quot;hello&quot;分配在常量区
+char c[]=&quot;hello&quot;;//&quot;hello&quot;分配在栈上这个c不占空间，sizeof(c)
+得到的是数组长度。我怀疑是编译之后直接用一个常地址给替换了
+
+const char * strA()
+{
+    char c[] = &quot;hello&quot;;//&quot;hello&quot;分配在栈上，程序结束即消除，
+        //所以这种写法错误
+    return c;
+}
+const char * strA()
+{
+    static char c[] = &quot;hello&quot;;//&quot;hello&quot;分配在常量和全局区，
+        //返回之后不会消失，合法
+    return c;
+}</code></pre>
+<h3 id="指针减法">指针减法</h3>
+<p>会自动除以一个sizeof(当前类型)</p>
+<h3 id="用派生类指针指向基类">用派生类指针指向基类</h3>
+<p>一般我们用基类指针指向派生类，实现多态， 而用派生类指针指向基类是非法的，如果非要这么做，则需使用dynamic_cast</p>
+<pre><code>Derived *d = dynamic_cast&lt;Derived *&gt;( new Base());</code></pre>
+<h3 id="main函数返回值">main函数返回值</h3>
+<p>如果没写，则编译器自动返回0，所有函数都必须有返回值。</p>
+<h3 id="一些指针">一些指针</h3>
+<table>
+<thead>
+<tr class="header">
+<th>指针类型</th>
+<th>写法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>函数指针</td>
+<td>void (*pf)()</td>
+<td>声明时一定要加类型void (*pf)(int,int)=&amp;f;</td>
+</tr>
+<tr class="even">
+<td>函数返回指针</td>
+<td>void *f()</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>const指针</td>
+<td>const int * p</td>
+<td>指向的东西不能变，指向const int a，因此直接加了个*</td>
+</tr>
+<tr class="even">
+<td>指向const的指针</td>
+<td>int * const p</td>
+<td>p本身的值不能变，而指向的东西可以变</td>
+</tr>
+<tr class="odd">
+<td>指向const的const指针</td>
+<td>const int * const p</td>
+<td>上面两个合起来</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一些指针示例">一些指针示例</h3>
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>语句</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>float(**def)[10]</code></td>
+<td>def是一个二级指针，指向一个指向一维数组的指针，一位数组元素都是float</td>
+</tr>
+<tr class="even">
+<td><code>double*(*gh)[10]</code></td>
+<td>gh是一个指针，指向一个一维数组，数组元素都是double *</td>
+</tr>
+<tr class="odd">
+<td><code>double(*f[10])()</code></td>
+<td>f是一个数组，有10个元素，元素都是函数指针，指向返回double型的无参数的函数</td>
+</tr>
+<tr class="even">
+<td><code>int*((*b)[10])</code></td>
+<td>和<code>int*(*b[10])</code>相同，是指向一维数组的指针</td>
+</tr>
+<tr class="odd">
+<td><code>long (*fun)(int)</code></td>
+<td>函数指针</td>
+</tr>
+<tr class="even">
+<td><code>int(*(*f)(int,int))(int)</code></td>
+<td>f是一个函数指针，指向一个以两个int为参数，返回一个函数指针的函数，返回的函数输入一个int输出一个int</td>
+</tr>
+<tr class="odd">
+<td><code>int * a[10]</code></td>
+<td>一个数组，有10个int* 元素</td>
+</tr>
+<tr class="even">
+<td><code>int (*a)[10]</code></td>
+<td>一个指针，指向一个有10个int元素的数组</td>
+</tr>
+</tbody>
+</table>
+<p>以<code>int * (*p)[10]</code>为例说明判断方式，先找到变量，这是一个指针，然后看最左边，表示的是数据类型是指向整型的指针，右边表示是指向数组的指针。综上，是一个指向一位数组的指针，一位数组里都是<code>int *</code>。</p>
+<h3 id="数组名">数组名</h3>
+<p>数组名的值是个指针常量，《C和指针》p142中说到，在以下两中场合下，数组名并不是用指针常量来表示，就是当数组名作为sizeof操作符和单目操作符&amp;的操作数时。 sizeof返回整个数组的长度。 &amp;a产生的是一个指向数组的指针，而不是一个指向某个指针常量的指针。所以&amp;a后返回的指针便是指向数组的指针，跟a（一个指向a[0]的指针）在指针的类型上是有区别的。 定义char a[] = “hello”;</p>
+<table>
+<thead>
+<tr class="header">
+<th>语句</th>
+<th>含义</th>
+<th>sizeof</th>
+<th>cout</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>常指针，指向a[0]</td>
+<td>6</td>
+<td>hello</td>
+</tr>
+<tr class="even">
+<td>a+1</td>
+<td>常指针，指向a[1]</td>
+<td>4</td>
+<td>ello</td>
+</tr>
+<tr class="odd">
+<td>*a</td>
+<td>取a的第0个元素</td>
+<td>1</td>
+<td>h</td>
+</tr>
+<tr class="even">
+<td>&amp;a</td>
+<td>获得一个指向数组的指针变量</td>
+<td>4</td>
+<td>0x22ff0a</td>
+</tr>
+<tr class="odd">
+<td>&amp;a+1</td>
+<td>指向首地址加上数组长度的那个元素，已经超出数组范围</td>
+<td>-</td>
+<td>22ff10</td>
+</tr>
+<tr class="even">
+<td>*&amp;a</td>
+<td>获得上面指针所指示的数组</td>
+<td>6</td>
+<td>hello</td>
+</tr>
+</tbody>
+</table>
+<p>代码：</p>
+<pre><code>char a[] = &quot;hello&quot;;
+ cout &lt;&lt; sizeof(a)&lt;&lt;&quot; &quot;&lt;&lt; sizeof(&amp;a)&lt;&lt;&quot; &quot;&lt;&lt; sizeof(*a)&lt;&lt;&quot; &quot;&lt;&lt; sizeof(*&amp;a)&lt;&lt;&quot; &quot;;
+ cout &lt;&lt; (a)&lt;&lt;&quot; &quot;&lt;&lt; (&amp;a)&lt;&lt;&quot; &quot;&lt;&lt; (*a)&lt;&lt;&quot; &quot;&lt;&lt; (*&amp;a)&lt;&lt;&quot; &quot;;</code></pre>
+<p>输出</p>
+<pre><code>6 4 1 6 hello 0x22ff0a h hello</code></pre>
+<p>总的来说，a是一个指向数组第0个元素的指针，长度为1，而&amp;为指向数组的指针，长度为n，指示在sizeof(a)的时候变为n，比较特殊。</p>
+<h3 id="指针和句柄">指针和句柄</h3>
+<p>句柄是系统提供的系统资源虚拟地址，类似于指针，但是windows会经常将空闲对象释放，需要用时重新加载，因此用物理地址就没法找到，因此需要引入指针来管理。</p>
+<h3 id="智能指针">智能指针</h3>
+<p>1、在可以使用 boost 库的场合下，拒绝使用 std::auto_ptr，因为其不仅不符合 C++ 编程思想，而且极容易出错。不能复制，因此其管理的对象不能放入 std::vector 等容器中。</p>
+<p>2、在确定对象无需共享的情况下，使用 boost::scoped_ptr（当然动态数组使用boost::scoped_array）。</p>
+<p>3、在对象需要共享的情况下，使用 boost::shared_ptr（当然动态数组使用boost::shared_array）。</p>
+<p>4、在需要访问 boost::shared_ptr 对象，而又不想改变其引用计数的情况下，使用boost::weak_ptr，一般常用于软件框架设计中。</p>
+<p>5、最后一点，也是要求最苛刻一点：在你的代码中，不要出现 delete 关键字（或 C 语言的free 函数），因为可以用智能指针去管理。</p>
+<p>来源： <a href="http://blog.csdn.net/xt_xiaotian/article/details/5714477" class="uri" target="_blank" rel="noopener">http://blog.csdn.net/xt_xiaotian/article/details/5714477</a></p>
+<h3 id="this指针">this指针</h3>
+<p>C++的this指针和Python一样，其实是成员函数的一个隐藏参数，而在成员函数中，亦是通过this指针来区别不同的对象。静态成员函数没有this指针。 ## STL ### 浅拷贝 含有指针的对象，如果只进行浅拷贝，即直接复制的话，会引发指针重复析构的问题。因此，含有指针的对象最好不要放到容器中，或者定义拷贝构造函数，使用深拷贝。</p>
+<h2 id="面向对象">面向对象</h2>
+<h3 id="面向对象五个基本原则">面向对象五个基本原则</h3>
+<ol type="1">
+<li>单一职责（Single-Responsibility Principle）：就一个类而言，应该仅有一个引起它变化的原因。防止原因间相互交叉。</li>
+<li>开放封闭原则（Open-Closed Principle）：是说软件实体（类、模块、函数等等）应该可以扩展的，但是不可修改。</li>
+<li>依赖倒置原则（Dependency-Inversion Principle）：抽象不应该依赖细节，细节应该依赖于抽象。</li>
+<li>里氏替换原则（Liskov-Substituent Principe.）：子类必须能够替换掉它们的父类。其意思：子类必须具有父类的所有特性</li>
+<li>接口隔离原则（Interface-Segregation Principle）：多个专用接口优于一个单一的通用接口。其意思：不要将所有的方法都添加到一个接口中。</li>
+</ol>
+<h3 id="编译器默认生成的四个成员函数">编译器默认生成的四个成员函数</h3>
+<p>构造函数、析构函数、拷贝构造函数、赋值构造函数。 &gt;其中 - 赋值构造函数就是重载等号； - 拷贝构造函数用于生成新对象的时候，此时，即使是用<code>A a1=a</code>，调用的也是拷贝构造函数，不会调用重载等号。</p>
+<h3 id="生成类对象要不要加括号">生成类对象要不要加括号</h3>
+<p>如果构造函数有参数，显然要加括号，但是，如果构造函数没有参数，则不能加括号，加了就变成函数声明了。 例如：</p>
+<pre><code>A a(1);
+B b;
+B b();//错误，这是声明b是一个返回值为B类型的函数。</code></pre>
+<h3 id="静态成员">静态成员</h3>
+<ul>
+<li>静态成员变量：非const型static变量只能在类声明外初始化。</li>
+<li><p>静态成员函数：可以直接使用A::f()的形式调用，不用生成对象。</p>
+<p>class A { public: const static int a = 1;//const static可以直接初始化 static int b; static int f(); }; int A::b = 2;//初始化，不能加static int main() { … }</p></li>
+</ul>
+<h3 id="初始化列表">初始化列表</h3>
+<ul>
+<li>在构造函数的定义中指定；</li>
+<li>带参数对象（成员对象、基类对象）、引用成员、const只能在初始化列表中初始化；</li>
+<li><p>初始化顺序由成员定义的顺序决定，跟初始化列表里的顺序无关（考点）。</p>
+<p>class A { public: A(int i):b(i++),a(i++),c(0){} int a; int b; const int c; }; int main() { A t(1); cout&lt;&lt;t.a&lt;&lt;&quot; “&lt;&lt;t.b&lt;&lt;” “&lt;&lt;t.c&lt;&lt;” &quot;; }</p></li>
+</ul>
+<p>打印 1 2 0</p>
+<h3 id="成员变量初始化位置">成员变量初始化位置</h3>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>初始化位置</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>const</td>
+<td>构造函数初始化列表</td>
+</tr>
+<tr class="even">
+<td>static</td>
+<td>在类外定义</td>
+</tr>
+<tr class="odd">
+<td>const static</td>
+<td>在声明时定义</td>
+</tr>
+</tbody>
+</table>
+<pre><code>class A
+{
+public:
+    static int a;
+    const int b;
+    const static int c = 0;
+    A():b(0){}
+};
+int A::a = 0;</code></pre>
+<h3 id="构造函数和析构函数">构造函数和析构函数</h3>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>构造函数</th>
+<th>析构函数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>private</td>
+<td>防止类被实例化，实现单例模式；或者只提供一些工具</td>
+<td>只在堆上生成实例，如果在栈上生成实例，函数退出，会有自动析构，编译不通过。需自己添加析构函数Destory()</td>
+</tr>
+<tr class="even">
+<td>virtual</td>
+<td>禁止这种写法。因为对象还没构造好，不能动态绑定</td>
+<td>要实现多态，需采用虚析构函数，保证用delete基函数指针时，能调用派生类的析构函数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="继承和多态">继承和多态</h3>
+<p>继承实现了代码重用 多态实现了接口重用</p>
+<h3 id="覆盖override和重载overload">覆盖（override）和重载（overload）</h3>
+<p>覆盖通过虚函数的方式 重载通过不同参数的方式</p>
+<h3 id="异常">异常</h3>
+<ul>
+<li>构造函数中抛出异常时，程序会按构造顺序，逆序析构已经构造的变量；</li>
+<li>析构函数最好不要抛出异常，因为会导致资源无法释放；</li>
+<li>最好不要直接使用指针，因为在构造函数构造抛出异常时，无法自动释放指针，最好用智能指针。</li>
+</ul>
+<h3 id="虚函数-1">虚函数</h3>
+<p>虚函数使用的成员变量视传入他自己的this指针而定。也就是说，是哪一个类的虚函数，就调用哪一个类的变量。</p>
+<h3 id="继承规则">继承规则</h3>
+<p>下表表示不同的基类成员类型在不同继承方式下，在子类里面的访问类型。注意基类的private和变成子类private的区别，基类是private，外界和子类都不能访问，变成子类private类型，子类可以访问，外界不能访问。</p>
+<table>
+<thead>
+<tr class="header">
+<th>继承方式</th>
+<th>public</th>
+<th>protected</th>
+<th>private</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>public</td>
+<td>public</td>
+<td>protected</td>
+<td>不能访问</td>
+</tr>
+<tr class="even">
+<td>protected</td>
+<td>protected</td>
+<td>protected</td>
+<td>不能访问</td>
+</tr>
+<tr class="odd">
+<td>private</td>
+<td>private</td>
+<td>private</td>
+<td>不能访问</td>
+</tr>
+</tbody>
+</table>
+<h3 id="多重继承">多重继承</h3>
+<p>多重继承能节省空间，避免冲突。</p>
+<pre><code>A       A             A
+ \     /             / \
+  B   C       →     B   C
+   \ /               \ /
+    D                 D</code></pre>
+<p>声明方式：</p>
+<pre><code>class A;
+class B:public virtual A;
+class C:public virtual A;
+class D:public B,public C;</code></pre>
+<p>如果B，C中有同名变量，则需在D中用B::a，C::a区别。 虚继承中，每个父类都保留了自己的虚函数表，普通继承中总共只有一个虚函数表。</p>
+<h3 id="纯虚函数">纯虚函数</h3>
+<p>纯虚函数定义为<code>virtual int f()=0</code>，含有纯虚函数的类不能实例化对象。子类如果没有将基类的纯虚函数重写完，那么它仍然含有纯虚函数，仍然不能被实例化。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/07/21/拉普拉斯变换中的s是什么/" rel="next" title="拉普拉斯变换中的s是什么">
+                <i class="fa fa-chevron-left"></i> 拉普拉斯变换中的s是什么
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/08/30/从力做功到质能方程/" rel="prev" title="从力做功到质能方程">
+                从力做功到质能方程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#几种必考虑的情况"><span class="nav-number">1.</span> <span class="nav-text">几种必考虑的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数压栈顺序"><span class="nav-number">2.</span> <span class="nav-text">函数压栈顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件解析顺序"><span class="nav-number">3.</span> <span class="nav-text">条件解析顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolalpha"><span class="nav-number">4.</span> <span class="nav-text">boolalpha</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#int"><span class="nav-number">5.</span> <span class="nav-text">(int &amp;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型长度"><span class="nav-number">6.</span> <span class="nav-text">类型长度：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数的存储方式"><span class="nav-number">7.</span> <span class="nav-text">整数的存储方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高精度赋值给低精度"><span class="nav-number">8.</span> <span class="nav-text">高精度赋值给低精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符优先级"><span class="nav-number">9.</span> <span class="nav-text">运算符优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消去最低位的1"><span class="nav-number">10.</span> <span class="nav-text">消去最低位的1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算的方法求平均数"><span class="nav-number">11.</span> <span class="nav-text">位运算的方法求平均数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只用位运算实现加法"><span class="nav-number">12.</span> <span class="nav-text">只用位运算实现加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交换两个数"><span class="nav-number">13.</span> <span class="nav-text">交换两个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extern-c"><span class="nav-number">14.</span> <span class="nav-text">extern “C”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用宏获取结构体中某个元素相对于结构体头的偏移地址"><span class="nav-number"></span> <span class="nav-text">用宏获取结构体中某个元素相对于结构体头的偏移地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用宏定义一年有多少秒"><span class="nav-number">1.</span> <span class="nav-text">用宏定义一年有多少秒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用宏定义min函数"><span class="nav-number">2.</span> <span class="nav-text">用宏定义MIN函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于const"><span class="nav-number">3.</span> <span class="nav-text">关于const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体对齐"><span class="nav-number">4.</span> <span class="nav-text">结构体对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆与栈"><span class="nav-number">5.</span> <span class="nav-text">堆与栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分配"><span class="nav-number">6.</span> <span class="nav-text">内存分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于sizeof的一些补充"><span class="nav-number"></span> <span class="nav-text">关于sizeof的一些补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚函数"><span class="nav-number">1.</span> <span class="nav-text">虚函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联函数"><span class="nav-number">2.</span> <span class="nav-text">内联函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针减法"><span class="nav-number">3.</span> <span class="nav-text">指针减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用派生类指针指向基类"><span class="nav-number">4.</span> <span class="nav-text">用派生类指针指向基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main函数返回值"><span class="nav-number">5.</span> <span class="nav-text">main函数返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些指针"><span class="nav-number">6.</span> <span class="nav-text">一些指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些指针示例"><span class="nav-number">7.</span> <span class="nav-text">一些指针示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组名"><span class="nav-number">8.</span> <span class="nav-text">数组名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针和句柄"><span class="nav-number">9.</span> <span class="nav-text">指针和句柄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能指针"><span class="nav-number">10.</span> <span class="nav-text">智能指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this指针"><span class="nav-number">11.</span> <span class="nav-text">this指针</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象"><span class="nav-number"></span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象五个基本原则"><span class="nav-number">1.</span> <span class="nav-text">面向对象五个基本原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译器默认生成的四个成员函数"><span class="nav-number">2.</span> <span class="nav-text">编译器默认生成的四个成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成类对象要不要加括号"><span class="nav-number">3.</span> <span class="nav-text">生成类对象要不要加括号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态成员"><span class="nav-number">4.</span> <span class="nav-text">静态成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化列表"><span class="nav-number">5.</span> <span class="nav-text">初始化列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成员变量初始化位置"><span class="nav-number">6.</span> <span class="nav-text">成员变量初始化位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数和析构函数"><span class="nav-number">7.</span> <span class="nav-text">构造函数和析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承和多态"><span class="nav-number">8.</span> <span class="nav-text">继承和多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖override和重载overload"><span class="nav-number">9.</span> <span class="nav-text">覆盖（override）和重载（overload）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常"><span class="nav-number">10.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚函数-1"><span class="nav-number">11.</span> <span class="nav-text">虚函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承规则"><span class="nav-number">12.</span> <span class="nav-text">继承规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重继承"><span class="nav-number">13.</span> <span class="nav-text">多重继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纯虚函数"><span class="nav-number">14.</span> <span class="nav-text">纯虚函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2014/08/27/C++语言精要/';
+          this.page.identifier = '2014/08/27/C++语言精要/';
+          this.page.title = 'C++语言精要';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

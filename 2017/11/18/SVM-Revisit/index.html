@@ -1,0 +1,1030 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="en," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  SVM (Support Vector Machine) is an important tool in pattern recognition before the wave of different kind of neural networks. In this post, we revisit the derivatio">
+<meta name="keywords" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVM Revisit">
+<meta property="og:url" content="http://yoursite.com/2017/11/18/SVM-Revisit/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  SVM (Support Vector Machine) is an important tool in pattern recognition before the wave of different kind of neural networks. In this post, we revisit the derivatio">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/blog/images/revisit-SVM.png">
+<meta property="og:updated_time" content="2017-12-09T03:15:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVM Revisit">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  SVM (Support Vector Machine) is an important tool in pattern recognition before the wave of different kind of neural networks. In this post, we revisit the derivatio">
+<meta name="twitter:image" content="http://yoursite.com/blog/images/revisit-SVM.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/18/SVM-Revisit/"/>
+
+
+
+
+
+  <title> SVM Revisit | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/11/18/SVM-Revisit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SVM Revisit
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T17:10:30+08:00">
+                2017-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/11/18/SVM-Revisit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/18/SVM-Revisit/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/11/18/SVM-Revisit/" class="leancloud_visitors" data-flag-title="SVM Revisit">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>SVM (Support Vector Machine) is an important tool in pattern recognition before the wave of different kind of neural networks. In this post, we revisit the derivation of SVM and get some important intuition of the result.</p>
+<h2 id="the-original-problem">The original problem</h2>
+<p>Suppose we have some training data <span class="math inline">\(\mathcal{D}=\{(\mathbf{x}_1, y_1),(\mathbf{x}_2, y_2),\cdots,(\mathbf{x}_n, y_n)\}\)</span>, in which <span class="math inline">\(\mathbf{x}\)</span> is a feature vector, and <span class="math inline">\(y_i\)</span> is the class label for each sample and it is -1 or 1. Our task is to find a classifier that uses a separate hyper plane to divide the points in <span class="math inline">\(\mathcal{D}\)</span> into two parts. Points on each side of the hyper plane have the same class label y respectively. This classifier is denoted as <span class="math inline">\(f(\mathbf{x})=\text{sign}(\mathbf{w}^T\mathbf{x}+b)\)</span>. For any hyper plane that successfully divide the two classes. We define the geometry margin of the <span class="math inline">\(i\)</span>th point as the distance from the point to the hyper plane: <span class="math display">\[\gamma_i=\frac{y_i(\mathbf{w}^Tx_i+b)}{||\mathbf{w}||}\]</span> <img src="/blog/images/revisit-SVM.png"> We observe that for both classes <span class="math inline">\(y=1\)</span> and <span class="math inline">\(y=-1\)</span>, the geometry margin is larger than 0. We can define the geometry margin of our dataset <span class="math inline">\(\mathcal{D}\)</span> as: <span class="math display">\[\gamma=\min_{i=1,\cdots,n} \gamma_i\]</span> <a id="more"></a> We can see that there are a lot of possible hyper planes. Our ultimate goal is to find the best hyper plane (with parameter <span class="math inline">\((\mathbf{w}^*,b^*)\)</span>) that maximize the geometry margin of the dataset <span class="math inline">\(\mathcal{D}\)</span>. Only the geometry margin of the dataset is maximized, can some points between two classes been classified correctly. We can write our problem in the standard optimization form as: <span class="math display">\[\begin{aligned}
+(P)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &amp;\max_{\mathbf{w},b} \gamma\\
+s.t.\ &amp; \frac{y_i(\mathbf{w}^T\mathbf{x_i}+b)}{||\mathbf{w}||} \ge \gamma,i \in [1, n]
+\end{aligned}\]</span></p>
+<h2 id="convert-the-original-problem-into-its-dual-form">Convert the original problem into its dual form</h2>
+<p>To make our problem easy to solve, we can convert it into its dual form. First of all, we define the function margin to help our further derivations. A function margin of <span class="math inline">\(i\)</span>th point is defined as: <span class="math display">\[\hat{\gamma_i}=y_i(\mathbf{w}^T\mathbf{x}+b)\]</span> The function margin of the whole dataset is defined as: <span class="math display">\[\hat\gamma=\min_{i=1,\cdots,n} \hat\gamma_i\]</span> It can be easily observed that <span class="math inline">\(\gamma=\frac{\hat\gamma}{||\mathbf{w}||}\)</span>. The original problem can be rewritten as: <span class="math display">\[\begin{aligned}
+&amp;\max_{w,b} \frac{\hat\gamma}{||\mathbf{w}||}\\
+s.t.\ &amp; y_i(\mathbf{w}^T\mathbf{x_i}+b) \ge \hat\gamma,i \in [1, n]
+\end{aligned}\]</span> We observed that <span class="math inline">\(\hat\gamma\)</span> can be assigned to any value, because if we change <span class="math inline">\(\hat\gamma\)</span> to <span class="math inline">\(\lambda\hat\gamma\)</span>, we can adjust (<span class="math inline">\(w\)</span>, <span class="math inline">\(b\)</span>) to (<span class="math inline">\(\lambda \mathbf{w}\)</span>, <span class="math inline">\(\lambda b\)</span>) to make the problem unchanged. As a result, we can assign <span class="math inline">\(\hat\gamma=1\)</span> to simplify the problem, i.e. <span class="math display">\[\begin{aligned}
+&amp;\max_{\mathbf{w},b} \frac{1}{||\mathbf{w}||}\\
+s.t.\ &amp; y_i(\mathbf{w}^T\mathbf{x_i}+b) \ge 1,i \in [1, n]
+\end{aligned}\]</span> To maximize $ $ is the same as minimize <span class="math inline">\(||\mathbf{w}||\)</span>, and the problem changes to: <span class="math display">\[\begin{aligned}
+&amp;\min_{\mathbf{w},b} \frac{1}{2}||\mathbf{w}||^2\\
+s.t.\ &amp; y_i(\mathbf{w}^T\mathbf{x_i}+b) \ge 1,i \in [1, n]
+\end{aligned}\]</span> Next, we want to merge the constrains into the objective function to make it an unconstrained problem. We want to design a function <span class="math inline">\(g_i(\mathbf{w},b)\)</span>, s.t. <span class="math display">\[g_i(\mathbf{w},b)=\left\{ \begin{aligned}
+0&amp;\ \ \ \text{if } (\mathbf{w},b) \text{ fulfill the ith constrain}\\
+\infty&amp;\ \ \ \text{otherwise}
+\end{aligned} \right.\]</span> It can be written into a more compact form with the <span class="math inline">\(\max\)</span> notation: <span class="math display">\[g_i(\mathbf{w},b)=\max_{\alpha_i\ge0}\alpha_i[1-y_i(\mathbf{w}^T\mathbf{x}+b)]\]</span> In which, <span class="math inline">\(\alpha_i\)</span> is called the Largrange multiplier. If <span class="math inline">\((\mathbf{w},b)\)</span> fulfill the constrain, <span class="math inline">\(1-y_i(\mathbf{w}^T\mathbf{x}+b)\le0\)</span> and <span class="math inline">\(\alpha_i=0\)</span> to attain its max value 0. On the other hand, if <span class="math inline">\((\mathbf{w},b)\)</span> violate the constraint, <span class="math inline">\(1-y_i(\mathbf{w}^T\mathbf{x}+b)&gt;0\)</span> and <span class="math inline">\(\alpha_i=\infty\)</span> to attain its max value <span class="math inline">\(\infty\)</span>. Thus, the optimization problem can be written as <span class="math display">\[\begin{aligned}&amp;\min_{\mathbf{w},b}\frac{1}{2}||\mathbf{w}||^2+\sum_{i=1}^ng_i(\mathbf{w},b)\\
+=&amp;\min_{\mathbf{w},b}\frac{1}{2}||\mathbf{w}||^2+\sum_{i=1}^n\max_{\alpha_i\ge0}\alpha_i[1-y_i(\mathbf{w}^T\mathbf{x}+b)]\\
+=&amp;\max_{\alpha_i\ge0}\min_{\mathbf{w},b}\frac{1}{2}||\mathbf{w}||^2+\sum_{i=1}^n\alpha_i[1-y_i(\mathbf{w}^T\mathbf{x}+b)]\\
+=&amp;\max_{\alpha_i\ge0}\min_{\mathbf{w},b}J(\mathbf{w},b,\mathbf{\alpha})
+\end{aligned}\]</span> In which <span class="math inline">\(J(\mathbf{w},b,\mathbf{\alpha})=\frac{1}{2}||\mathbf{w}||^2+\sum_{i=1}^n\alpha_i[1-y_i(\mathbf{w}^T\mathbf{x}+b)]\)</span>. The inside minimize problem can be solved by setting the derivative to 0: <span class="math display">\[\begin{aligned}
+\frac{\partial J(\mathbf{w},b,\mathbf{\alpha})}{\partial \mathbf{w}}&amp;=\mathbf{w}-\sum_{i=1}^n\alpha_iy_i\mathbf{x_i}=0\\
+\frac{\partial J(\mathbf{w},b,\mathbf{\alpha})}{\partial \mathbf{b}}&amp;=-\sum_{i=1}^n\alpha_iy_i=0
+\end{aligned}\]</span> We get <span class="math inline">\(\mathbf{w^* }=\sum_{i=1}^n\alpha_iy_i\mathbf{x_i}\)</span>, substitute it into the optimization problem we get: <span class="math display">\[\max_{\alpha_i\ge0}\sum_{i=1}^n\alpha_i-\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^ny_iy_j\alpha_i\alpha_j\mathbf{x_i}^T\mathbf{x_j}\]</span> We write it into a formal optimization problem: <span class="math display">\[\begin{aligned}
+(D)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \min_{\alpha}\ \ &amp; \frac{1}{2}\sum_{i=1}^n\sum_{j=1}^ny_iy_j\alpha_i\alpha_j\mathbf{x_i}^T\mathbf{x_j}-\sum_{i=1}^n\alpha_i \\
+s.t. \ \ &amp;\sum_{i=1}^n\alpha_iy_i=0\\
+&amp;\alpha_i\ge0, i \in [1,n]
+\end{aligned}\]</span> This is the dual optimization problem of problem (P) and it is a standard Quadratic Programming which can be solved by a lot of solvers.</p>
+<h2 id="some-obervations-and-intuitions">Some obervations and intuitions</h2>
+<ol type="1">
+<li>The variable of the primal optimization problem (P) is to optimize <span class="math inline">\((\mathbf{w},b)\)</span> while the dual problem (D) is to optimize the dual variable <span class="math inline">\(\mathbf{\alpha}\)</span>. The length of dual variable equals to the number of constrains of the primal problem.</li>
+<li><p>If <span class="math inline">\(\alpha_i=0\)</span>, <span class="math inline">\(y_i(\mathbf{w}^T\mathbf{x_i}+b)&gt;1\)</span> the function margin of this is not equal to the function margin of the dataset (<span class="math inline">\(\hat\gamma=1\)</span>) . It means that the margin of this sample is not the smallest among others. If <span class="math inline">\(\alpha_i&gt;0\)</span>, it means that the <span class="math inline">\(i\)</span>th constrain is active and <span class="math inline">\(y_i(\mathbf{w}^T\mathbf{x_i}+b)=1\)</span>. The function margin of the <span class="math inline">\(i\)</span>th sample equals to the function margin of the dataset. This sample is called a support vector.</p></li>
+<li><p>We observe the optimal value of <span class="math inline">\(\mathbf{w^*}\)</span>: <span class="math display">\[\mathbf{w}^*=\sum_{i=1}^n\alpha_iy_i\mathbf{x}\]</span> In which <span class="math inline">\(\alpha_i=0\)</span> for all non support vectors, which means that the value of <span class="math inline">\(\mathbf{w^*}\)</span> is only determined by support vectors.</p></li>
+</ol>
+<h2 id="reference">Reference</h2>
+<p>[1] 李航. 统计学习方法.</p>
+<p>[2] Xiaogang, Wang. “ENGG5202 Lecture notes.” Chapter8.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/en/" rel="tag"># en</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/" rel="next" title="Why We Need Jordan Canonical Form?">
+                <i class="fa fa-chevron-left"></i> Why We Need Jordan Canonical Form?
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/" rel="prev" title="Optimization Revisit: From Linear Programming to Lagrange">
+                Optimization Revisit: From Linear Programming to Lagrange <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#the-original-problem"><span class="nav-number">1.</span> <span class="nav-text">The original problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convert-the-original-problem-into-its-dual-form"><span class="nav-number">2.</span> <span class="nav-text">Convert the original problem into its dual form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-obervations-and-intuitions"><span class="nav-number">3.</span> <span class="nav-text">Some obervations and intuitions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/11/18/SVM-Revisit/';
+          this.page.identifier = '2017/11/18/SVM-Revisit/';
+          this.page.title = 'SVM Revisit';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

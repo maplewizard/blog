@@ -1,0 +1,1034 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Logistic," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  sigmoid函数 sigmoid函数定义为 \[g(z)=\frac{1}{1+e^{-z}}\] 对于一般的模型，通常有\(z=\theta^{\mathrm{T}}x\)，可以看做是样本各属性的加权。sigmoid函数求导有\(g&amp;#39;(z)=g(z)(1-g(z))\)，这个在神经网络推导的时候会用到。 ## Log">
+<meta name="keywords" content="Logistic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Logistic回归到神经网络">
+<meta property="og:url" content="http://yoursite.com/2014/10/08/从Logistic回归到神经网络/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  sigmoid函数 sigmoid函数定义为 \[g(z)=\frac{1}{1+e^{-z}}\] 对于一般的模型，通常有\(z=\theta^{\mathrm{T}}x\)，可以看做是样本各属性的加权。sigmoid函数求导有\(g&amp;#39;(z)=g(z)(1-g(z))\)，这个在神经网络推导的时候会用到。 ## Log">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-18T02:57:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从Logistic回归到神经网络">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  sigmoid函数 sigmoid函数定义为 \[g(z)=\frac{1}{1+e^{-z}}\] 对于一般的模型，通常有\(z=\theta^{\mathrm{T}}x\)，可以看做是样本各属性的加权。sigmoid函数求导有\(g&amp;#39;(z)=g(z)(1-g(z))\)，这个在神经网络推导的时候会用到。 ## Log">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/10/08/从Logistic回归到神经网络/"/>
+
+
+
+
+
+  <title> 从Logistic回归到神经网络 | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/10/08/从Logistic回归到神经网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从Logistic回归到神经网络
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-08T22:24:43+08:00">
+                2014-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/10/08/从Logistic回归到神经网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/10/08/从Logistic回归到神经网络/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/10/08/从Logistic回归到神经网络/" class="leancloud_visitors" data-flag-title="从Logistic回归到神经网络">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="sigmoid函数">sigmoid函数</h2>
+<p>sigmoid函数定义为 <span class="math display">\[g(z)=\frac{1}{1+e^{-z}}\]</span> 对于一般的模型，通常有<span class="math inline">\(z=\theta^{\mathrm{T}}x\)</span>，可以看做是样本各属性的加权。sigmoid函数求导有<span class="math inline">\(g&#39;(z)=g(z)(1-g(z))\)</span>，这个在神经网络推导的时候会用到。 ## Logistic回归 Logistic回归是针对二分类问题常用的一种回归，其回归模型为： <span class="math display">\[h_\theta(x)=\frac{1}{1+e^{-\theta^{\mathrm{T}}x}}\]</span> 其中<span class="math inline">\(x\)</span>是某个样本的属性向量，<span class="math inline">\(\theta\)</span>是参数向量。在用Logistic回归时，需要找到合适的参数<span class="math inline">\(\theta\)</span>，使得能量函数（误差）<span class="math inline">\(J(\theta)\)</span>最小，在使用梯度下降法更新参数<span class="math inline">\(\theta\)</span>的更新过程中需要使用到梯度，然后在每一步执行<span class="math inline">\(\theta:=\theta-\alpha\nabla_\theta J(\theta)\)</span>，其中<span class="math inline">\(\alpha是学习速度\)</span>，能量函数被定义为： <span class="math display">\[J(\theta)=-\frac{1}{m}\sum_{i=1}^m\left[y^{(i)}\log h_{\theta}(x^{(i)})+(1-y^{(i)})\log (1-h_{\theta}(x^{(i)}))\right]\]</span> 其中 <span class="math display">\[h_{\theta}(x^{(i)})=\frac{1}{1+e^{-\theta^{\mathrm{T}}x^{(i)}}}\]</span> 下面来给出其梯度的推导 <a id="more"></a> <span class="math display">\[\begin{align}\frac{\partial}{\partial \theta_j} &amp;=
+-\frac{\partial}{\partial \theta_j}\frac{1}{m}\sum_{i=1}^m\left[y^{(i)}\log h_{\theta}(x^{(i)})+(1-y^{(i)})\log (1-h_{\theta}(x^{(i)}))\right] \\
+&amp;= -\frac{1}{m}\sum_{i=1}^m\left[y^{(i)}\frac{\partial}{\partial \theta_j}\log h_{\theta}(x^{(i)})+(1-y^{(i)})\frac{\partial}{\partial \theta_j}\log (1-h_{\theta}(x^{(i)}))\right] \\
+&amp;= -\frac{1}{m}\sum_{i=1}^m\left[y^{(i)}\frac{1}{h_{\theta}(x^{(i)})}\frac{\partial}{\partial \theta_j} h_{\theta}(x^{(i)})+(1-y^{(i)})\frac{1}{1-h_{\theta}(x^{(i)})}\frac{\partial}{\partial \theta_j} (1-h_{\theta}(x^{(i)}))\right] \\
+&amp;= -\frac{1}{m}\sum_{i=1}^m\left[y^{(i)}\frac{1}{h_{\theta}(x^{(i)})}\frac{e^{-\theta^{\mathrm{T}}x}x^{(i)}_j}{(1+e^{-\theta^{\mathrm{T}}x})^2} +(1-y^{(i)})\frac{1}{1-h_{\theta}(x^{(i)})}\frac{e^{-\theta^{\mathrm{T}}x}x^{(i)}_j}{(1+e^{-\theta^{\mathrm{T}}x})^2}\right] \\
+&amp;= -\frac{1}{m}\sum_{i=1}^m\left[y^{(i)}\frac{e^{-\theta^{\mathrm{T}}x}x^{(i)}_j}{1+e^{-\theta^{\mathrm{T}}x}} -(1-y^{(i)})\frac{x^{(i)}_j}{1+e^{-\theta^{\mathrm{T}}x}}\right] \\
+\end{align}\]</span> 由上式可知 <span class="math display">\[\frac{\partial}{\partial \theta_j}=\begin{cases}
+   \frac{1}{m}\sum_{i=1}^m\left[ \frac{x^{(i)}_j}{1+e^{-\theta^{\mathrm{T}}x}}\right]\quad y^{(i)}=0\\
+  -\frac{1}{m}\sum_{i=1}^m\left[(1-\frac{1}{1+e^{-\theta^{\mathrm{T}}x}})x^{(i)}_j \right]\quad y^{(i)}=1
+\end{cases} \]</span> <span class="math display">\[\frac{\partial}{\partial \theta_j}=\begin{cases}
+   \frac{1}{m}\sum_{i=1}^m\left[ (h_{\theta}(x^{(i)})-0)x^{(i)}_j\right]\quad y^{(i)}=0\\
+  \frac{1}{m}\sum_{i=1}^m\left[(h_{\theta}(x^{(i)})-1)x^{(i)}_j \right]\quad y^{(i)}=1
+\end{cases} \]</span></p>
+<p>综上 <span class="math display">\[\frac{\partial}{\partial \theta_j}=\frac{1}{m}\sum_{i=1}^m\left[(h_{\theta}(x^{(i)})-y^{(i)})x^{(i)}_j\right]\]</span> 我们来给出这个式子的直观的理解。对于每个样本，每个<span class="math inline">\(\theta_j\)</span>的梯度等于误差乘上该样本的第<span class="math inline">\(j\)</span>个属性，最后再把每个样本得到的东西平均一下。我们有了这个直观的理解，就可以直接来理解神经网络的Back Propogation了。 ## 神经网络 神经网络其实就相当于很多个Logistic回归器并在了一起，然后加了很多层。下面来理解神经网络的Back Propogation。我们按照这个理解，我们首先来规定符号，记第<span class="math inline">\(l\)</span>层网络的第<span class="math inline">\(j\)</span>个节点的计算值为<span class="math inline">\(a^{(l)}_j\)</span>，而<span class="math inline">\(\Theta^{(l)}_{ij}\)</span>表示的是第<span class="math inline">\(l\)</span>层神经网络的第<span class="math inline">\(j\)</span>个元素传递到下一层的第<span class="math inline">\(i\)</span>个元素的影响系数我们有： <span class="math display">\[\begin{align}&amp;a^{(1)}=x\\
+&amp;z^{(2)}=\Theta^{(1)}a^{(1)}\\
+&amp;a^{(2)}=g(z^{(2)})\\
+&amp;z^{(3)}=\Theta^{(2)}a^{(2)}\\
+&amp;a^{(3)}=g(z^{(3)})\\
+&amp;z^{(4)}=\Theta^{(3)}a^{(3)}\\
+&amp;a^{(4)}=g(z^{(4)})\\
+\end{align}\]</span> 通过Logistic的例子我们发现，要计算参数<span class="math inline">\(\Theta\)</span>的梯度，关键是要计算出误差值，下面，我们来讨论误差值的计算。最后一层的误差是已知的，我们用一种Back Propogation的方法从后往前倒推每一层的误差。令<span class="math inline">\(\delta^{(l)}_j\)</span>表示第<span class="math inline">\(l\)</span>层第<span class="math inline">\(j\)</span>个元素的误差，假设最后一层是第四层，那么有<span class="math inline">\(\delta^{(4)}_j=a^{(4)}_j-y_j\)</span>。那么我们已知第<span class="math inline">\(l+1\)</span>层的误差，如何找到第<span class="math inline">\(l\)</span>层的误差？这就要通过一个误差传递的方法。一个基本的想法是，如果一个输入对误差造成的影响很大，那么这个输入所在的线路的权值就应该很大，这个权值则可以通过对该点的值求偏导得到。我们有 <span class="math display">\[\delta^{(3)}=(\Theta^{(3)})^{\mathrm{T}}\delta^{(4)}.*g&#39;(z^{(3)})\\
+\delta^{(2)}=(\Theta^{(2)})^{\mathrm{T}}\delta^{(3)}.*g&#39;(z^{(2)})\]</span> 回忆sigmoid函数的导数可知 <span class="math display">\[g&#39;(z^{(3)})=a^{(3)}.*(1-a^{(3)})\\
+g&#39;(z^{(2)})=a^{(2)}.*(1-a^{(2)})\]</span> 我们在得到误差后，则可以得到<span class="math inline">\(\Theta\)</span>的梯度。有 <span class="math display">\[\frac{\partial}{\partial \Theta^{(l)}_{ij}}=\frac{1}{m}\sum_{k=1}^m a^{l}_{jk}\delta^{(l+1)}_{ik}\]</span> 其中求和表示对每一个样本进行，<span class="math inline">\(k\)</span>即表示样本编号。有了这个偏导之后便可对参数<span class="math inline">\(\Theta\)</span>进行梯度下降。 在实际使用中，需要在能量函数中加入偏置和一些参数的限制，可参考相关书籍介绍。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Logistic/" rel="tag"># Logistic</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/08/30/从力做功到质能方程/" rel="next" title="从力做功到质能方程">
+                <i class="fa fa-chevron-left"></i> 从力做功到质能方程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/10/23/用chrome修改js代码/" rel="prev" title="用chrome修改js代码">
+                用chrome修改js代码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sigmoid函数"><span class="nav-number">1.</span> <span class="nav-text">sigmoid函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2014/10/08/从Logistic回归到神经网络/';
+          this.page.identifier = '2014/10/08/从Logistic回归到神经网络/';
+          this.page.title = '从Logistic回归到神经网络';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

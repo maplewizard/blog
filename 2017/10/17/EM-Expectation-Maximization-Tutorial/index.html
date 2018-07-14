@@ -1,0 +1,1038 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  The Goal of This Tutorial EM (Expectation Maximization) algorithm is a widely used method when a model has hidden variables that cannot be observed from the dataset.">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EM (Expectation Maximization) Tutorial">
+<meta property="og:url" content="http://yoursite.com/2017/10/17/EM-Expectation-Maximization-Tutorial/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  The Goal of This Tutorial EM (Expectation Maximization) algorithm is a widely used method when a model has hidden variables that cannot be observed from the dataset.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-09T13:27:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EM (Expectation Maximization) Tutorial">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  The Goal of This Tutorial EM (Expectation Maximization) algorithm is a widely used method when a model has hidden variables that cannot be observed from the dataset.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/17/EM-Expectation-Maximization-Tutorial/"/>
+
+
+
+
+
+  <title> EM (Expectation Maximization) Tutorial | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                EM (Expectation Maximization) Tutorial
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T19:44:15+08:00">
+                2017-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/17/EM-Expectation-Maximization-Tutorial/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/" class="leancloud_visitors" data-flag-title="EM (Expectation Maximization) Tutorial">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="the-goal-of-this-tutorial">The Goal of This Tutorial</h2>
+<p>EM (Expectation Maximization) algorithm is a widely used method when a model has hidden variables that cannot be observed from the dataset. In this tutorial, we focus on the outline and intuition of the EM algorithm. A Gaussian mixture model is studied as an example.</p>
+<h2 id="gaussian-mixture-model">Gaussian Mixture Model</h2>
+<p>In the Gaussian mixture model, we assume that there are several generators which can generate samples from a Gaussian distribution. Each sample (denoted as <span class="math inline">\(x^{(i)}=(x_1,x_2,...,x_d)\)</span>) of our data is sampled from one of the generators. We can only observe the position of each sample <span class="math inline">\(x\)</span> and we don’t know for each sample <span class="math inline">\(x^{(i)}\)</span>, which generator <span class="math inline">\(z^{(i)}\)</span> generate it. Here, <span class="math inline">\(z^{(i)}=\{1,2,..,k\}\)</span> stand for the ID of each generator. For each generator <span class="math inline">\(j\)</span>(<span class="math inline">\(j\in[1,k]\)</span>), it generates samples by a Gaussian distribution with parameter <span class="math inline">\(\mu_j,\Sigma_j\)</span>. We use <span class="math inline">\(\theta\)</span> to denote all model parameters, <span class="math inline">\(\theta=(\mu_1,\mu_2,...,\mu_k,\Sigma_1,\Sigma_2,...,\Sigma_k,\phi_1,\phi_2,...,\phi_k)\)</span>. Where <span class="math inline">\(\phi_j\)</span> is the probability of selecting <span class="math inline">\(j\)</span>th generator and <span class="math inline">\(\sum_{j=i}^k \phi_j=1\)</span>. The goal of Gaussian mixture model is to find a most suitable parameter <span class="math inline">\(\theta\)</span> to describe the data. <a id="more"></a></p>
+<p>However, things get complicated, since we don’t know each sample belongs to which class <span class="math inline">\(z^{(i)}=?\)</span>. Some people often doubt the relation between model parameters and hidden variables. The difference is that for each single sample, the model parameter is the same <span class="math inline">\(\theta\)</span> but they can have different hidden viaravbles <span class="math inline">\(z^{(i)}\)</span>.</p>
+<h2 id="general-problem">General Problem</h2>
+<p>We abstract above problem into more general form. Suppose we have some samples, each sample <span class="math inline">\(i\)</span> is composed of visible features <span class="math inline">\(x^{(i)}\)</span> and hidden features <span class="math inline">\(z^{(i)}\)</span>. Our ultimate goal is to maximize the <strong>incomplete log likelihood</strong>: <span class="math display">\[\begin{aligned}
+\log p(x|\theta)&amp;=\log \int_zp(x,z|\theta)dz\\
+&amp;= \log \int_z q(z|x)\frac{p(x,z|\theta)}{q(z|x)}\\
+&amp;\ge \int_z q(z|x) \log\frac{p(x,z|\theta)}{q(z|x)}=\mathcal{L}(q,\theta)\ \ \ \text{(Jensen&#39;s inequality)}\\
+&amp;=\int_z q(z|x) \log p(x,z|\theta)-\int_z q(z|x) \log q(z|x)\ \ \ \ (\text{The second term is not related to }\theta)\\
+\end{aligned}\]</span> As shown above, <span class="math inline">\(\int_z q(z|x) \log p(x,z|\theta)\)</span> is called <strong>expected complete log likelihood</strong>. <span class="math inline">\(\mathcal{L}(q,\theta)\)</span> is the lower bound of the <strong>incomplete log likelihood</strong>. It is a lower bound of the incomplete log likelihood related to <span class="math inline">\(\theta\)</span>. If we maximize it, the incomplete log likelihood will also increase.</p>
+<p>In the next step, we show how to choose <span class="math inline">\(q(z|x)\)</span>. We claim that when <span class="math inline">\(q(z|x)=p(z|x,\theta)\)</span>, the lower bound get the equal sign. We substitute <span class="math inline">\(q(z|x)=p(z|x,\theta)\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\mathcal{L}(q,\theta)=\int_z q(z|x) \log\frac{p(x,z|\theta)}{q(z|x)}\\
+=&amp;\int_z p(z|x,\theta) \log\frac{p(x,z,\theta)}{p(z|x,\theta)}\\
+=&amp;\int_z p(z|x,\theta) \log p(x|\theta)\\
+=&amp; \log p(x|\theta)\int_z p(z|x,\theta)\\
+=&amp; \log p(x|\theta)
+\end{aligned}\]</span></p>
+<p>In above derivation, we show that when <span class="math inline">\(q(z|x)=p(z|x,\theta)\)</span>, Jensen’s inequality gets equal. After we determined <span class="math inline">\(q(z|x)\)</span>, the remaining issue is to find a <span class="math inline">\(\theta\)</span> that maximize the <strong>expected complete log likelihood</strong>. The step of determine <span class="math inline">\(q(z|x)\)</span> is call the E - step, and the procedure of maximizing the <strong>expected complete log likelihood</strong> is called the M-step.</p>
+<h2 id="back-to-gaussians-mixture-model">Back to Gaussians Mixture Model</h2>
+<p>We use the EM algorithm to solve our Gaussian mixture model.</p>
+<p>We denote <span class="math display">\[\begin{aligned}w_j^{(i)}&amp;=p(z^{(i)}=j|x^{(j)};\theta)\\
+&amp;=\frac{p(z^{(i)}=j)p(x|z^{(i)}=j;\theta)}{\sum_{l=1}^k p(z^{(i)}=l)p(x|z^{(i)}=l;\theta)}\\
+p(z^{(i)}=j)&amp;=\phi_j
+\end{aligned}\]</span> <span class="math inline">\(w_j^{(i)}\)</span> can be viewed as the responsibility that component k takes for ‘explaining’ the observation x. <span class="math inline">\(\phi_j\)</span> is the priori distribution of selecting <span class="math inline">\(j\)</span>th Gaussians. The expected complete log likelihood is:</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\sum_{i=1}^m\sum_{z^{(i)}}q(z^{(i)}|x^{(i)})\log\frac{p(x^{(i)},z^{(i)};\theta)}{q(z^{(i)}|x^{(i)})}\\
+=&amp;\sum_{i=1}^m\sum_{j=1}^k w_j^{(i)}\log\frac{\frac{1}{(2\pi)^{n/2}|\Sigma_j|^{1/2}}\exp(-\frac{1}{2}(x^{(i)}-\mu_j)^T\Sigma^{-1}(x^{(i)}-\mu_j))\phi_j}{w_j^{(i)}}
+\end{aligned}\]</span></p>
+<p>We can calculate the derivative of it w.r.t. each element of <span class="math inline">\(\mu\)</span> (denoted as <span class="math inline">\(\mu_l\)</span>).</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\nabla_{\mu_l}\sum_{i=1}^m\sum_{j=1}^k w_j^{(i)}\log\frac{\frac{1}{(2\pi)^{n/2}|\Sigma_j|^{1/2}}\exp(-\frac{1}{2}(x^{(i)}-\mu_j)^T\Sigma^{-1}(x^{(i)}-\mu_j))\phi_j}{w_j^{(i)}}\\
+=&amp;-\nabla_{\mu_l}\sum_{i=1}^m\sum_{j=1}^k w_j^{(i)}\frac{1}{2}(x^{(i)}-\mu_j)^T\Sigma^{-1}(x^{(i)}-\mu_j)\\
+=&amp;\sum_{i=1}^m\sum_{j=1}^k w_l^{(i)}\Sigma^{-1}(x^{(i)}-\mu_l)
+\end{aligned}\]</span> Set this term equal to 0. We get: <span class="math display">\[\mu_l=\frac{\sum_{i=1}^m{w_l^{(i)}}x^{(i)}}{\sum_{i=1}^m{w_l^{(i)}}}\]</span></p>
+<p>Other parameters in <span class="math inline">\(\theta\)</span> can also be solved analytically by the same method.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>EM algorithm can be used to find the parameters of models dealing with data with missing variables.</li>
+<li>EM algorithm constructs the lower bound of the incomplete log likelihood. It maximizes the lower bound to increase the original incomplete log likelihood.</li>
+<li>EM algorithm has two steps, i.e. E-step and M-step. In E-step, we use the best estimation <span class="math inline">\(p(z|x,\theta)\)</span> to estimate <span class="math inline">\(q(z|x)\)</span>. In M-step, we maximize the parameters <span class="math inline">\(\theta\)</span> by setting the derivative of each parameter to 0.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ol type="1">
+<li>Ng, Andrew. “CS229 Lecture notes.” CS229 Lecture notes 1.1 (2000): 1-3.</li>
+<li>Xiaogang, Wang. “ENGG5202 Lecture notes.” Chapter4, Homework1-3.</li>
+<li>Bishop, Christopher M. Pattern recognition and machine learning. springer, 2006.</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/06/20/Run-Python-Code-in-C/" rel="next" title="Run Python Code in C++">
+                <i class="fa fa-chevron-left"></i> Run Python Code in C++
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/" rel="prev" title="Why We Need Jordan Canonical Form?">
+                Why We Need Jordan Canonical Form? <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#the-goal-of-this-tutorial"><span class="nav-number">1.</span> <span class="nav-text">The Goal of This Tutorial</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gaussian-mixture-model"><span class="nav-number">2.</span> <span class="nav-text">Gaussian Mixture Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#general-problem"><span class="nav-number">3.</span> <span class="nav-text">General Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#back-to-gaussians-mixture-model"><span class="nav-number">4.</span> <span class="nav-text">Back to Gaussians Mixture Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/10/17/EM-Expectation-Maximization-Tutorial/';
+          this.page.identifier = '2017/10/17/EM-Expectation-Maximization-Tutorial/';
+          this.page.title = 'EM (Expectation Maximization) Tutorial';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,2418 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
+<meta property="og:type" content="website">
+<meta property="og:title" content="切问录">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="切问录">
+<meta name="twitter:description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title> 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/" itemprop="url">
+                  Stochastic Process Cheat Sheet
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T17:29:55+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/14/Stochastic-Process-Cheat-Sheet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/" class="leancloud_visitors" data-flag-title="Stochastic Process Cheat Sheet">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h3 id="poisson-process">Poisson Process</h3>
+<p>counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. <span class="math inline">\(P(N(s+t)-N(s)|N(s))=P(N(s+t)-N(s))\)</span>,<span class="math inline">\(P(X_i|X_j)=P(X_i)\)</span> counting process stationary increments: if the distribution of the number of events that occur in any interval of time depends only on the length of the time interval.</p>
+<h4 id="define-1">Define 1</h4>
+<p>The counting process <span class="math inline">\(\{N(t), t\ge 0\}\)</span> is said to be a Poisson process having rate <span class="math inline">\(\lambda, \lambda &gt; 0\)</span>, if (i) <span class="math inline">\(N(0)= 0\)</span> (ii) The process has independent increments (iii) The number of events in any interval of length <span class="math inline">\(t\)</span> is Poisson distributed with mean <span class="math inline">\(\lambda t\)</span> Thatis,for all <span class="math inline">\(s,t\ge0\)</span>, <span class="math inline">\(P\{N(t+s)- N(s)=n\}= e^{-\lambda t}\frac{(\lambda t)^n}{n!}, \ \  n=0,1,\cdots\)</span> From (iii), we have: <span class="math inline">\(E[N(t)] = \lambda t\)</span></p>
+<h4 id="define-2">Define 2</h4>
+<ol type="i">
+<li><span class="math inline">\(N(0)= 0\)</span></li>
+<li>The process has stationary and independent increments.</li>
+<li>$P{N(h) = 1} = h + o(h) $</li>
+<li><span class="math inline">\(P\{N(h) &gt; 2\} = o(h)\)</span></li>
+</ol>
+<h4 id="interarrival">Interarrival</h4>
+<p><span class="math inline">\(X_n\)</span>denote the time between the <span class="math inline">\((n- 1)\)</span>st and the <span class="math inline">\(n\)</span>th event. <span class="math inline">\(P\{X_1&gt;t\}=P\{N(t) =0\}=e^{-\lambda t}\)</span>, <span class="math inline">\(P\{X_2&gt;t|X_1=s\}=e^{-\lambda t}\)</span>. <span class="math inline">\(X_i\)</span> i.i.d, mean=<span class="math inline">\(1/\lambda\)</span> r.v. <span class="math inline">\(S_n\)</span> is the arrival time of the <span class="math inline">\(n\)</span>th event, <span class="math inline">\(S_n=\sum_{i=1}^nX_i,n\ge1\)</span>. <span class="math inline">\(S_n\)</span> has a gamma distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\lambda\)</span>,<span class="math inline">\(P\{S_n\le t \} =P\{ N( t ) \ge n\}=\sum_{j=n}^\infty e^{-\lambda t}\frac{(\lambda t)^j}{j!} \Rightarrow f(t)=\lambda e^{-\lambda t}\frac{(\lambda t)^{n-1}}{(n-1)!},t\ge0\)</span></p>
+<h4 id="conditional-distribution-of-the-arrival-times">Conditional Distribution of the Arrival Times</h4>
+<p>Known at <span class="math inline">\(t\)</span>, one event happen, give the distribution of the time that the event happen. It’s uniform dist.<span class="math inline">\(P\{X_1&lt;s|N(t) = 1\}=s/t\)</span> Generalization: Given that <span class="math inline">\(N(t) = n\)</span>, the <span class="math inline">\(n\)</span> arrival times <span class="math inline">\(S_1,...,S_n\)</span>, have the same distribution as the order statistics corresponding to n independent random variables uniformly distributed on the interval <span class="math inline">\((0,t)\)</span> <span class="math inline">\(f(t_1,...,t_n)=P\{t_i\le S_i \le t_i+h,i=1,...,n|N(t)=n\}/(h_1h_2\cdots h_n)=n!/t^n\)</span>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/07/14/随机过程题型总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2018/07/14/随机过程题型总结/" itemprop="url">
+                  随机过程题型总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T17:25:16+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/07/14/随机过程题型总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/14/随机过程题型总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/07/14/随机过程题型总结/" class="leancloud_visitors" data-flag-title="随机过程题型总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h3 id="markov">Markov</h3>
+<h4 id="给定转移矩阵求稳态分布">给定转移矩阵求稳态分布</h4>
+<p>直接解方程<span class="math inline">\(\pi P=\pi\)</span>,或者<span class="math inline">\(\pi (I-P)=0\)</span>。注意是左特征向量！！！</p>
+<h4 id="给定转移概率求稳态分布">给定转移概率求稳态分布</h4>
+<p>建立差分方程，带入边界条件。<span class="math inline">\(f_i=pf_{i+1}+qf_{i-1}\)</span> <span class="math inline">\(\Rightarrow f_{i+1}-f_i=q/p(f_i-f_{i-1}),\ldots, f_N-f_{N-1}=(q/p)^{N-1}f_1\)</span></p>
+<h4 id="给定转移矩阵求jrightarrow-i次数">给定转移矩阵求<span class="math inline">\(j\rightarrow i\)</span>次数</h4>
+<p>把i当做吸收态。去掉第i行，第i列得到剩余矩阵Q，则其余状态k访问状态j的次数期望为<span class="math inline">\(I+Q+Q^2+\ldots+Q^\infty=(I-Q)^{-1}=M\)</span>。计算出M后把第j行求和就相当于到达i前在其他状态的停留次数，而这个和就是到达i的期望次数。如果<span class="math inline">\(i=j\)</span>则要用稳态分布<span class="math inline">\(1/\pi(i)\)</span>来计算。</p>
+<h4 id="进入吸收态前的步数期望">进入吸收态前的步数期望</h4>
+<p>如果从第i个节点出发，则把<span class="math inline">\(M=(I-Q)^{-1}\)</span>的第i行加起来；</p>
+<h4 id="recurrent">recurrent</h4>
+<p>从A出发，返回A的步数<span class="math inline">\(1/\pi(A)\)</span></p>
+<h4 id="给定转移矩阵求jrightarrow-i概率">给定转移矩阵求<span class="math inline">\(j\rightarrow i\)</span>概率</h4>
+<p>把目标状态改为absorb，这样矩阵就成了<span class="math inline">\([[I,0],[S,Q]]\)</span>。计算<span class="math inline">\(A=(I-Q)^{-1}S=MS\)</span>，这样<span class="math inline">\(A_{ij}\)</span>表示从i出发被j吸收的概率。</p>
+<h4 id="从k出发到达i前先到j的概率">从k出发，到达<span class="math inline">\(i\)</span>前先到<span class="math inline">\(j\)</span>的概率</h4>
+<p>把i，j改为吸收态，然后构造上面那个矩阵，求<span class="math inline">\(A=(I-Q)^{-1}S=MS\)</span>，<span class="math inline">\(A_{kj}\)</span>即是所求。</p>
+<h4 id="验证sequence是否是markov">验证sequence是否是Markov</h4>
+<p><span class="math inline">\(P(X_i=0)=0.5,P(X_i=1)=0.5\)</span> <span class="math inline">\(Y_i=X_i+X_{i-1}\)</span> 。 不是Markov，因为如果<span class="math inline">\(Y_{n-1}=1\)</span>，对于不同的<span class="math inline">\(Y_{n-2},\ldots,Y_{1}\)</span>，可以得到不同的<span class="math inline">\(X_{n-1}\)</span>。而不同的<span class="math inline">\(X_{n-1}\)</span>能导致不同的<span class="math inline">\(P(Y_n|Y_{n-1})\)</span>，所以不是Markov。 例如：<span class="math inline">\(P(Y_3=2|Y_2=1,Y_1=0)\)</span>我们得出<span class="math inline">\(X_0=0,X_1=0,X_2=1\)</span>，这种情况下<span class="math inline">\(P(Y_3=2|...)=1/2\)</span>。另一方面，考虑<span class="math inline">\(P(Y_3=2|Y_2=1,Y_1=2)\)</span>，我们有<span class="math inline">\(X_0=1,X_1=1,X_2=0\)</span>，这种情况下<span class="math inline">\(P(Y_3=2|...)=0\)</span>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/07/14/随机过程题型总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" itemprop="url">
+                  Struggling in importing wikipedia into Elasticsearch
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T22:32:49+08:00">
+                2018-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" class="leancloud_visitors" data-flag-title="Struggling in importing wikipedia into Elasticsearch">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>Elasticsearch is a powerful search engine based on Lucene. It can build indexes on huge amount of data and we can query the data fast by keywords. Different from common database, Elasticsearch build inverted index and is capable of search keywords on all documents. The serch tool of wikipedia now is Elasticsearch. In this post, we introduce how to make a local Elasticsearch and import wikipedia dump into it. Some basic usages of Elasticsearch are also introduced.</p>
+<h2 id="download-elasticsearch">Download Elasticsearch</h2>
+<p>We run Elasticsearch on Linux system. Fisrly, we download Elasticsearch from the web.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.zip</span><br><span class="line">unzip elasticsearch-5.5.2.zip</span><br><span class="line"><span class="built_in">cd</span> elasticsearch-5.5.2</span><br><span class="line">bin/elasticsearch-plugin install analysis-icu</span><br><span class="line">./bin/elasticsearch-plugin install org.wikimedia.search:extra:5.5.2</span><br></pre></td></tr></table></figure>
+<p>We installed some plugins provided by wikimedia. Afterwards, we start Elasticsearch by: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/elasticsearch</span><br></pre></td></tr></table></figure></p>
+<h2 id="do-not-follow-the-official-old-post">Do not follow the official old post</h2>
+<p>This famous post provided by Elasticsearch <a href="ttps://www.elastic.co/blog/loading-wikipedia" target="_blank" rel="noopener">https://www.elastic.co/blog/loading-wikipedia</a> is out-of-date since recently, a lot of changes have been made in the development of Elasticsearch. I personally encountered a lot of problems during reproduce this tutorial. And I cannot find the solution.</p>
+<h2 id="use-logstash">Use Logstash</h2>
+<p>Logstash is log processing tool. However, it can also be used as the processing tool of our data. Since wikipedia dump is a text stream, Logstash can process text data by a rich set of plugins. The framework of Logstash is shown as follows <img src="/blog/images/logstash_pipeline.png" alt="Logstash"> We can define our own Imput, Filter and Output part to process the text stream to our desired data.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/" itemprop="url">
+                  Optimization Revisit: From Linear Programming to Lagrange
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T11:33:47+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/" class="leancloud_visitors" data-flag-title="Optimization Revisit: From Linear Programming to Lagrange">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>Optimization is the foundation of many other popular technologies and is widely used in our modern society. In this post, we will go through the basics in the foundation of optimization. We will start from the simplest linear programming, extend it to a more general conic version and finally arrive at Lagrange optimization. In order to concentrate on the main framework of optimization, we leave out some long proof which can be easily found in reference materials. All this post comes from course ENGG5501 taught by Prof. Anthony Man-Cho So in CUHK.</p>
+<h2 id="i-linear-programming">(I) Linear Programming</h2>
+<p>In linear programming (LP), the objective function and constraints are all linear w.r.t. variables. The standard form of linear programming is given as follows: <span class="math display">\[\begin{aligned}
+(P)\ \ \ \ \ \ v_p^* = \min_\mathbf{x}\ \ \  &amp;\mathbf{c}^T \mathbf{x}\\
+\text{s.t. }\ \  &amp;A\mathbf{x}=\mathbf{b}\\
+&amp; \mathbf{x} \ge \mathbf{0}
+\end{aligned}\]</span> Where <span class="math inline">\(\mathbf{x},\mathbf{c}\in \mathbb{R}^n\)</span>, <span class="math inline">\(\mathbf{b}\in \mathbb{R}^m\)</span> <span class="math inline">\(A\in \mathbb{R}^{m \times n }\)</span>. Since <span class="math inline">\(\mathbf{x}\ge \mathbf{0}\)</span>, the feasible region contains no line. It implies that it has at least one vertex. As stated by a theorem, if (P) has at least one vertex. Then, either the optimal value is <span class="math inline">\(-\infty\)</span> or there exists a vertex that is optimal.</p>
+<h3 id="weak-duality">Weak Duality</h3>
+<p>By observing problem (P). We are minimizing some function. A natural question is whether we can construct a lower bound, such that, no matter how we change our variables, the object functions always bigger than the lower bound. Now, let construct such a lower bound.</p>
+<p>If we can find a vector <span class="math inline">\(\mathbf{y} \in \mathbb{R}^m\)</span>, s.t. <span class="math inline">\(A^T \mathbf{y}\le c\)</span>, then we have <span class="math inline">\(\mathbf{b}^T\mathbf{y}=\mathbf{x}^TA^T\mathbf{y}\le \mathbf{c}^T\mathbf{x}\)</span>. This is in fact another optimization problem. Because, for all <span class="math inline">\(\mathbf{y}\)</span>s, the inequality above all holds. Obviously we want to find the max one to get the maximal lower bound. We firstly write the problem as follows:</p>
+<p><span class="math display">\[\begin{aligned}
+(D)\ \ \ \ \ \ v_d^* = \max_\mathbf{x}\ \ \  &amp;\mathbf{b}^T \mathbf{y}\\
+\text{s.t. }\ \  &amp;A^T \mathbf{y}\le c
+\end{aligned}\]</span></p>
+<p>Here, we find that for any LP primal problem (P), there exists a dual problem (D). The optimal value of the dual problem (D) is a lower bound of the primal problem (P). This is called the weak duality. By “weak”, we mean that we have an inequality relation holds between the two problems ( $ v _ p ^ * = v _ d ^ * $ ). A natural question is when the primal optimal value equals to the dual optimal value ($v _ p^ * = v _ d^ * $). It will be powerful if the equality holds, because if $v _ p^* = v _ d^* $, we can solve the primal problem by just solving the dual problem if the primal problem is to complicated. When the equality will hold is studied in the strong duality theory.</p>
+<h3 id="strong-duality">Strong Duality</h3>
+<p>To get the strong duality, we first introduce Farkas’s Lemma without proof.</p>
+<p><strong>(Farkas’s Lemma)</strong> Let <span class="math inline">\(A \in \mathbb{R}^{m\times n}\)</span> and <span class="math inline">\(b \in \mathbb{R}^m\)</span> be given. Then, exactly one of the following systems has a solution: <span class="math display">\[ \begin{aligned}
+&amp;Ax=b, x\ge0 \\
+&amp;A^Ty\le 0, b^Ty&gt;0
+\end{aligned}\]</span> Farkas’s Lemma shows that there must be one and only on of the two systems has a solution. This can be used to prove the strong duality of LP problem.</p>
+<p><strong>(LP Strong Duality)</strong> Suppose that (P) has an optimal solution <span class="math inline">\(x^* \in \mathbb{R}^n\)</span>. Then, (D) also has an optimal solution <span class="math inline">\(y^* \in \mathbb{R}^m\)</span>, and <span class="math inline">\(c^T x^* = b^T y^*\)</span>.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/11/18/SVM-Revisit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/11/18/SVM-Revisit/" itemprop="url">
+                  SVM Revisit
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T17:10:30+08:00">
+                2017-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/11/18/SVM-Revisit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/18/SVM-Revisit/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/11/18/SVM-Revisit/" class="leancloud_visitors" data-flag-title="SVM Revisit">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>SVM (Support Vector Machine) is an important tool in pattern recognition before the wave of different kind of neural networks. In this post, we revisit the derivation of SVM and get some important intuition of the result.</p>
+<h2 id="the-original-problem">The original problem</h2>
+<p>Suppose we have some training data <span class="math inline">\(\mathcal{D}=\{(\mathbf{x}_1, y_1),(\mathbf{x}_2, y_2),\cdots,(\mathbf{x}_n, y_n)\}\)</span>, in which <span class="math inline">\(\mathbf{x}\)</span> is a feature vector, and <span class="math inline">\(y_i\)</span> is the class label for each sample and it is -1 or 1. Our task is to find a classifier that uses a separate hyper plane to divide the points in <span class="math inline">\(\mathcal{D}\)</span> into two parts. Points on each side of the hyper plane have the same class label y respectively. This classifier is denoted as <span class="math inline">\(f(\mathbf{x})=\text{sign}(\mathbf{w}^T\mathbf{x}+b)\)</span>. For any hyper plane that successfully divide the two classes. We define the geometry margin of the <span class="math inline">\(i\)</span>th point as the distance from the point to the hyper plane: <span class="math display">\[\gamma_i=\frac{y_i(\mathbf{w}^Tx_i+b)}{||\mathbf{w}||}\]</span> <img src="/blog/images/revisit-SVM.png"> We observe that for both classes <span class="math inline">\(y=1\)</span> and <span class="math inline">\(y=-1\)</span>, the geometry margin is larger than 0. We can define the geometry margin of our dataset <span class="math inline">\(\mathcal{D}\)</span> as: <span class="math display">\[\gamma=\min_{i=1,\cdots,n} \gamma_i\]</span>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/11/18/SVM-Revisit/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/" itemprop="url">
+                  Why We Need Jordan Canonical Form?
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-10T12:10:08+08:00">
+                2017-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/10/Why-We-Need-Jordan-Canonical-Form/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/" class="leancloud_visitors" data-flag-title="Why We Need Jordan Canonical Form?">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>Jordan Canonical Form is an important form of matrix, because not all matrices have the eigen decomposition. But it is guaranteed that all real matrices have Jordan canonical form decomposition.</p>
+<p>This article gives an example to show that when a matrix cannot be diagonalized, it is still similar to some approximate diagonal form. We can construct varieties of approximate diagonal form, but the Jordan canonical form is the simplest.</p>
+<p>We have <span class="math display">\[A=\begin{bmatrix}
+4 &amp;3 &amp;-4\\
+-1 &amp;0 &amp;2\\
+1 &amp;1 &amp;0
+\end{bmatrix}
+\]</span> We solve the equation <span class="math inline">\(AV=\lambda v\)</span> to get the eigen value and the eigenvectors. We get: <span class="math display">\[\begin{aligned}
+&amp;\lambda_1 = 2,\ \ v_1=(2, 0, 1)^T \\
+&amp;\lambda_2 = 1,\ \ v_2=(-1, 1, 0)^T
+\end{aligned}\]</span>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/" itemprop="url">
+                  EM (Expectation Maximization) Tutorial
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T19:44:15+08:00">
+                2017-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/17/EM-Expectation-Maximization-Tutorial/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/" class="leancloud_visitors" data-flag-title="EM (Expectation Maximization) Tutorial">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="the-goal-of-this-tutorial">The Goal of This Tutorial</h2>
+<p>EM (Expectation Maximization) algorithm is a widely used method when a model has hidden variables that cannot be observed from the dataset. In this tutorial, we focus on the outline and intuition of the EM algorithm. A Gaussian mixture model is studied as an example.</p>
+<h2 id="gaussian-mixture-model">Gaussian Mixture Model</h2>
+<p>In the Gaussian mixture model, we assume that there are several generators which can generate samples from a Gaussian distribution. Each sample (denoted as <span class="math inline">\(x^{(i)}=(x_1,x_2,...,x_d)\)</span>) of our data is sampled from one of the generators. We can only observe the position of each sample <span class="math inline">\(x\)</span> and we don’t know for each sample <span class="math inline">\(x^{(i)}\)</span>, which generator <span class="math inline">\(z^{(i)}\)</span> generate it. Here, <span class="math inline">\(z^{(i)}=\{1,2,..,k\}\)</span> stand for the ID of each generator. For each generator <span class="math inline">\(j\)</span>(<span class="math inline">\(j\in[1,k]\)</span>), it generates samples by a Gaussian distribution with parameter <span class="math inline">\(\mu_j,\Sigma_j\)</span>. We use <span class="math inline">\(\theta\)</span> to denote all model parameters, <span class="math inline">\(\theta=(\mu_1,\mu_2,...,\mu_k,\Sigma_1,\Sigma_2,...,\Sigma_k,\phi_1,\phi_2,...,\phi_k)\)</span>. Where <span class="math inline">\(\phi_j\)</span> is the probability of selecting <span class="math inline">\(j\)</span>th generator and <span class="math inline">\(\sum_{j=i}^k \phi_j=1\)</span>. The goal of Gaussian mixture model is to find a most suitable parameter <span class="math inline">\(\theta\)</span> to describe the data.
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/06/20/Run-Python-Code-in-C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/06/20/Run-Python-Code-in-C/" itemprop="url">
+                  Run Python Code in C++
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T19:50:17+08:00">
+                2017-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/06/20/Run-Python-Code-in-C/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/20/Run-Python-Code-in-C/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/06/20/Run-Python-Code-in-C/" class="leancloud_visitors" data-flag-title="Run Python Code in C++">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="goals">Goals</h2>
+<p>We explore the method to embed python code into C++ . This is useful when we want to integrate some python code snippets into some C++ based systems. ## compile python Here, we compile python into dynamic link libraries. 1. Download python from python.org <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz</span><br></pre></td></tr></table></figure></p>
+<ol start="2" type="1">
+<li>Unzip and build the python <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar xvf Python-2.7.13.tgz</span><br><span class="line">cd Python-2.7.13</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">../configure --prefix=/home/me/pythonPKG --enable-unicode=ucs4 --disable-ipv6 --enable-shared</span><br><span class="line">make -j20</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/06/20/Run-Python-Code-in-C/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/03/14/三门问题与贝叶斯公式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/03/14/三门问题与贝叶斯公式/" itemprop="url">
+                  三门问题与贝叶斯公式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-14T20:57:21+08:00">
+                2017-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/03/14/三门问题与贝叶斯公式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/14/三门问题与贝叶斯公式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/03/14/三门问题与贝叶斯公式/" class="leancloud_visitors" data-flag-title="三门问题与贝叶斯公式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="三门问题">三门问题</h2>
+<p>三门问题是一个很出名也受到了很多争议的问题，这个问题出自美国的电视游戏节目Let’s Make a Deal。问题名字来自该节目的主持人蒙提·霍尔（Monty Hall）。参赛者会看见三扇关闭了的门，其中一扇的后面有一辆汽车，选中后面有车的那扇门可赢得该汽车，另外两扇门后面则各藏有一只山羊。当参赛者选定了一扇门，但未去开启它的时候，节目主持人开启剩下两扇门的其中一扇，露出其中一只山羊。主持人其后会问参赛者要不要换另一扇仍然关上的门。问题是：换另一扇门会否增加参赛者赢得汽车的机率？</p>
+<p>关于这个问题有两个思路，看起来都很有道理，然而却得出了截然不同的结论，我们先来看一下两种解法。</p>
+<ol type="1">
+<li><p>主持人排除了一个门之后，还剩两个门，随便选哪个都是<span class="math inline">\(\frac{1}{2}\)</span>；</p></li>
+<li><p>选手选择的那扇门的概率是<span class="math inline">\(\frac{1}{3}\)</span>，而主持人手上的门打开后，那<span class="math inline">\(\frac{1}{3}\)</span>的概率就跑到另一个门上了，所以另一个门的概率是<span class="math inline">\(\frac{2}{3}\)</span>。</p></li>
+</ol>
+<p>这两个思路看着都有道理，可是为什么会出现两个截然不同的答案呢？其实，问题出在题目里面，题目并没有说主持人是任意选择了一个门，还是只选择空门。玩了一个语言上的trick，把一个很重要的隐含假设一语带过，大家各自采用了自认为显然的隐含假设，便导致了两种不同的结果。我们先介绍一下贝叶斯公式，再用贝叶斯公式理解下这两种思路。</p>
+<h3 id="贝叶斯公式">贝叶斯公式</h3>
+<p>贝叶斯公式是关于条件概率的公式，假设我们有两个事件<span class="math inline">\(A\)</span>和<span class="math inline">\(B\)</span>，我们可以根据<span class="math inline">\(A\)</span>在<span class="math inline">\(B\)</span>下发生概率去求得<span class="math inline">\(B\)</span>在<span class="math inline">\(A\)</span>下发生的概率。其公式表述为： <span class="math display">\[P(A|B)=\frac{P(B|A)P(A)}{P(B|A)P(A)+P(B|\overline{A})P(\overline{A})}\]</span> 其中<span class="math inline">\(\overline{A}\)</span>表示<span class="math inline">\(A\)</span>不发生的概率。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/03/14/三门问题与贝叶斯公式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/09/29/如何理解拉格朗日方程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/09/29/如何理解拉格朗日方程/" itemprop="url">
+                  如何理解拉格朗日方程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-29T22:29:55+08:00">
+                2016-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/力学/" itemprop="url" rel="index">
+                    <span itemprop="name">力学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2016/09/29/如何理解拉格朗日方程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/29/如何理解拉格朗日方程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2016/09/29/如何理解拉格朗日方程/" class="leancloud_visitors" data-flag-title="如何理解拉格朗日方程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>拉格朗日方程是理论力学中非常重要的一个方程，它和牛顿力学一样，都是一种对力学系统的描述。但与牛顿力学不同的是，他以整个系统的视角来分析系统的运动状态，而牛顿力学则是对每一个质点进行单独的分析。两种方法等效、且可相互推导，但使用场景则大不相同。本文旨在通过牛顿力学来导出拉格朗日方程。</p>
+<h2 id="拉格朗日方程导出">拉格朗日方程导出</h2>
+<p>我们研究物体在保守系统中的运动情况。所谓保守系统，是指物体所受的力都是保守力。而保守力则是指物体在该力的作用下做功的大小与路径无关。 我们首先给出牛顿第二定律： <span class="math display">\[ma=F\]</span> 以下的步骤皆是通过对牛顿第二定律的变形，来得出拉格朗日方程。我们先补充一个动量<span class="math inline">\(p\)</span>、速度<span class="math inline">\(v\)</span>和动能<span class="math inline">\(T\)</span>的等式。我们有 <span class="math display">\[\frac{\partial T}{\partial v}=\frac{\partial (\frac{1}{2}mv^2)}{\partial v}=mv=p\]</span> 可以看出动能关于速度的导数是动量。而 <span class="math display">\[\frac{dp}{dt}=\frac{mdv}{dt}=ma\]</span> 我们把速度<span class="math inline">\(v\)</span>记作<span class="math inline">\(\dot{x}\)</span>，有： <span class="math display">\[ma=m\ddot{x}_i=\frac{d}{dt}\frac{\partial T}{\partial \dot{x}_i}\]</span> 同时，我们来看势能<span class="math inline">\(U\)</span>与力<span class="math inline">\(F\)</span>的关系： <span class="math display">\[F=-\frac{\partial U}{\partial x}\]</span> 带入牛顿第二定律有：
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2016/09/29/如何理解拉格朗日方程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,2099 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="optimization,machine learning,en," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  Abstract This article compares four optimization approaches on the logistic regression of mnist dataset. The results of Gradient Descent(GD), Stochastic Gradient Des">
+<meta name="keywords" content="optimization,machine learning,en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS">
+<meta property="og:url" content="http://yoursite.com/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Abstract This article compares four optimization approaches on the logistic regression of mnist dataset. The results of Gradient Descent(GD), Stochastic Gradient Des">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-18T03:01:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Abstract This article compares four optimization approaches on the logistic regression of mnist dataset. The results of Gradient Descent(GD), Stochastic Gradient Des">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/"/>
+
+
+
+
+
+  <title> Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-16T11:10:44+08:00">
+                2016-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/" class="leancloud_visitors" data-flag-title="Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h1 id="abstract">Abstract</h1>
+<p>This article compares four optimization approaches on the logistic regression of mnist dataset. The results of Gradient Descent(GD), Stochastic Gradient Descent(SGD), L-BFGS will be discussed in detail. We proposed a Combined Stochastic Gradient Descent with L-BFGS(CL-BFGS) which is a improved version of L-BFGS and SGD. we conclude that when dataset is small, L-BFGS performans the best. If the dataset is big, SGD is recommended.</p>
+<h1 id="dataset">Dataset</h1>
+<p>The mnist dataset is one of the most popular dataset in machine learning especially in handwriting recognition systems. It contains 50000 pictures of 28x28 size as the training set while 10000 as validation set and 10000 as test set. The Bench mark error rate of mnist in traditional linear classification method is 7.6%[1]. However, the result improved dramatically after the deep learning method is proposed. DNN0.35%[2], CNN0.23%[3]. In this article, we only compare the optimization method in logistic regression. # Experiment</p>
+<a id="more"></a>
+<h2 id="gradient-descent">Gradient Descent</h2>
+<p>GD is the most basic optimization method in machine learning problems. The gradient is calculated after the input vector is set. The input vector changes along the gradient vector to get close to the local minimal/maximum solution during each epoch. However, GD is perhaps the worst choice to use among the methods above.</p>
+<p>##Stochastic Gradient Descent SGD does better than GD especially when the data is large. Sometimes, the data is too large to calculate at one time. So, it’s necessary to calculate in batches. SGD divided the data into some batches, and optimization one batch at each iteration. The parameter is passed to another batch after one is finished. The advantage of this machanicse is that comparing with the GD method, at each iteration, the parameter is optimized and get better and better after the first batch. However, the parameter of the batches keeps the same during each epoch in GD.</p>
+<h2 id="l-bfgs">L-BFGS</h2>
+<p>L-BFGS stand for the Limited-memory Broyden–Fletcher–Goldfarb–Shanno. It approximates the Broyden–Fletcher–Goldfarb–Shanno (BFGS) algorithm using a limited amount of computer memory. It can often get the better solution than the two methods mentioned above with less iteration.</p>
+<h2 id="combined-stochastic-gradient-descent-with-l-bfgs">Combined Stochastic Gradient Descent with L-BFGS</h2>
+<p>CL-BFGS works the same as SGD. However the optimization method in each batch is substitutes with L-BFGS. It get a sharp improvement in the short term, but cost a lot of time, because it will initial L-BFGS at each epoch.</p>
+<p>#Results The results is as follow, the error rate of each method coresponding to a epoch is listed.</p>
+<table>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>GD train</th>
+<th>GD valid</th>
+<th>GD test</th>
+<th>SGD train</th>
+<th>SGD valid</th>
+<th>SGD test</th>
+<th>L-BFGD train</th>
+<th>L-BFGS valid</th>
+<th>L-BFGS test</th>
+<th>CL-BFGS train</th>
+<th>CL-BFGS valid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0.89404</td>
+<td>0.8998</td>
+<td>0.8966</td>
+<td>0.46814</td>
+<td>0.4499</td>
+<td>0.4605</td>
+<td>0.74056</td>
+<td>0.7311</td>
+<td>0.7273</td>
+<td>0.15724</td>
+<td>0.144</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>0.81976</td>
+<td>0.8195</td>
+<td>0.817</td>
+<td>0.17524</td>
+<td>0.1645</td>
+<td>0.1687</td>
+<td>0.1587</td>
+<td>0.1396</td>
+<td>0.1494</td>
+<td>0.08622</td>
+<td>0.087</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>0.79408</td>
+<td>0.7964</td>
+<td>0.7944</td>
+<td>0.14498</td>
+<td>0.1355</td>
+<td>0.1373</td>
+<td>0.12376</td>
+<td>0.1173</td>
+<td>0.1215</td>
+<td>0.07998</td>
+<td>0.084</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>0.75974</td>
+<td>0.7627</td>
+<td>0.7588</td>
+<td>0.13136</td>
+<td>0.1243</td>
+<td>0.1249</td>
+<td>0.10712</td>
+<td>0.1007</td>
+<td>0.1094</td>
+<td>0.07684</td>
+<td>0.0821</td>
+</tr>
+<tr class="odd">
+<td>40</td>
+<td>0.71346</td>
+<td>0.7171</td>
+<td>0.7145</td>
+<td>0.1229</td>
+<td>0.1177</td>
+<td>0.1182</td>
+<td>0.09956</td>
+<td>0.0982</td>
+<td>0.102</td>
+<td>0.0748</td>
+<td>0.0818</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>0.66438</td>
+<td>0.664</td>
+<td>0.6648</td>
+<td>0.11716</td>
+<td>0.112</td>
+<td>0.1129</td>
+<td>0.09642</td>
+<td>0.0918</td>
+<td>0.1001</td>
+<td>0.07376</td>
+<td>0.0816</td>
+</tr>
+<tr class="odd">
+<td>60</td>
+<td>0.61738</td>
+<td>0.6167</td>
+<td>0.6184</td>
+<td>0.11248</td>
+<td>0.1084</td>
+<td>0.11</td>
+<td>0.08876</td>
+<td>0.0872</td>
+<td>0.0939</td>
+<td>0.073</td>
+<td>0.0809</td>
+</tr>
+<tr class="even">
+<td>70</td>
+<td>0.57716</td>
+<td>0.5732</td>
+<td>0.5755</td>
+<td>0.10916</td>
+<td>0.1062</td>
+<td>0.1078</td>
+<td>0.08532</td>
+<td>0.0848</td>
+<td>0.0907</td>
+<td>0.07254</td>
+<td>0.0806</td>
+</tr>
+<tr class="odd">
+<td>80</td>
+<td>0.54128</td>
+<td>0.5339</td>
+<td>0.5393</td>
+<td>0.10592</td>
+<td>0.1042</td>
+<td>0.1051</td>
+<td>0.08094</td>
+<td>0.0823</td>
+<td>0.0881</td>
+<td>0.07204</td>
+<td>0.0812</td>
+</tr>
+<tr class="even">
+<td>90</td>
+<td>0.50982</td>
+<td>0.4978</td>
+<td>0.509</td>
+<td>0.10296</td>
+<td>0.1018</td>
+<td>0.1029</td>
+<td>0.08016</td>
+<td>0.0803</td>
+<td>0.0879</td>
+<td>0.0718</td>
+<td>0.0813</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>0.48344</td>
+<td>0.47</td>
+<td>0.4815</td>
+<td>0.10148</td>
+<td>0.1004</td>
+<td>0.1073</td>
+<td>0.0782</td>
+<td>0.0807</td>
+<td>0.0877</td>
+<td>0.07146</td>
+<td>0.0809</td>
+</tr>
+<tr class="even">
+<td>200</td>
+<td>0.36656</td>
+<td>0.3436</td>
+<td>0.3437</td>
+<td>0.08698</td>
+<td>0.0891</td>
+<td>0.0916</td>
+<td>0.0635</td>
+<td>0.0766</td>
+<td>0.0791</td>
+<td>0.06916</td>
+<td>0.0814</td>
+</tr>
+<tr class="odd">
+<td>300</td>
+<td>0.30336</td>
+<td>0.2822</td>
+<td>0.2827</td>
+<td>0.08034</td>
+<td>0.0843</td>
+<td>0.084</td>
+<td>0.06106</td>
+<td>0.0743</td>
+<td>0.0774</td>
+<td>0.0687</td>
+<td>0.0821</td>
+</tr>
+<tr class="even">
+<td>400</td>
+<td>0.26512</td>
+<td>0.2451</td>
+<td>0.245</td>
+<td>0.07718</td>
+<td>0.0801</td>
+<td>0.0803</td>
+<td>0.06016</td>
+<td>0.0749</td>
+<td>0.077</td>
+<td>0.0687</td>
+<td>0.0816</td>
+</tr>
+<tr class="odd">
+<td>500</td>
+<td>0.23936</td>
+<td>0.2206</td>
+<td>0.2226</td>
+<td>0.07414</td>
+<td>0.0778</td>
+<td>0.0788</td>
+<td>0.05924</td>
+<td>0.0755</td>
+<td>0.0775</td>
+<td>0.0684</td>
+<td>0.0821</td>
+</tr>
+<tr class="even">
+<td>600</td>
+<td>0.21986</td>
+<td>0.2048</td>
+<td>0.2052</td>
+<td>0.07164</td>
+<td>0.0771</td>
+<td>0.0778</td>
+<td>0.05916</td>
+<td>0.0757</td>
+<td>0.0782</td>
+<td>0.06826</td>
+<td>0.0821</td>
+</tr>
+<tr class="odd">
+<td>700</td>
+<td>0.20634</td>
+<td>0.1932</td>
+<td>0.1909</td>
+<td>0.07002</td>
+<td>0.0762</td>
+<td>0.077</td>
+<td>0.05848</td>
+<td>0.0761</td>
+<td>0.0784</td>
+<td>0.0683</td>
+<td>0.082</td>
+</tr>
+<tr class="even">
+<td>800</td>
+<td>0.1954</td>
+<td>0.1833</td>
+<td>0.1794</td>
+<td>0.06876</td>
+<td>0.075</td>
+<td>0.0768</td>
+<td>0.05834</td>
+<td>0.0754</td>
+<td>0.0789</td>
+<td>0.06832</td>
+<td>0.082</td>
+</tr>
+<tr class="odd">
+<td>900</td>
+<td>0.18702</td>
+<td>0.1756</td>
+<td>0.1717</td>
+<td>0.06782</td>
+<td>0.0741</td>
+<td>0.0767</td>
+<td>0.05818</td>
+<td>0.0765</td>
+<td>0.0797</td>
+<td>0.06828</td>
+<td>0.0827</td>
+</tr>
+<tr class="even">
+<td>1000</td>
+<td>0.17968</td>
+<td>0.1696</td>
+<td>0.1655</td>
+<td>0.06694</td>
+<td>0.0733</td>
+<td>0.0768</td>
+<td>0.05804</td>
+<td>0.0763</td>
+<td>0.0796</td>
+<td>0.06832</td>
+<td>0.083</td>
+</tr>
+<tr class="odd">
+<td>1100</td>
+<td>0.17342</td>
+<td>0.1646</td>
+<td>0.1586</td>
+<td>0.06642</td>
+<td>0.073</td>
+<td>0.0773</td>
+<td>0.05788</td>
+<td>0.0769</td>
+<td>0.0802</td>
+<td>0.06842</td>
+<td>0.0821</td>
+</tr>
+<tr class="even">
+<td>1200</td>
+<td>0.16904</td>
+<td>0.1597</td>
+<td>0.154</td>
+<td>0.06568</td>
+<td>0.0728</td>
+<td>0.0776</td>
+<td>0.05776</td>
+<td>0.0766</td>
+<td>0.0794</td>
+<td>0.06836</td>
+<td>0.0825</td>
+</tr>
+<tr class="odd">
+<td>1300</td>
+<td>0.16414</td>
+<td>0.1557</td>
+<td>0.1503</td>
+<td>0.06528</td>
+<td>0.0729</td>
+<td>0.0779</td>
+<td>0.05756</td>
+<td>0.0766</td>
+<td>0.08</td>
+<td>0.06838</td>
+<td>0.0831</td>
+</tr>
+<tr class="even">
+<td>1400</td>
+<td>0.15982</td>
+<td>0.1527</td>
+<td>0.1457</td>
+<td>0.06468</td>
+<td>0.0729</td>
+<td>0.0778</td>
+<td>0.05768</td>
+<td>0.0767</td>
+<td>0.0796</td>
+<td>0.06834</td>
+<td>0.0832</td>
+</tr>
+<tr class="odd">
+<td>1500</td>
+<td>0.15606</td>
+<td>0.1479</td>
+<td>0.143</td>
+<td>0.06442</td>
+<td>0.0729</td>
+<td>0.0778</td>
+<td>0.0577</td>
+<td>0.0771</td>
+<td>0.0797</td>
+<td>0.06826</td>
+<td>0.0828</td>
+</tr>
+<tr class="even">
+<td>1600</td>
+<td>0.15316</td>
+<td>0.1439</td>
+<td>0.1397</td>
+<td>0.06402</td>
+<td>0.0728</td>
+<td>0.0777</td>
+<td>0.05732</td>
+<td>0.0771</td>
+<td>0.08</td>
+<td>0.06826</td>
+<td>0.0828</td>
+</tr>
+<tr class="odd">
+<td>1700</td>
+<td>0.15028</td>
+<td>0.142</td>
+<td>0.137</td>
+<td>0.06362</td>
+<td>0.0732</td>
+<td>0.0775</td>
+<td>0.05748</td>
+<td>0.0771</td>
+<td>0.0798</td>
+<td>0.06832</td>
+<td>0.0831</td>
+</tr>
+<tr class="even">
+<td>1800</td>
+<td>0.1476</td>
+<td>0.1404</td>
+<td>0.1354</td>
+<td>0.0634</td>
+<td>0.0731</td>
+<td>0.0775</td>
+<td>0.05718</td>
+<td>0.0764</td>
+<td>0.0798</td>
+<td>0.06822</td>
+<td>0.0832</td>
+</tr>
+<tr class="odd">
+<td>1900</td>
+<td>0.14506</td>
+<td>0.1386</td>
+<td>0.1334</td>
+<td>0.06296</td>
+<td>0.0733</td>
+<td>0.0777</td>
+<td>0.05706</td>
+<td>0.0771</td>
+<td>0.0801</td>
+<td>0.0686</td>
+<td>0.0839</td>
+</tr>
+<tr class="even">
+<td>2000</td>
+<td>0.14276</td>
+<td>0.1367</td>
+<td>0.1314</td>
+<td>0.0628</td>
+<td>0.0732</td>
+<td>0.0776</td>
+<td>0.05676</td>
+<td>0.0766</td>
+<td>0.0797</td>
+<td>0.06826</td>
+<td>0.0837</td>
+</tr>
+<tr class="odd">
+<td>2100</td>
+<td>0.14062</td>
+<td>0.1345</td>
+<td>0.1301</td>
+<td>0.06278</td>
+<td>0.0734</td>
+<td>0.0776</td>
+<td>0.0567</td>
+<td>0.0772</td>
+<td>0.0802</td>
+<td>0.06808</td>
+<td>0.0841</td>
+</tr>
+<tr class="even">
+<td>2200</td>
+<td>0.13868</td>
+<td>0.1331</td>
+<td>0.1287</td>
+<td>0.06258</td>
+<td>0.0736</td>
+<td>0.0774</td>
+<td>0.0562</td>
+<td>0.0769</td>
+<td>0.08</td>
+<td>0.0679</td>
+<td>0.0835</td>
+</tr>
+<tr class="odd">
+<td>2300</td>
+<td>0.13676</td>
+<td>0.1311</td>
+<td>0.1274</td>
+<td>0.06232</td>
+<td>0.0736</td>
+<td>0.0775</td>
+<td>0.05662</td>
+<td>0.0778</td>
+<td>0.0802</td>
+<td>0.06784</td>
+<td>0.0832</td>
+</tr>
+<tr class="even">
+<td>2400</td>
+<td>0.1352</td>
+<td>0.1295</td>
+<td>0.1266</td>
+<td>0.06222</td>
+<td>0.0734</td>
+<td>0.0774</td>
+<td>0.05618</td>
+<td>0.0772</td>
+<td>0.0805</td>
+<td>0.0678</td>
+<td>0.0831</td>
+</tr>
+<tr class="odd">
+<td>2500</td>
+<td>0.1338</td>
+<td>0.1287</td>
+<td>0.1257</td>
+<td>0.06208</td>
+<td>0.0733</td>
+<td>0.0778</td>
+<td>0.0564</td>
+<td>0.0777</td>
+<td>0.0803</td>
+<td>0.0678</td>
+<td>0.0832</td>
+</tr>
+<tr class="even">
+<td>2600</td>
+<td>0.1325</td>
+<td>0.127</td>
+<td>0.1244</td>
+<td>0.06182</td>
+<td>0.0735</td>
+<td>0.0776</td>
+<td>0.0563</td>
+<td>0.0775</td>
+<td>0.0804</td>
+<td>0.06788</td>
+<td>0.0831</td>
+</tr>
+<tr class="odd">
+<td>2700</td>
+<td>0.1314</td>
+<td>0.1257</td>
+<td>0.1237</td>
+<td>0.0616</td>
+<td>0.0736</td>
+<td>0.0772</td>
+<td>0.05614</td>
+<td>0.0781</td>
+<td>0.0804</td>
+<td>0.06788</td>
+<td>0.0832</td>
+</tr>
+<tr class="even">
+<td>2800</td>
+<td>0.1301</td>
+<td>0.1247</td>
+<td>0.1221</td>
+<td>0.06148</td>
+<td>0.0737</td>
+<td>0.0773</td>
+<td>0.05608</td>
+<td>0.0776</td>
+<td>0.0804</td>
+<td>0.06786</td>
+<td>0.0834</td>
+</tr>
+<tr class="odd">
+<td>2900</td>
+<td>0.12886</td>
+<td>0.1235</td>
+<td>0.1214</td>
+<td>0.06132</td>
+<td>0.0733</td>
+<td>0.077</td>
+<td>0.05604</td>
+<td>0.0779</td>
+<td>0.0807</td>
+<td>0.06766</td>
+<td>0.0829</td>
+</tr>
+<tr class="even">
+<td>3000</td>
+<td>0.12766</td>
+<td>0.1232</td>
+<td>0.1205</td>
+<td>0.06118</td>
+<td>0.0733</td>
+<td>0.0769</td>
+<td>0.0559</td>
+<td>0.0778</td>
+<td>0.0807</td>
+<td>0.06756</td>
+<td>0.083</td>
+</tr>
+<tr class="odd">
+<td>3100</td>
+<td>0.12696</td>
+<td>0.1217</td>
+<td>0.1201</td>
+<td>0.06104</td>
+<td>0.0733</td>
+<td>0.0771</td>
+<td>0.05592</td>
+<td>0.0781</td>
+<td>0.081</td>
+<td>0.06754</td>
+<td>0.083</td>
+</tr>
+<tr class="even">
+<td>3200</td>
+<td>0.12618</td>
+<td>0.1211</td>
+<td>0.1186</td>
+<td>0.06076</td>
+<td>0.0737</td>
+<td>0.0769</td>
+<td>0.05586</td>
+<td>0.0779</td>
+<td>0.0805</td>
+<td>0.0676</td>
+<td>0.083</td>
+</tr>
+<tr class="odd">
+<td>3300</td>
+<td>0.12548</td>
+<td>0.1208</td>
+<td>0.1179</td>
+<td>0.06066</td>
+<td>0.0735</td>
+<td>0.077</td>
+<td>0.05586</td>
+<td>0.0781</td>
+<td>0.0813</td>
+<td>0.06758</td>
+<td>0.083</td>
+</tr>
+<tr class="even">
+<td>3400</td>
+<td>0.12442</td>
+<td>0.1199</td>
+<td>0.1174</td>
+<td>0.06054</td>
+<td>0.0737</td>
+<td>0.077</td>
+<td>0.05586</td>
+<td>0.0779</td>
+<td>0.0808</td>
+<td>0.06732</td>
+<td>0.0832</td>
+</tr>
+<tr class="odd">
+<td>3500</td>
+<td>0.12364</td>
+<td>0.1195</td>
+<td>0.1161</td>
+<td>0.06048</td>
+<td>0.0734</td>
+<td>0.0774</td>
+<td>0.05588</td>
+<td>0.078</td>
+<td>0.0814</td>
+<td>0.06762</td>
+<td>0.0832</td>
+</tr>
+<tr class="even">
+<td>3600</td>
+<td>0.12294</td>
+<td>0.1187</td>
+<td>0.1158</td>
+<td>0.06046</td>
+<td>0.0733</td>
+<td>0.0774</td>
+<td>0.05584</td>
+<td>0.078</td>
+<td>0.0807</td>
+<td>0.06808</td>
+<td>0.0829</td>
+</tr>
+<tr class="odd">
+<td>3700</td>
+<td>0.12218</td>
+<td>0.1178</td>
+<td>0.1149</td>
+<td>0.06032</td>
+<td>0.0734</td>
+<td>0.0777</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06762</td>
+<td>0.0833</td>
+</tr>
+<tr class="even">
+<td>3800</td>
+<td>0.12152</td>
+<td>0.1169</td>
+<td>0.1142</td>
+<td>0.06026</td>
+<td>0.0734</td>
+<td>0.0778</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06746</td>
+<td>0.0835</td>
+</tr>
+<tr class="odd">
+<td>3900</td>
+<td>0.12072</td>
+<td>0.1158</td>
+<td>0.1135</td>
+<td>0.06026</td>
+<td>0.0736</td>
+<td>0.0775</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06808</td>
+<td>0.0832</td>
+</tr>
+<tr class="even">
+<td>4000</td>
+<td>0.11994</td>
+<td>0.1145</td>
+<td>0.1136</td>
+<td>0.0602</td>
+<td>0.0735</td>
+<td>0.0773</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06772</td>
+<td>0.0835</td>
+</tr>
+<tr class="odd">
+<td>4100</td>
+<td>0.11926</td>
+<td>0.1135</td>
+<td>0.1132</td>
+<td>0.06018</td>
+<td>0.0736</td>
+<td>0.0773</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06794</td>
+<td>0.0833</td>
+</tr>
+<tr class="even">
+<td>4200</td>
+<td>0.11896</td>
+<td>0.1128</td>
+<td>0.1122</td>
+<td>0.06008</td>
+<td>0.0737</td>
+<td>0.0772</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06786</td>
+<td>0.0838</td>
+</tr>
+<tr class="odd">
+<td>4300</td>
+<td>0.11804</td>
+<td>0.1125</td>
+<td>0.1115</td>
+<td>0.06002</td>
+<td>0.0739</td>
+<td>0.0774</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06776</td>
+<td>0.0835</td>
+</tr>
+<tr class="even">
+<td>4400</td>
+<td>0.1173</td>
+<td>0.1122</td>
+<td>0.1113</td>
+<td>0.05986</td>
+<td>0.0738</td>
+<td>0.0774</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06756</td>
+<td>0.0836</td>
+</tr>
+<tr class="odd">
+<td>4500</td>
+<td>0.11664</td>
+<td>0.1119</td>
+<td>0.111</td>
+<td>0.05976</td>
+<td>0.0737</td>
+<td>0.0774</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06792</td>
+<td>0.0836</td>
+</tr>
+<tr class="even">
+<td>4600</td>
+<td>0.11614</td>
+<td>0.1117</td>
+<td>0.1104</td>
+<td>0.05972</td>
+<td>0.0738</td>
+<td>0.0775</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06768</td>
+<td>0.0838</td>
+</tr>
+<tr class="odd">
+<td>4700</td>
+<td>0.11538</td>
+<td>0.1109</td>
+<td>0.1096</td>
+<td>0.05968</td>
+<td>0.0738</td>
+<td>0.0774</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06768</td>
+<td>0.0839</td>
+</tr>
+<tr class="even">
+<td>4800</td>
+<td>0.11502</td>
+<td>0.1107</td>
+<td>0.1094</td>
+<td>0.05964</td>
+<td>0.0739</td>
+<td>0.0774</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06778</td>
+<td>0.0839</td>
+</tr>
+<tr class="odd">
+<td>4900</td>
+<td>0.11434</td>
+<td>0.1101</td>
+<td>0.1086</td>
+<td>0.05966</td>
+<td>0.074</td>
+<td>0.0775</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06762</td>
+<td>0.0839</td>
+</tr>
+<tr class="even">
+<td>5000</td>
+<td>0.11382</td>
+<td>0.1088</td>
+<td>0.1082</td>
+<td>0.05968</td>
+<td>0.0741</td>
+<td>0.0775</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06766</td>
+<td>0.0838</td>
+</tr>
+<tr class="odd">
+<td>5100</td>
+<td>0.1134</td>
+<td>0.1087</td>
+<td>0.1081</td>
+<td>0.05964</td>
+<td>0.0743</td>
+<td>0.0775</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06766</td>
+<td>0.0839</td>
+</tr>
+<tr class="even">
+<td>5200</td>
+<td>0.11286</td>
+<td>0.1083</td>
+<td>0.1077</td>
+<td>0.05962</td>
+<td>0.0745</td>
+<td>0.0776</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06762</td>
+<td>0.0838</td>
+</tr>
+<tr class="odd">
+<td>5300</td>
+<td>0.11262</td>
+<td>0.1083</td>
+<td>0.1075</td>
+<td>0.05952</td>
+<td>0.0744</td>
+<td>0.0778</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.0676</td>
+<td>0.0839</td>
+</tr>
+<tr class="even">
+<td>5400</td>
+<td>0.1121</td>
+<td>0.1079</td>
+<td>0.107</td>
+<td>0.05954</td>
+<td>0.0744</td>
+<td>0.0777</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06766</td>
+<td>0.0843</td>
+</tr>
+<tr class="odd">
+<td>5500</td>
+<td>0.11164</td>
+<td>0.1074</td>
+<td>0.1064</td>
+<td>0.05954</td>
+<td>0.0745</td>
+<td>0.0777</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06772</td>
+<td>0.0842</td>
+</tr>
+<tr class="even">
+<td>5600</td>
+<td>0.11128</td>
+<td>0.1069</td>
+<td>0.1059</td>
+<td>0.05956</td>
+<td>0.0745</td>
+<td>0.0776</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06772</td>
+<td>0.0844</td>
+</tr>
+<tr class="odd">
+<td>5700</td>
+<td>0.111</td>
+<td>0.1069</td>
+<td>0.1058</td>
+<td>0.05958</td>
+<td>0.0747</td>
+<td>0.0774</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06768</td>
+<td>0.0843</td>
+</tr>
+<tr class="even">
+<td>5800</td>
+<td>0.11032</td>
+<td>0.1068</td>
+<td>0.1051</td>
+<td>0.0595</td>
+<td>0.0745</td>
+<td>0.0775</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06772</td>
+<td>0.0844</td>
+</tr>
+<tr class="odd">
+<td>5900</td>
+<td>0.10988</td>
+<td>0.1063</td>
+<td>0.1047</td>
+<td>0.0595</td>
+<td>0.0744</td>
+<td>0.0774</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06776</td>
+<td>0.0844</td>
+</tr>
+<tr class="even">
+<td>6000</td>
+<td>0.10946</td>
+<td>0.106</td>
+<td>0.104</td>
+<td>0.0595</td>
+<td>0.0744</td>
+<td>0.0776</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06774</td>
+<td>0.0844</td>
+</tr>
+<tr class="odd">
+<td>6100</td>
+<td>0.1091</td>
+<td>0.1057</td>
+<td>0.1036</td>
+<td>0.0595</td>
+<td>0.0744</td>
+<td>0.0778</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06752</td>
+<td>0.0846</td>
+</tr>
+<tr class="even">
+<td>6200</td>
+<td>0.10868</td>
+<td>0.1055</td>
+<td>0.1036</td>
+<td>0.05944</td>
+<td>0.0744</td>
+<td>0.0778</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06764</td>
+<td>0.0845</td>
+</tr>
+<tr class="odd">
+<td>6300</td>
+<td>0.10822</td>
+<td>0.1055</td>
+<td>0.1035</td>
+<td>0.05942</td>
+<td>0.0741</td>
+<td>0.0778</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.06762</td>
+<td>0.0848</td>
+</tr>
+<tr class="even">
+<td>6400</td>
+<td>0.10794</td>
+<td>0.105</td>
+<td>0.103</td>
+<td>0.05938</td>
+<td>0.0744</td>
+<td>0.0779</td>
+<td>0.05578</td>
+<td>0.0779</td>
+<td>0.0812</td>
+<td>0.0676</td>
+<td>0.0845</td>
+</tr>
+</tbody>
+</table>
+<p>#Conclusion We can see from the results above: - In the short term, batch method works better than using the whole data. Parameter can improve during the calculation of each batch, so the error rate decrease faster. - In the long term, however, using the whole data is better than the batch method, because at last the classifier should balance the error of the whole data. Using a batch to optimize the parameter will make other batches work worse. - L-BFGS works better than the GD and SGD method. - CL-BFGS works better than L-BFGS method in the short term. So, if we want to handling data that can be dealt at one time, it is recommended to use L-BFGS. However, to a lot of problems that the data is too large, it’s necessary to use a batch method. CL-BFGS perform better than SGD in each epoch, but cost a lot of time. So SGD is recommended under such circumstances.</p>
+<p>[1] LeCun, Yann; Léon Bottou; Yoshua Bengio; Patrick Haffner (1998). “Gradient-Based Learning Applied to Document Recognition” (PDF). Proceedings of the IEEE 86 86 (11): 2278–2324. doi:10.1109/5.726791 [2] Ciresan, Claudiu Dan; Dan, Ueli Meier, Luca Maria Gambardella, and Juergen Schmidhuber (December 2010). “Deep Big Simple Neural Nets Excel on Handwritten Digit Recognition”. Neural Computation 22 (12). doi:10.1162/NECO_a_00052 [3] Cires¸an, Dan; Ueli Meier; Jürgen Schmidhuber (2012). “Multi-column deep neural networks for image classification” (PDF). 2012 IEEE Conference on Computer Vision and Pattern Recognition: 3642–3649. arXiv:1202.2745. doi:10.1109/CVPR.2012.6248110</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/optimization/" rel="tag"># optimization</a>
+          
+            <a href="/blog/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/blog/tags/en/" rel="tag"># en</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015/12/04/理解PCA和SVD/" rel="next" title="理解PCA和SVD">
+                <i class="fa fa-chevron-left"></i> 理解PCA和SVD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/01/29/矩阵的条件数是什么/" rel="prev" title="矩阵的条件数是什么">
+                矩阵的条件数是什么 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dataset"><span class="nav-number">2.</span> <span class="nav-text">Dataset</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-descent"><span class="nav-number">2.1.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#l-bfgs"><span class="nav-number">2.2.</span> <span class="nav-text">L-BFGS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#combined-stochastic-gradient-descent-with-l-bfgs"><span class="nav-number">2.3.</span> <span class="nav-text">Combined Stochastic Gradient Descent with L-BFGS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/';
+          this.page.identifier = '2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/';
+          this.page.title = 'Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

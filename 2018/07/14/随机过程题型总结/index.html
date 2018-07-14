@@ -1,0 +1,1049 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  Markov 给定转移矩阵求稳态分布 直接解方程\(\pi P=\pi\),或者\(\pi (I-P)=0\)。注意是左特征向量！！！ 给定转移概率求稳态分布 建立差分方程，带入边界条件。\(f_i=pf_{i+1}+qf_{i-1}\) \(\Rightarrow f_{i+1}-f_i=q/p(f_i-f_{i-1}),\l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机过程题型总结">
+<meta property="og:url" content="http://yoursite.com/2018/07/14/随机过程题型总结/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Markov 给定转移矩阵求稳态分布 直接解方程\(\pi P=\pi\),或者\(\pi (I-P)=0\)。注意是左特征向量！！！ 给定转移概率求稳态分布 建立差分方程，带入边界条件。\(f_i=pf_{i+1}+qf_{i-1}\) \(\Rightarrow f_{i+1}-f_i=q/p(f_i-f_{i-1}),\l">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-14T13:56:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="随机过程题型总结">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Markov 给定转移矩阵求稳态分布 直接解方程\(\pi P=\pi\),或者\(\pi (I-P)=0\)。注意是左特征向量！！！ 给定转移概率求稳态分布 建立差分方程，带入边界条件。\(f_i=pf_{i+1}+qf_{i-1}\) \(\Rightarrow f_{i+1}-f_i=q/p(f_i-f_{i-1}),\l">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/14/随机过程题型总结/"/>
+
+
+
+
+
+  <title> 随机过程题型总结 | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/07/14/随机过程题型总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                随机过程题型总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T17:25:16+08:00">
+                2018-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/07/14/随机过程题型总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/14/随机过程题型总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/07/14/随机过程题型总结/" class="leancloud_visitors" data-flag-title="随机过程题型总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h3 id="markov">Markov</h3>
+<h4 id="给定转移矩阵求稳态分布">给定转移矩阵求稳态分布</h4>
+<p>直接解方程<span class="math inline">\(\pi P=\pi\)</span>,或者<span class="math inline">\(\pi (I-P)=0\)</span>。注意是左特征向量！！！</p>
+<h4 id="给定转移概率求稳态分布">给定转移概率求稳态分布</h4>
+<p>建立差分方程，带入边界条件。<span class="math inline">\(f_i=pf_{i+1}+qf_{i-1}\)</span> <span class="math inline">\(\Rightarrow f_{i+1}-f_i=q/p(f_i-f_{i-1}),\ldots, f_N-f_{N-1}=(q/p)^{N-1}f_1\)</span></p>
+<h4 id="给定转移矩阵求jrightarrow-i次数">给定转移矩阵求<span class="math inline">\(j\rightarrow i\)</span>次数</h4>
+<p>把i当做吸收态。去掉第i行，第i列得到剩余矩阵Q，则其余状态k访问状态j的次数期望为<span class="math inline">\(I+Q+Q^2+\ldots+Q^\infty=(I-Q)^{-1}=M\)</span>。计算出M后把第j行求和就相当于到达i前在其他状态的停留次数，而这个和就是到达i的期望次数。如果<span class="math inline">\(i=j\)</span>则要用稳态分布<span class="math inline">\(1/\pi(i)\)</span>来计算。</p>
+<h4 id="进入吸收态前的步数期望">进入吸收态前的步数期望</h4>
+<p>如果从第i个节点出发，则把<span class="math inline">\(M=(I-Q)^{-1}\)</span>的第i行加起来；</p>
+<h4 id="recurrent">recurrent</h4>
+<p>从A出发，返回A的步数<span class="math inline">\(1/\pi(A)\)</span></p>
+<h4 id="给定转移矩阵求jrightarrow-i概率">给定转移矩阵求<span class="math inline">\(j\rightarrow i\)</span>概率</h4>
+<p>把目标状态改为absorb，这样矩阵就成了<span class="math inline">\([[I,0],[S,Q]]\)</span>。计算<span class="math inline">\(A=(I-Q)^{-1}S=MS\)</span>，这样<span class="math inline">\(A_{ij}\)</span>表示从i出发被j吸收的概率。</p>
+<h4 id="从k出发到达i前先到j的概率">从k出发，到达<span class="math inline">\(i\)</span>前先到<span class="math inline">\(j\)</span>的概率</h4>
+<p>把i，j改为吸收态，然后构造上面那个矩阵，求<span class="math inline">\(A=(I-Q)^{-1}S=MS\)</span>，<span class="math inline">\(A_{kj}\)</span>即是所求。</p>
+<h4 id="验证sequence是否是markov">验证sequence是否是Markov</h4>
+<p><span class="math inline">\(P(X_i=0)=0.5,P(X_i=1)=0.5\)</span> <span class="math inline">\(Y_i=X_i+X_{i-1}\)</span> 。 不是Markov，因为如果<span class="math inline">\(Y_{n-1}=1\)</span>，对于不同的<span class="math inline">\(Y_{n-2},\ldots,Y_{1}\)</span>，可以得到不同的<span class="math inline">\(X_{n-1}\)</span>。而不同的<span class="math inline">\(X_{n-1}\)</span>能导致不同的<span class="math inline">\(P(Y_n|Y_{n-1})\)</span>，所以不是Markov。 例如：<span class="math inline">\(P(Y_3=2|Y_2=1,Y_1=0)\)</span>我们得出<span class="math inline">\(X_0=0,X_1=0,X_2=1\)</span>，这种情况下<span class="math inline">\(P(Y_3=2|...)=1/2\)</span>。另一方面，考虑<span class="math inline">\(P(Y_3=2|Y_2=1,Y_1=2)\)</span>，我们有<span class="math inline">\(X_0=1,X_1=1,X_2=0\)</span>，这种情况下<span class="math inline">\(P(Y_3=2|...)=0\)</span>。</p>
+<a id="more"></a>
+<h3 id="可数markov">可数Markov</h3>
+<h4 id="判定markov链是transient">判定Markov链是transient</h4>
+<p>任意选定一个状态z（可以直接选0状态），令<span class="math inline">\(\alpha(x)\)</span>表示从x出发能到达z的概率。Markov链是transient的iff (1) <span class="math inline">\(0\le \alpha(x) \le 1\)</span> (2) <span class="math inline">\(\alpha(z)=1,\inf \{\alpha(x), x\in S\}=0\)</span> (3)<span class="math inline">\(\alpha(x)=\sum_{y\in S}p(x,y)\alpha(y),x\ne z\)</span>。对每一个状态x列出(3)得到recursive equation解出<span class="math inline">\(\alpha(x),x\in S\)</span>的表达式，然后去带入其他条件，得到参数的具体值。</p>
+<h4 id="判断markov链是positive-recurrent">判断Markov链是positive recurrent</h4>
+<p>解稳态分布<span class="math inline">\(\pi(x)=\sum_{y\in S} \pi(y)p(y,x)\)</span>,解出<span class="math inline">\(\pi(n)=x_n \pi(0)\)</span>,<span class="math inline">\(\because \sum_{n=1}^\infty \pi(n)=1\)</span> 所以级数<span class="math inline">\(\{x_n\}\)</span>收敛级数收敛来确定<span class="math inline">\(\{x_n\}\)</span>中的系数。</p>
+<h4 id="例求极限概率limiting-probability">例：求极限概率（limiting probability）</h4>
+<p><span class="math inline">\(p(n,n+1)=2/3,p(n,0)=1/3\)</span>。 解：带入<span class="math inline">\(\pi(x)=\sum_{y\in S} \pi(y)p(y,x)\)</span>有<span class="math inline">\(\pi(n)=2/3\pi(n-1) \Rightarrow \pi(n)=(2/3)^n\pi(0)\)</span>, $_{i=1}^(i)=1 $ <span class="math inline">\(\pi(n)=1/3(2/3)^n\)</span></p>
+<h4 id="例证明recurrent">例：证明recurrent</h4>
+<p><span class="math inline">\(p(n,n+1)=p,p(n,0)=1-p\)</span>，证明是recurrent。 首先证明0是recurrent的。第一次返回0的次数记为<span class="math inline">\(N_j=\min\{n&gt;0:X_n=j\}\)</span>，则如果是recurrent，则<span class="math inline">\(P(N_0&lt;\infty)=1\)</span>,<span class="math inline">\(P(N_0=n|X_0=0)=p^{n-1}(1-p)\)</span> <span class="math inline">\(\therefore f_0=\sum_k P(N_0=k|X_0=0)=P(N_0&lt;\infty|X_0=0)=\sum_{n=1}^\infty p^{n-1}(1-p)=1/(1-p)(1-p)=1\)</span> 法2：利用recurrent的定义<span class="math inline">\(\sum_{n=1}^\infty P_{jj}^n=\infty\)</span>. 见2D random walk。</p>
+<h3 id="连续markov">连续Markov</h3>
+<h4 id="求生成矩阵">求生成矩阵</h4>
+<p><span class="math inline">\(a(x,y)\)</span>表示单位时间内，从<span class="math inline">\(x\)</span>转移到<span class="math inline">\(y\)</span>的速率，矩阵A为生成矩阵，其中<span class="math inline">\(A_{ij}=a(i,j),(i\ne j)\)</span>，对角线上的元素使得每行和为0，表示从状态x离开的总速率。</p>
+<h4 id="求转移矩阵">求转移矩阵</h4>
+<p><span class="math inline">\(P_t=e^{tA}\)</span>，就是先分解成特征值（一般都会有一个0特征值）<span class="math inline">\(PDP^{-1}\)</span>，然后做指数运算<span class="math inline">\(P diag\{e^{d_1t},\ldots,e^{d_nt}\}P^{-1}\)</span></p>
+<h4 id="求稳态分布">求稳态分布</h4>
+<p>可以让<span class="math inline">\(P_t\)</span>中<span class="math inline">\(t\rightarrow \infty\)</span>，也可以根据生成矩阵和状态概率分布的关系<span class="math inline">\(p&#39;(t)=p(t)A\)</span>直接求解<span class="math inline">\(\pi A=0\)</span>。</p>
+<h4 id="首次改变期望时间">首次改变期望时间</h4>
+<p>从状态1出发，求首次改变期望的时间。由生成矩阵<span class="math inline">\(A_{11}\)</span>表示离开1的速率，所以期望时间为<span class="math inline">\(1/3\)</span>。</p>
+<h4 id="首次到达期望时间">首次到达期望时间</h4>
+<p>从状态1出发，求首次到达状态4的时间的期望。从状态1到达状态4的速率是<span class="math inline">\(A_{14}\)</span>，因此期望的时间是<span class="math inline">\(1/A_{14}\)</span></p>
+<h4 id="泊松过程和离散马尔科夫组成连续马尔科夫">泊松过程和离散马尔科夫组成连续马尔科夫</h4>
+<p>Markov:<span class="math inline">\(X_n\)</span>, Poisson:<span class="math inline">\(N(t)\)</span>,证<span class="math inline">\(Z(t)=X_{N(t)}\)</span> CTMC. 证明: <span class="math inline">\(P\{Z(s+t)=j|Z(s)=i,Z(u)=k,0\le u\le s\}\)</span> <span class="math inline">\(=P\{X_{N(s+t)}=j|X_{N(s)}=i,X_{N(u)}=k,0\le u\le s\}\)</span> <span class="math inline">\(=P\{X_{N(s+t)}=j|X_{N(s)}=i,0\le u\le s\}\)</span> (<span class="math inline">\(\because N(s) \ge N(u)\)</span>, then, by property of DTMC) <span class="math inline">\(=P\{Z(s+t)=j|Z(s)=i\}\)</span></p>
+<h3 id="martingale">Martingale</h3>
+<h4 id="判断是否是martingale">判断是否是Martingale</h4>
+<p>计算<span class="math inline">\(E[Y_{n+1}|X_1,\ldots,X_n]\)</span>看是否等于<span class="math inline">\(Y_n\)</span>. 注意加上<span class="math inline">\(E[|Z_n|]&lt;\infty\)</span></p>
+<h3 id="常见模型">常见模型</h3>
+<h4 id="mg1-queue">M/G/1 Queue</h4>
+<p>Interarrival times is exponential. let <span class="math inline">\(X_n\)</span> denote the number of customers left behind by the <span class="math inline">\(n\)</span>th depar­ture. Also, let <span class="math inline">\(Y_n\)</span> denote the number of customers arriving during the service period of the <span class="math inline">\((n + 1)\)</span>st customer. We have <span class="math inline">\(X_{n+1}=X_n-1+Y_n (X_n &gt; 0);=Y_n (X_n=0)\)</span>. <span class="math inline">\(P\{Y_n=j\}=\int_0^\infty e^{-\lambda x}(\lambda x)^j/j!dG(x)\)</span>. <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(P_{0j}=\int_0^\infty e^{-\lambda x}(\lambda x)^j/j!dG(x)\)</span>. <span class="math inline">\(P_{ij}=\int_0^\infty e^{-\lambda x}(\lambda x)^{j-i+1}/(j-i+1)!dG(x)\)</span>,<span class="math inline">\((j\ge i-1, i\ge 1)\)</span>, $P_{ij}=0 $(otherwise).</p>
+<h4 id="gm1-queue">G/M/1 Queue</h4>
+<p>Let <span class="math inline">\(X_n\)</span> denote the number of customers in the system as seen by the <span class="math inline">\(n\)</span>th arrival. <span class="math inline">\(P_{i,i+1-j}=\int_0^\infty e^{-\mu t}(\mu t)^j/j!dG(x)\)</span>, <span class="math inline">\(j=0,\cdots,i\)</span>. <span class="math inline">\(P_{i0}=\int_0^\infty \sum_{k=i+1}^\infty e^{-\mu t}(\mu t)^k/k!dG(x), i\ge 0\)</span></p>
+<h4 id="gamblers-ruin-problem">Gambler’s Ruin Problem</h4>
+<p><span class="math inline">\(p_{0,0}=p_{N,N}=1,p_{i,i+1}=p=1-p_{i,i-1}\)</span> 解：Let <span class="math inline">\(f_i\)</span> denote the probability that starting with i, the fortune will eventually reach N. We obtain: <span class="math inline">\(f_i=pf_{i+1}+qf_{i-1}\)</span> <span class="math inline">\(\Rightarrow f_{i+1}-f_i=q/p(f_i-f_{i-1}),\ldots, f_N-f_{N-1}=(q/p)^{N-1}f_1\)</span> <span class="math inline">\(\Rightarrow f_i-f_1=f_1[q/p+(q/p)^2+\cdots+(q/p)^{i-1}]\)</span> <span class="math inline">\(\Rightarrow f_i=(1-(q/p)^i)/(1-(q/p)^N),if p\ne 1/2;=i/N elif p=1/2\)</span>.终止为0的概率为<span class="math inline">\(1-f_i\)</span></p>
+<h4 id="alarm-clock-problem">Alarm Clock Problem</h4>
+<p>n个闹钟服从<span class="math inline">\(b_1,\ldots,b_n\)</span>的指数分布。<span class="math inline">\(P(T_i&gt;t)=\exp(-b_i t)\)</span>。随机变量<span class="math inline">\(T=\min\{T_1,\ldots,T_n\}\)</span> <span class="math inline">\(P(T\ge t)=P(T_1\ge t)P(T_2\ge t)\cdots P(T_n\ge t)=\exp(-(b_1+\cdots+b_n)t)\)</span>// <span class="math inline">\(T_1\)</span>先响概率：<span class="math inline">\(P(T_1=T)=\int_0^\infty P(T_2&gt;t,\cdots,T_n&gt;t)P(T_1=t)dt\)</span> <span class="math inline">\(=\int_0^\infty \exp(-(b_2+\cdots+b_n)t)b_1\exp(-b_1 t)dt=b_1/(b_1+\cdots+b_n)\)</span></p>
+<h4 id="absolute-value-of-simple-random-walk">Absolute Value of Simple Random Walk</h4>
+<p><span class="math inline">\(S_n=\sum_1^nX_n\)</span>, <span class="math inline">\(P\{X_i =1\}=p\)</span>, <span class="math inline">\(P\{X_i =-1\}=1-p=q\)</span>. Let <span class="math inline">\(j=\max\{k:0\le k\le n,i_k=0\}\)</span>, <span class="math inline">\(\therefore P\{S_n=i||S_n|=i,\cdots,|S_1|=i_1\}=\)</span> <span class="math inline">\(P\{S_n=i||S_n|=i,\cdots,|S_j|=0\}\)</span>, <span class="math inline">\(\therefore P(S_n=i|...)=p^{(n-j)/2+i/2}q^{(n-j)/2-i/2}\)</span> <span class="math inline">\(\therefore P(S_n=-i|...)=p^{(n-j)/2-i/2}q^{(n-j)/2+i/2}\)</span> <span class="math inline">\(P(S_n=i|...)=P(S_n=i|...)/(P(S_n=i|...)+P(S_n=-i|...))\)</span> <span class="math inline">\(=p^i/(p^i+q^i)\)</span> <span class="math inline">\(\therefore P\{|S_{n+1}|=i+1||S_n|=i,|S_{n-1},\cdots,|S_1|\}\)</span> <span class="math inline">\(=P\{S_{n+1}=i+1|S_n=i\}p^i/(p^i+q^i)\)</span> <span class="math inline">\(+P\{S_{n+1}=-(i+1)|S_n=-i\}q^i/(p^i+q^i)\)</span> <span class="math inline">\(=(p^{i+1}+q^{i+1})/(p^i+q^i)\)</span> <span class="math inline">\(\therefore P_{i,i+1}=(p^{i+1}+q^{i+1})/(p^i+q^i)\)</span> <span class="math inline">\(=1-P_{i,i-1},i&gt;0\)</span> <span class="math inline">\(P_{01}=1\)</span></p>
+<h4 id="simple-random-walk">Simple Random Walk</h4>
+<p><span class="math inline">\(P_{i,i+1}=p=1-P_{i,i-1}\)</span>. Firstly, step number cannot be even, i.e. <span class="math inline">\(P_{00}^{2n+1}=0\)</span>. <span class="math inline">\(P_{00}^{2n}=\binom{2n}{n}p^n(1-p)^n\)</span> <span class="math inline">\(=\frac{(2n)!}{n!n!}(p(1-p))^n\)</span>. By Stirling, <span class="math inline">\(P_{00}^{2n}\sim (4p(1-p))^n/\sqrt{\pi n}\)</span>. $$ if <span class="math inline">\(\sum_{n=1}^\infty (4p(1-p))^n/\sqrt{\pi n}=\infty\)</span> (only when <span class="math inline">\(p=1/2\)</span>) it will be recurrent. otherwise transient.</p>
+<h4 id="calculate-steady-state-probabilities">Calculate steady state probabilities</h4>
+<p>联立两个方程<span class="math inline">\(\pi=\pi P;\sum_j\pi_j=1\)</span>. 第一个方程有一个是冗余的，通过消元，将第一个方程化成如下形式 <span class="math display">\[\begin{aligned}
+&amp;\pi_0 =  &amp;0.080 &amp;\pi_0  + &amp;0.632 &amp;\pi_1 +   &amp;0.264 &amp;\pi_2 +   &amp;0.080 &amp;\pi_3,\\
+&amp;\pi_1 =  &amp;0.184 &amp;\pi_0  + &amp;0.368 &amp;\pi_1 +   &amp;0.368 &amp;\pi_2 +   &amp;0.184 &amp;\pi_3,\\
+&amp;\pi_2 =  &amp;0.368 &amp;\pi_0  + &amp;      &amp;          &amp;0.368 &amp;\pi_2 +   &amp;0.368 &amp;\pi_3,\\
+&amp;\pi_3 =  &amp;0.368 &amp;\pi_0  + &amp;      &amp;          &amp;      &amp;          &amp;0.368 &amp;\pi_3,\\
+&amp;1     =  &amp;      &amp;\pi_0  + &amp;      &amp;\pi_1 +   &amp;      &amp;\pi_2 +   &amp;      &amp;\pi_3.
+\end{aligned}\]</span> 然后逐个用<span class="math inline">\(\pi_0\)</span>去表示其他的，最后带入最后一个方程求出。</p>
+<h4 id="已知p_ij求mu_ij">已知<span class="math inline">\(p_{ij}\)</span>,求<span class="math inline">\(\mu_{ij}\)</span></h4>
+<p>利用<span class="math inline">\(\mu_{ij}=1+\sum_{k\ne j}p_{ik}\mu_{kj}\)</span></p>
+<h4 id="计算absorb概率">计算absorb概率</h4>
+<p>假设马氏链中存在absorb state记该状态为<span class="math inline">\(k\)</span>，求从某点出发，被<span class="math inline">\(k\)</span>吸住的概率。denote <span class="math inline">\(f_{ik}\)</span> as the probability of starting from <span class="math inline">\(i\)</span> and end in <span class="math inline">\(k\)</span>. The recursive equation is <span class="math inline">\(f_{ik}=\sum_j p_{ij}f_{jk}\)</span>(i到k的概率等于i先到j，再从j到k的概率对所有j求和)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" rel="next" title="Struggling in importing wikipedia into Elasticsearch">
+                <i class="fa fa-chevron-left"></i> Struggling in importing wikipedia into Elasticsearch
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/" rel="prev" title="Stochastic Process Cheat Sheet">
+                Stochastic Process Cheat Sheet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#markov"><span class="nav-number">1.</span> <span class="nav-text">Markov</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#给定转移矩阵求稳态分布"><span class="nav-number">1.1.</span> <span class="nav-text">给定转移矩阵求稳态分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给定转移概率求稳态分布"><span class="nav-number">1.2.</span> <span class="nav-text">给定转移概率求稳态分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给定转移矩阵求jrightarrow-i次数"><span class="nav-number">1.3.</span> <span class="nav-text">给定转移矩阵求\(j\rightarrow i\)次数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入吸收态前的步数期望"><span class="nav-number">1.4.</span> <span class="nav-text">进入吸收态前的步数期望</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#recurrent"><span class="nav-number">1.5.</span> <span class="nav-text">recurrent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给定转移矩阵求jrightarrow-i概率"><span class="nav-number">1.6.</span> <span class="nav-text">给定转移矩阵求\(j\rightarrow i\)概率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从k出发到达i前先到j的概率"><span class="nav-number">1.7.</span> <span class="nav-text">从k出发，到达\(i\)前先到\(j\)的概率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证sequence是否是markov"><span class="nav-number">1.8.</span> <span class="nav-text">验证sequence是否是Markov</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可数markov"><span class="nav-number">2.</span> <span class="nav-text">可数Markov</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判定markov链是transient"><span class="nav-number">2.1.</span> <span class="nav-text">判定Markov链是transient</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断markov链是positive-recurrent"><span class="nav-number">2.2.</span> <span class="nav-text">判断Markov链是positive recurrent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例求极限概率limiting-probability"><span class="nav-number">2.3.</span> <span class="nav-text">例：求极限概率（limiting probability）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例证明recurrent"><span class="nav-number">2.4.</span> <span class="nav-text">例：证明recurrent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续markov"><span class="nav-number">3.</span> <span class="nav-text">连续Markov</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求生成矩阵"><span class="nav-number">3.1.</span> <span class="nav-text">求生成矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求转移矩阵"><span class="nav-number">3.2.</span> <span class="nav-text">求转移矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求稳态分布"><span class="nav-number">3.3.</span> <span class="nav-text">求稳态分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首次改变期望时间"><span class="nav-number">3.4.</span> <span class="nav-text">首次改变期望时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首次到达期望时间"><span class="nav-number">3.5.</span> <span class="nav-text">首次到达期望时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泊松过程和离散马尔科夫组成连续马尔科夫"><span class="nav-number">3.6.</span> <span class="nav-text">泊松过程和离散马尔科夫组成连续马尔科夫</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#martingale"><span class="nav-number">4.</span> <span class="nav-text">Martingale</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断是否是martingale"><span class="nav-number">4.1.</span> <span class="nav-text">判断是否是Martingale</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见模型"><span class="nav-number">5.</span> <span class="nav-text">常见模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mg1-queue"><span class="nav-number">5.1.</span> <span class="nav-text">M/G/1 Queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gm1-queue"><span class="nav-number">5.2.</span> <span class="nav-text">G/M/1 Queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gamblers-ruin-problem"><span class="nav-number">5.3.</span> <span class="nav-text">Gambler’s Ruin Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#alarm-clock-problem"><span class="nav-number">5.4.</span> <span class="nav-text">Alarm Clock Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#absolute-value-of-simple-random-walk"><span class="nav-number">5.5.</span> <span class="nav-text">Absolute Value of Simple Random Walk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#simple-random-walk"><span class="nav-number">5.6.</span> <span class="nav-text">Simple Random Walk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#calculate-steady-state-probabilities"><span class="nav-number">5.7.</span> <span class="nav-text">Calculate steady state probabilities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已知p_ij求mu_ij"><span class="nav-number">5.8.</span> <span class="nav-text">已知\(p_{ij}\),求\(\mu_{ij}\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算absorb概率"><span class="nav-number">5.9.</span> <span class="nav-text">计算absorb概率</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/07/14/随机过程题型总结/';
+          this.page.identifier = '2018/07/14/随机过程题型总结/';
+          this.page.title = '随机过程题型总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

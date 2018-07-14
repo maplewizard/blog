@@ -1,0 +1,1110 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  Optimization is the foundation of many other popular technologies and is widely used in our modern society. In this post, we will go through the basics in the founda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimization Revisit: From Linear Programming to Lagrange">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Optimization is the foundation of many other popular technologies and is widely used in our modern society. In this post, we will go through the basics in the founda">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-08T03:35:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Optimization Revisit: From Linear Programming to Lagrange">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Optimization is the foundation of many other popular technologies and is widely used in our modern society. In this post, we will go through the basics in the founda">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/"/>
+
+
+
+
+
+  <title> Optimization Revisit: From Linear Programming to Lagrange | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Optimization Revisit: From Linear Programming to Lagrange
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T11:33:47+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/" class="leancloud_visitors" data-flag-title="Optimization Revisit: From Linear Programming to Lagrange">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>Optimization is the foundation of many other popular technologies and is widely used in our modern society. In this post, we will go through the basics in the foundation of optimization. We will start from the simplest linear programming, extend it to a more general conic version and finally arrive at Lagrange optimization. In order to concentrate on the main framework of optimization, we leave out some long proof which can be easily found in reference materials. All this post comes from course ENGG5501 taught by Prof. Anthony Man-Cho So in CUHK.</p>
+<h2 id="i-linear-programming">(I) Linear Programming</h2>
+<p>In linear programming (LP), the objective function and constraints are all linear w.r.t. variables. The standard form of linear programming is given as follows: <span class="math display">\[\begin{aligned}
+(P)\ \ \ \ \ \ v_p^* = \min_\mathbf{x}\ \ \  &amp;\mathbf{c}^T \mathbf{x}\\
+\text{s.t. }\ \  &amp;A\mathbf{x}=\mathbf{b}\\
+&amp; \mathbf{x} \ge \mathbf{0}
+\end{aligned}\]</span> Where <span class="math inline">\(\mathbf{x},\mathbf{c}\in \mathbb{R}^n\)</span>, <span class="math inline">\(\mathbf{b}\in \mathbb{R}^m\)</span> <span class="math inline">\(A\in \mathbb{R}^{m \times n }\)</span>. Since <span class="math inline">\(\mathbf{x}\ge \mathbf{0}\)</span>, the feasible region contains no line. It implies that it has at least one vertex. As stated by a theorem, if (P) has at least one vertex. Then, either the optimal value is <span class="math inline">\(-\infty\)</span> or there exists a vertex that is optimal.</p>
+<h3 id="weak-duality">Weak Duality</h3>
+<p>By observing problem (P). We are minimizing some function. A natural question is whether we can construct a lower bound, such that, no matter how we change our variables, the object functions always bigger than the lower bound. Now, let construct such a lower bound.</p>
+<p>If we can find a vector <span class="math inline">\(\mathbf{y} \in \mathbb{R}^m\)</span>, s.t. <span class="math inline">\(A^T \mathbf{y}\le c\)</span>, then we have <span class="math inline">\(\mathbf{b}^T\mathbf{y}=\mathbf{x}^TA^T\mathbf{y}\le \mathbf{c}^T\mathbf{x}\)</span>. This is in fact another optimization problem. Because, for all <span class="math inline">\(\mathbf{y}\)</span>s, the inequality above all holds. Obviously we want to find the max one to get the maximal lower bound. We firstly write the problem as follows:</p>
+<p><span class="math display">\[\begin{aligned}
+(D)\ \ \ \ \ \ v_d^* = \max_\mathbf{x}\ \ \  &amp;\mathbf{b}^T \mathbf{y}\\
+\text{s.t. }\ \  &amp;A^T \mathbf{y}\le c
+\end{aligned}\]</span></p>
+<p>Here, we find that for any LP primal problem (P), there exists a dual problem (D). The optimal value of the dual problem (D) is a lower bound of the primal problem (P). This is called the weak duality. By “weak”, we mean that we have an inequality relation holds between the two problems ( $ v _ p ^ * = v _ d ^ * $ ). A natural question is when the primal optimal value equals to the dual optimal value ($v _ p^ * = v _ d^ * $). It will be powerful if the equality holds, because if $v _ p^* = v _ d^* $, we can solve the primal problem by just solving the dual problem if the primal problem is to complicated. When the equality will hold is studied in the strong duality theory.</p>
+<h3 id="strong-duality">Strong Duality</h3>
+<p>To get the strong duality, we first introduce Farkas’s Lemma without proof.</p>
+<p><strong>(Farkas’s Lemma)</strong> Let <span class="math inline">\(A \in \mathbb{R}^{m\times n}\)</span> and <span class="math inline">\(b \in \mathbb{R}^m\)</span> be given. Then, exactly one of the following systems has a solution: <span class="math display">\[ \begin{aligned}
+&amp;Ax=b, x\ge0 \\
+&amp;A^Ty\le 0, b^Ty&gt;0
+\end{aligned}\]</span> Farkas’s Lemma shows that there must be one and only on of the two systems has a solution. This can be used to prove the strong duality of LP problem.</p>
+<p><strong>(LP Strong Duality)</strong> Suppose that (P) has an optimal solution <span class="math inline">\(x^* \in \mathbb{R}^n\)</span>. Then, (D) also has an optimal solution <span class="math inline">\(y^* \in \mathbb{R}^m\)</span>, and <span class="math inline">\(c^T x^* = b^T y^*\)</span>.</p>
+<a id="more"></a>
+<p><strong>Proof</strong> We claim that this system is unsolvable: $ Ax = b $ , $ x 0 $ , $ c ^ Tx &lt; x ^ Tx ^ * $ (since $x^* $ attains the minimal value.). We homogenize this system and get another unsolvable system: <span class="math display">\[\begin{aligned}
+\begin{bmatrix}A&amp;-b\\c^T&amp;-c^T x^* \end{bmatrix}\begin{bmatrix}x\\t\end{bmatrix}=\begin{bmatrix}0\\-1\end{bmatrix};\begin{bmatrix}x\\t\end{bmatrix}\ge 0
+\end{aligned}\]</span> By Fakas’s Lemma, we have: <span class="math display">\[\begin{aligned}
+&amp;\begin{bmatrix}A^T&amp;c\\-b^T&amp;-c^T x^* \end{bmatrix}\begin{bmatrix}y_1\\y_2\end{bmatrix}\le 0;-y_2&gt;0\text{ is solvable}\\
+&amp;\Rightarrow \\
+&amp;A^T(\frac{y_1}{y_2})-c \le 0 \ \ \ (1)\\
+&amp;b^T(\frac{y_1}{y_2})+c^Tx^* \le 0 \ \ \ (2)
+\end{aligned}\]</span> Denote $ - (  )=y ^ * $From (1), we have: <span class="math inline">\(A ^ T y ^ * \le c\)</span>, this is the dual feasibility, which means that (D) has an optimal solution. From (2), we have: $c ^ Tx ^ * b ^ T y ^ * $ and combined with the weak duality, we have $c ^ Tx ^ * = b ^ T y ^ * $.</p>
+<p>From the above, we can see that the LP problem has a good quality. If the primal problem has an optimal solution, the dual problem automatically has an optimal solution. And the duality gap is 0 ($ c ^ Tx ^ * = b ^ T y ^ * $).</p>
+<h3 id="complementarity">Complementarity</h3>
+<p>Since the primal and dual problem have a zero duality gap. We have: <span class="math inline">\(0 = c^Tx-b^Ty=x^Tc-(Ax)^Ty=x^Tc-x^TA^Ty=x^T(c-A^Ty)\)</span>. Since <span class="math inline">\(x\ge0;(c-A^Ty)\ge0\)</span> Which means that if <span class="math inline">\(x_ i\ne0\)</span> then <span class="math inline">\((c-Ay)_ i\)</span> must be 0 and vice versa. As a result the optimization problem can be converted into solving a constrained linear system: <span class="math display">\[\begin{aligned}
+&amp;Ax=b,x\ge0\ \ \ &amp;\text{(primal feasibility)}\\
+&amp;A^T y \le c\ \ \ &amp;\text{(dual feasibility)}\\
+&amp;x_i(c-Ay)_ i=0,i=1,...,n\ \ \ &amp;\text{(complementarity)}
+\end{aligned}\]</span> It can be seen later that almost all optimization problems can be solved by the primal feasibility, dual feasibility and complementary even though they are not linear.</p>
+<h2 id="ii-conic-linear-programming">(II) Conic Linear Programming</h2>
+<p>From the previous chapter, we find that the constrain of LP problem is <span class="math inline">\(x\ge0\)</span>. However, a lot of practical problems are not constrained in this region. A natural problem is that whether we can constrain the variable on more flexible region. In this chapter, we will firstly extend <span class="math inline">\(x\ge 0\)</span> to a more general representation and with this representation, we can describe more constrained optimization problems.</p>
+<h3 id="extend-xge-0-to-a-pointed-cone">Extend <span class="math inline">\(x\ge 0\)</span> to a Pointed Cone</h3>
+<p>We can see that by saying <span class="math inline">\(u \ge v\)</span>, we actually define a “partial order”. I.e. if <span class="math inline">\(u \ge v\)</span>, it satisfies:</p>
+<ol type="a">
+<li>(Reflexivity) <span class="math inline">\(u \ge u\)</span> for all <span class="math inline">\(u \in \mathbb{R}^n\)</span>;</li>
+<li>(Anti–Symmetry) <span class="math inline">\(u \ge v\)</span> and <span class="math inline">\(v \ge u\)</span> imply <span class="math inline">\(u=v\)</span> for all <span class="math inline">\(u,v\in \mathbb{R}^n\)</span>;</li>
+<li>(Transitivity) <span class="math inline">\(u ge v\)</span> and <span class="math inline">\(v \ge w\)</span> imply <span class="math inline">\(u\ge w\)</span> for all <span class="math inline">\(u,v\in \mathbb{R}^n\)</span>;</li>
+<li>(Homogeneity) for any <span class="math inline">\(u,v\in \mathbb{R}^n\)</span> and <span class="math inline">\(\alpha \ge 0\)</span>, if <span class="math inline">\(u \ge v\)</span>,then <span class="math inline">\(\alpha u\ge \alpha v\)</span>;</li>
+<li>(Additivity) for any <span class="math inline">\(u,v,w,z\in \mathbb{R}^n\)</span>, if <span class="math inline">\(u\ge v\)</span> and <span class="math inline">\(w\ge z\)</span>, then <span class="math inline">\(u+w \ge v+z\)</span>.</li>
+</ol>
+<p>Now, we are going to give a more general representation of these five conditions. We firstly introduce the pointed cone. We claim that <span class="math inline">\(K\)</span> is a pointed cone if it has the following properties: 1. <span class="math inline">\(K\)</span> is non–empty and closed under addition; i.e., <span class="math inline">\(u + v \in K\)</span> whenever <span class="math inline">\(u, v \in K\)</span>. 2. <span class="math inline">\(K\)</span> is a cone; i.e.,for any <span class="math inline">\(u\in K\)</span> and <span class="math inline">\(\alpha &gt; 0\)</span>, we have <span class="math inline">\(\alpha u\in K\)</span>. 3. <span class="math inline">\(K\)</span> is pointed; i.e., if <span class="math inline">\(u\in K\)</span> and <span class="math inline">\(-u\in K\)</span>, then <span class="math inline">\(u = 0\)</span>.</p>
+<p>Then, we show how 1-3 can represent (a)-(e). Firstly, we define <span class="math display">\[u \ge_K v \Leftrightarrow u-v\in K\]</span> We can prove “<span class="math inline">\(\ge_K\)</span>” fulfill (a)-(e) one by one with 1-3. Therefore, we can see that “” can be represented by a pointed cone. If the pointed cone <span class="math inline">\(K={x:x\ge 0}\)</span> it is exactly the constrain <span class="math inline">\(x\ge 0\)</span>. There are some other pointed cones such as Lorentz Cone (<span class="math inline">\(Q^{n+1} = \{(t, x) \in \mathbb{R} \times \mathbb{R}^n : t \ge \|x\|_ 2\}\)</span>) and Positive Semidefinite Cone (<span class="math inline">\(S_+^n = \{X \in S^n : u^T Xu \ge 0, \forall u \in \mathbb{R}^n \}\)</span>), where <span class="math inline">\(S^n\)</span> is the space of all symmetric $ n n $ matrix. We can see that our variable can be not only a vector, but also a matrix.</p>
+<h3 id="conic-linear-programming">Conic Linear Programming</h3>
+<p>By saying conic linear programming, we are going to optimize a linear objective function with conic constrains. The form of the primal problem is defined as:</p>
+<p><span class="math display">\[\begin{aligned}
+(P)\ \ \ \ \ \ v_p^* = \inf_\mathbf{x}\ \ \  &amp;\mathbf{c}^T \bullet \mathbf{x}\\
+\text{s.t. }\ \  &amp;a_i\bullet \mathbf{x}=b_i, i\in[1,m]\\
+&amp; \mathbf{x} \ge_K \mathbf{0}
+\end{aligned}\]</span></p>
+<p>Since the variable may be a matrix (<span class="math inline">\(x\)</span> in a PSD cone), we use a more general inner product <span class="math inline">\(\bullet\)</span> to express the inner product of vector or matrix. Here we use <span class="math inline">\(\inf\)</span> instead of <span class="math inline">\(\min\)</span>, because different from LP, CLP problem cannot always attain the optimal value. The last term <span class="math inline">\(\mathbf{x} \ge_K \mathbf{0}\)</span> can also be written as <span class="math inline">\(\mathbf{x}\in K\)</span>.</p>
+<h3 id="weak-duality-1">Weak Duality</h3>
+<p>Similar to LP problem, we can also derive the weak duality for CLP problem. <span class="math display">\[b^Ty=\sum_{i=1}^m(a_i\bullet x)y_i=\sum_{i=1}^my_ia_i\bullet x \le c\bullet x\]</span> We found that if we require that <span class="math inline">\(x(c-\sum_{i=1}^my_ia_i)\ge 0\)</span>, <span class="math inline">\(b^Ty\)</span> is a lower bound of <span class="math inline">\(c\bullet x\)</span>. Since we already have <span class="math inline">\(x\in K\)</span>, we define the dual cone of <span class="math inline">\(K\)</span> as <span class="math inline">\(K^* =\{w\in E:x\bullet w \ge0, \forall x\in K\}\)</span>. As a result, for any $ c-_{i=1}^my_ia_i K ^ * $ , $ b ^ T y $ is always the lower bound of <span class="math inline">\(c\bullet x\)</span>. Therefore, the dual form of CLP can be expressed as:</p>
+<p><span class="math display">\[\begin{aligned}
+(D)\ \ \ \ \ \ v_d^* = \sup_\mathbf{x}\ \ \  &amp;\mathbf{b}^T \mathbf{y}\\
+\text{s.t. }\ \  &amp;c-\sum_{i=1}^my_ia_i \in K^*
+\end{aligned}\]</span> Sometimes, it’s not easy to find the dual cone of a pointed cone. But luckily, a lot of common used pointed cone is self-dual, i.e. $K=(K ^ * ) ^ * $. For example, <span class="math inline">\((\mathbb{R}^n_+)^* = \mathbb{R}^n_+,(\mathbb{R}^n_+)^* =Q^{n+1},(S_+^n)^* = S_+^n\)</span>.</p>
+<h3 id="strong-duality-1">Strong Duality</h3>
+<p>As the same with LP, after we derived the weak duality, we are interested in strong duality. I.e. when <span class="math inline">\(b^Ty=c\bullet x\)</span>. But since we extend the constraints of LP problem to a more general form, we should pay the price. The root of the problem arises at the failure of Farkas Lemma which we used to prove the LP strong duality. We give a weaker Farkas Lemma with a stronger requirement without proof.</p>
+<p><strong>(Conic Farkas’ Lemma)</strong> Let <span class="math inline">\(E\)</span> be a finite–dimensional Euclidean space equipped with an inner product <span class="math inline">\(\bullet\)</span>, <span class="math inline">\(K \subset E\)</span> be a closed pointed cone with non–empty interior, and <span class="math inline">\(a_1,\cdots , a_m \in E\)</span> and <span class="math inline">\(b \in \mathbb{R}\)</span> be given vectors. Suppose that the Slater condition holds; i.e., there exists a <span class="math inline">\(\bar{y} \in R\)</span> such that <span class="math inline">\(-\sum_{i=1}^m \bar{y}_ia_i \in int(K^* )\)</span>. Then, exactly one of the systems (I) and (II) has a solution: <span class="math display">\[\begin{aligned}
+&amp;(I) a_i\bullet x=b_i, i\in[1,m],x\in K\\
+&amp;(II)-\sum_{i=1}^m y_ia_i\in K^* ,b^Ty&gt;0
+\end{aligned}\]</span></p>
+<p>Observed that the Slater condition is a sufficient condition for the conic Farkas Lemma. Compared with the LP problem’s Farkas’s Lemma, it’s a little bit weaker. Use the Conic Farkas’s Lemma, we can prove the strong duality of CLP. We give the CLP strong duality without proof.</p>
+<p><strong>(CLP Strong Duality)</strong></p>
+<p><strong>(a)</strong> Suppose that (P) is bounded below and strictly feasible; i.e., there exists a feasible solution <span class="math inline">\(\bar{x}\)</span> to (P) such that <span class="math inline">\(\bar{x}\in int(K)\)</span>. Then, we have $v_p^* = v_d^* $. Moreover, there exists a feasible solution <span class="math inline">\((\bar{y},\bar{s})\)</span> to (D) such that $b ^ T{y}=v_p ^ * = v_d ^ * $; i.e., the common optimal value is attained by some dual feasible solution. <strong>(b)</strong> Suppose that (D) is bounded above and strictly feasible; i.e., there exists a feasible solution <span class="math inline">\((\bar{y},\bar{s})\)</span> to (D) such that <span class="math inline">\(\bar{s}\in int(K^* )\)</span>. Then, we have $v_p^* = v_d^* $. Moreover, there exists a feasible solution <span class="math inline">\(\bar{x}\)</span> to (P ) such that $c{x}=v_p^* = v_d^* $ ; i.e., the common optimal value is attained by some primal feasible solution. <strong>(c)</strong> Suppose that either (P ) or (D) is bounded and strictly feasible. Then, given a feasible solution <span class="math inline">\(\bar{x}\)</span> to (P) and a feasible solution <span class="math inline">\((\bar{y},\bar{s})\)</span> to (D), the following are equivalent:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\((\bar{y},\bar{s})\)</span> are optimal for (P) and (D), respectively.</li>
+<li>The duality gap is zero; i.e., <span class="math inline">\(c\bullet \bar{x}=b^Ty\)</span>.</li>
+<li>We have complementary slackness; i.e., $ {x}{s}= 0$.</li>
+</ul>
+<p>From above we observe that if (P) or (D) have good property (have an inner feasible solution). The counter part (not themselves!) i.e. (D) or (P) can attain the optimal value. If the both have an inner feasible solution both of them can attain the optimal value.</p>
+<h2 id="iii-lagrangian-duality">(III) Lagrangian Duality</h2>
+<p>From the above chapters, we can see that for both LP and CLP problem, we construct the minimal value’s lower bound, the lower bound is exactly the maximum value of another problem (dual problem). Under some condition, the lower bound equals to the minimal value and thus the duality gap equals to 0. A natural question is: can we use the same trick to construct the lower bound for an arbitrary objective function? The answer is yes. We will show as follows. <span class="math display">\[\begin{aligned}
+(P)\ \ \ \ \ \ v_p^* = \inf\ \ \  &amp;f(x)\\
+\text{s.t. }\ \  &amp;g_i(x)\le0,i=1,...,m_1,\\
+&amp; h_j(x)=0,j=1,...,m_2,\\
+&amp;x\in X
+\end{aligned}\]</span></p>
+<h3 id="weak-duality-2">Weak Duality</h3>
+<p>We will construct the weak duality by a penalty function. Firstly, we denote <span class="math inline">\(G(x)=(g_1(x), g_2(x),\cdots,g_{m_1}(x))\)</span>,<span class="math inline">\(H(x)=(h_1(x), h_2(x),\cdots,h_{m_1}(x))\)</span>. We define the Lagrangian function as <span class="math display">\[L(x,v,w)=f(x)+v^TG(x)+w^TH(x)\]</span> Where <span class="math inline">\(v\in\mathbb{R}^{m_1},w\in\mathbb{R}^{m_2}\)</span>. By using the Lagrangian function, we can rewrite the primal problem (P) as follows: <span class="math display">\[\inf_{x\in X}\sup_{v\ge0,w}L(x,v,w)\]</span> To examine this, we can observe the <span class="math inline">\(\sup\)</span> inside is actually a penalty function. Because <span class="math display">\[\sup_{v\ge0,w}L(x,v,w)=\left\{\begin{aligned}f(x),\ \ \ &amp;if\  G(x)\le 0\ and\ H(x)=0\\+\infty,\ \ \ \ &amp;otherwise\end{aligned}\right.\]</span> If x violates the constraints, we can find a proper <span class="math inline">\(v\)</span> or <span class="math inline">\(w\)</span> to make the value to be <span class="math inline">\(+\infty\)</span>. Thus, it cannot be the minimal value. It can be examined that for any <span class="math inline">\(\bar{x},\bar{v},\bar{w}\)</span>, we have: <span class="math display">\[\inf_{x\in X}L(x,\bar{v},\bar{w})\le L(\bar{x},\bar{v},\bar{w})\le \sup_{v\ge0, w}L(\bar{x},v,w)\]</span> We denote <span class="math inline">\(\inf_{x\in X}L(x,\bar{v},\bar{w})\)</span> as <span class="math inline">\(\theta(v,w)\)</span>. We can see that if $ {x}$ is feasible for (P), then <span class="math inline">\(\sup_{v\ge0, w}L(\bar{x},v,w)=f(\bar{x})\)</span>. Then we get: <span class="math display">\[\theta(\bar{v},\bar{w})\le f(\bar{x})\]</span> We construct the dual problem as <span class="math display">\[\begin{aligned}
+(D)\ \ \ \ \ \ v_d^* = \sup_{v\ge0,w}\ \ \  &amp;\theta(v,w)
+\end{aligned}\]</span> It is a lower bound of <span class="math inline">\(f(\bar{x})\)</span> is <span class="math inline">\(\bar{x}\)</span> is feasible for (P).</p>
+<h3 id="strong-duality-2">Strong Duality</h3>
+<p>Now, we study the strong duality of Lagrangian duality. We will introduce the Saddle point first and then we will show that the strong duality is attained at the saddle points.</p>
+<p><strong>Define Saddle Point</strong> We say <span class="math inline">\((\bar{x},\bar{v},\bar{w})\)</span> is a saddle point if</p>
+<ol type="1">
+<li><span class="math inline">\(\bar{x}\in X\)</span>;</li>
+<li><span class="math inline">\(\bar{v}\ge0\)</span>;</li>
+<li><span class="math inline">\(\forall x\in X,v\ge 0,w,L(\bar{x},v,w)\le L(\bar{x},\bar{v},\bar{w})\le L(x,\bar{v},\bar{w})\)</span></li>
+</ol>
+<p>The theorem of strong duality is as follows:</p>
+<p><strong>Theorem Strong Duality</strong> <span class="math inline">\((\bar{x},\bar{v},\bar{w})\)</span> is a saddle point of (P) iff $v_p ^ * =v_d ^ * $; <span class="math inline">\(\bar{x}\)</span> is optimal for (P);<span class="math inline">\((\bar{v},\bar{w})\)</span> is optimal for (D). <strong>Proof</strong></p>
+<p><span class="math inline">\(\Rightarrow\)</span>:</p>
+<p>By (1), <span class="math inline">\(\bar{x}\in X\)</span>, this implies <span class="math inline">\(\bar{x}\)</span> is feasible for (P); By (2), <span class="math inline">\((\bar{v},\bar{w})\)</span> is feasible for (D); By (3), <span class="math display">\[\begin{aligned}\theta(\bar{v},\bar{w})&amp;=\inf_{x\in X}L(x,\bar{v},\bar{w})\\
+&amp;=L(\bar{x},\bar{v},\bar{w})\\
+&amp;=\sup_{v\ge0,w}L(\bar{x},v,w)\\
+&amp;=f(\bar{x})
+\end{aligned}\]</span></p>
+<p><span class="math inline">\(\Leftarrow\)</span>:</p>
+<p>If saddle structure exists, (1) and (2) holds obviously. It is suffices prove (3). Consider <span class="math inline">\(\theta(\bar{v},\bar{w})=\inf_{x\in X}L(x,\bar{v},\bar{w})\le L(\bar{x},\bar{v},\bar{w})\le\sup_{v\ge0,w}L(\bar{x},v,w)=f(\bar{x})\)</span>. Since we already have $ ({v},{w})=v_d ^ * =v_p ^ * = f({x}) $ Then, the previous inequality all gets equality.</p>
+<p>Same with previous chapters, we can also write the primal feasibility, dual feasibility and complementarity.</p>
+<p><strong>Saddle Point Optimality Conditions</strong> <span class="math inline">\((\bar{x},\bar{v},\bar{w})\)</span> is a saddle point <span class="math inline">\(\Leftrightarrow\)</span></p>
+<ol type="a">
+<li>(Primal Feasibility) <span class="math inline">\(\bar{x}\in X,G(\bar{x}) \le 0,\ and\ H(\bar{x}) = 0.\)</span></li>
+<li>(Dual Feasibility/Lagrangian Optimality) <span class="math inline">\(\bar{v}\ge 0\ and\ \bar{x} = \arg \min_{x\in X} L(x, \bar{v}, \bar{w})\)</span>.</li>
+<li>(Complementarity) <span class="math inline">\(\bar{v}^T G(\bar{x}) = 0\)</span>.</li>
+</ol>
+<h3 id="karushkuhntucker-kkt-necessary-conditions">Karush–Kuhn–Tucker (KKT) Necessary Conditions</h3>
+<p>KKT is a necessary condition for optimal value. I.e. for any optimal solution, it must satisfy KKT condition. The KKT condition is given as follows: (The Karush–Kuhn–Tucker Necessary Conditions) Let <span class="math inline">\(\bar{x}\in S\)</span> be a local minimum of problem (P). Let <span class="math inline">\(I = {i \in {1,...,m_1} : g_i(\bar{x}) = 0}\)</span> be the index set for the active constraints. Suppose that <span class="math inline">\(\bar{x}\)</span> is regular; i.e., the family <span class="math inline">\(\{\nabla g_i(\bar{x})\}_{i\in I} \bigcup \{\nabla h_j(\bar{x})\}^{m_2}_{j=1}\)</span> of vectors is linearly independent. Then, there exist <span class="math inline">\(v_1,...,v_{m_1} \in \mathbb{R}\)</span> and <span class="math inline">\(w_1,...,w_{m_2} \in \mathbb{R}\)</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\(\nabla f(\bar{x})+\sum_i v_i\nabla g_i(\bar{x})+\sum_jw_j\nabla h_j(\bar{x})=0\)</span>;</li>
+<li><span class="math inline">\(v\ge0\)</span>;</li>
+<li><span class="math inline">\(v_ig_i(\bar{x})=0,\forall i\)</span>(complementarity)</li>
+</ol>
+<p>It should be noted that it requires that <span class="math inline">\(\bar{x}\)</span> fulfill the regularity condition. There are also a lot of other regularity conditions that if one on them holds, then KKT condition holds.</p>
+<p>(Regularity Condition 2) Consider problem (P), where <span class="math inline">\(g_1, . . . , g_{m1}\)</span> are convex and <span class="math inline">\(h1, . . . , h_{m_2}\)</span> are affine. Let <span class="math inline">\(\bar{x}\in S\)</span> be a local minimum and <span class="math inline">\(I = \{i \in {1,...,m_1} : g_i(\bar{x}) = 0\}\)</span>. Suppose that the Slater condition is satisfied; i.e., there exists an <span class="math inline">\(x&#39; \in S\)</span> such that <span class="math inline">\(g_i(x&#39;) &lt; 0\)</span> for <span class="math inline">\(i \in I\)</span>. Then, <span class="math inline">\(\bar{x}\)</span> satisfies the KKT conditions.</p>
+<p>(Regularity Condition 3) Consider problem (P), where <span class="math inline">\(g_1, . . . , g_{m1}\)</span> are concave and <span class="math inline">\(h_1, . . . , h_{m_2}\)</span> are affine. Let <span class="math inline">\(\bar{x}\in S\)</span> be a local minimum. Then, <span class="math inline">\(\bar{x}\)</span> satisfies the KKT conditions.</p>
+<p>(Regularity Condition 3) is important. Since all linear constraints is both convex and concave. It implies that if constraints are all linear, it fulfill KKT condition.</p>
+<h2 id="reference">Reference</h2>
+<p>[1] ENGG5501 course note. Anthony Man-Cho So. CUHK.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/11/18/SVM-Revisit/" rel="next" title="SVM Revisit">
+                <i class="fa fa-chevron-left"></i> SVM Revisit
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" rel="prev" title="Struggling in importing wikipedia into Elasticsearch">
+                Struggling in importing wikipedia into Elasticsearch <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#i-linear-programming"><span class="nav-number">1.</span> <span class="nav-text">(I) Linear Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-duality"><span class="nav-number">1.1.</span> <span class="nav-text">Weak Duality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strong-duality"><span class="nav-number">1.2.</span> <span class="nav-text">Strong Duality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#complementarity"><span class="nav-number">1.3.</span> <span class="nav-text">Complementarity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ii-conic-linear-programming"><span class="nav-number">2.</span> <span class="nav-text">(II) Conic Linear Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extend-xge-0-to-a-pointed-cone"><span class="nav-number">2.1.</span> <span class="nav-text">Extend \(x\ge 0\) to a Pointed Cone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conic-linear-programming"><span class="nav-number">2.2.</span> <span class="nav-text">Conic Linear Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-duality-1"><span class="nav-number">2.3.</span> <span class="nav-text">Weak Duality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strong-duality-1"><span class="nav-number">2.4.</span> <span class="nav-text">Strong Duality</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iii-lagrangian-duality"><span class="nav-number">3.</span> <span class="nav-text">(III) Lagrangian Duality</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-duality-2"><span class="nav-number">3.1.</span> <span class="nav-text">Weak Duality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strong-duality-2"><span class="nav-number">3.2.</span> <span class="nav-text">Strong Duality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#karushkuhntucker-kkt-necessary-conditions"><span class="nav-number">3.3.</span> <span class="nav-text">Karush–Kuhn–Tucker (KKT) Necessary Conditions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/';
+          this.page.identifier = '2017/12/15/Optimization-Revisit-From-Linear-Programming-to-Lagrange/';
+          this.page.title = 'Optimization Revisit: From Linear Programming to Lagrange';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>
