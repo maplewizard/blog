@@ -90,7 +90,7 @@
 <meta name="description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
 <meta property="og:type" content="website">
 <meta property="og:title" content="切问录">
-<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:url" content="http://fuzihao.org/blog/page/5/index.html">
 <meta property="og:site_name" content="切问录">
 <meta property="og:description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
 <meta property="og:locale" content="zh-Hans">
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/5/"/>
+  <link rel="canonical" href="http://fuzihao.org/blog/page/5/"/>
 
 
 
@@ -301,7 +301,548 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/04/26/国史大纲读书笔记/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/" itemprop="url">
+                  为什么最小二乘法对误差的估计要用平方？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-13T20:34:58+08:00">
+                2014-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/06/13/为什么最小二乘法对误差的估计要用平方/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/06/13/为什么最小二乘法对误差的估计要用平方/" class="leancloud_visitors" data-flag-title="为什么最小二乘法对误差的估计要用平方？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>　　以前上高中的时候问过数学老师这个问题，被老师骂了一顿，说这是规定，后来也就没太在意。今天看了Stanford Andrew Ng讲的《机器学习》，明白了为什么最小二乘法对误差的估计要用平方，而不是绝对值或是四次方。</p>
+<p>　　简单地说，之所以要用这种规定，是因为，取二次方的时候，对参数的估计是当前样本下的最大似然估计。下面给出证明。</p>
+<p>　　记样本为<span class="math inline">\((x^{(i)},y^{(i)})\)</span>，对样本的预测为<span class="math inline">\(\hat y^{(i)}|_\boldsymbol{\theta}\)</span>该记法表示该预测依赖于参数<span class="math inline">\(\boldsymbol{\theta}\)</span>的选取。我们有： 　　<span class="math display">\[\boldsymbol{y}=\boldsymbol{\hat y|_\theta}+\boldsymbol{\epsilon}\]</span> 　　其中，<span class="math inline">\(\boldsymbol{\epsilon}\)</span>是一个误差函数，我们通常认为其服从正态分布即 　　<span class="math display">\[\boldsymbol{\epsilon }\sim N(0,\sigma^2)\]</span> 因此有 　　<span class="math display">\[\begin{aligned}\boldsymbol{y}-\boldsymbol{\hat y|_\theta}&amp;\sim N(0,\sigma^2)\\ \boldsymbol{y}&amp;\sim N(\boldsymbol{\hat y|_\boldsymbol{\theta}},\sigma^2)\end{aligned}\]</span> 要求<span class="math inline">\(\boldsymbol{\theta}\)</span>的极大似然估计，即是说，我们现在得到的这个真实存在的<span class="math inline">\(\boldsymbol{y}\)</span>在<span class="math inline">\(\boldsymbol{\theta}\)</span>不同的取值下，出现概率最大，我们来看这个概率。令 <span class="math display">\[L(\boldsymbol{\theta})=P(\boldsymbol{y}|\boldsymbol{x};\boldsymbol{\theta})=\prod_{i=1}^m\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y^{(i)}-\hat y^{(i)}|_\boldsymbol{\theta})^2}{2\sigma})\]</span> 为了简化计算，令 <span class="math display">\[\begin{aligned}l(\boldsymbol{\theta})&amp;=\log L(\boldsymbol{\theta})\\&amp;=m\log \frac{1}{\sqrt{2\pi}}+\sum_{i=0}^m-\frac{(y^{(i)}-\hat y^{(i)}|_\boldsymbol{\theta})^2}{2\sigma}\end{aligned}\]</span> 要让<span class="math inline">\(L(\boldsymbol{\theta})\)</span>最大，即需让<span class="math inline">\(l(\boldsymbol{\theta})\)</span>最大，即让<span class="math inline">\(\sum_{i=0}^m(y^{(i)}-\hat y^{(i)}|_\boldsymbol{\theta})^2\)</span>取到最小值。</p>
+<p>　　综上，当误差函数定为平方时，参数<span class="math inline">\(\boldsymbol{\theta}\)</span>是样本的极大似然估计。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/05/07/基于奇异值分解的图像压缩/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/05/07/基于奇异值分解的图像压缩/" itemprop="url">
+                  基于奇异值分解的图像压缩
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-07T13:18:35+08:00">
+                2014-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/图像处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图像处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/05/07/基于奇异值分解的图像压缩/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/05/07/基于奇异值分解的图像压缩/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/05/07/基于奇异值分解的图像压缩/" class="leancloud_visitors" data-flag-title="基于奇异值分解的图像压缩">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+最近学习线性代数的有关东西，在看到奇异值分解（svd）时，发现了一个在图像压缩上的应用。 奇异值分解：在线性代数中，我们知道对任意一个矩阵都存在奇异值分解，<span class="math inline">\(\boldsymbol{A}=\boldsymbol{U\Sigma V^\mathrm{T}}\)</span>，其中<span class="math inline">\(\boldsymbol{U}\)</span>和<span class="math inline">\(\boldsymbol{V}\)</span>是标准正交矩阵，而<span class="math inline">\(\boldsymbol{\Sigma}\)</span>是一个对角矩阵，每一个对角元是该矩阵的一个奇异值，奇异值指的是矩阵的特征值开根号。其具体分解形式如下： <span class="math display">\[
+\boldsymbol{A}=\begin{bmatrix}u_1 &amp;u_2 &amp;\cdots &amp;u_m\end{bmatrix}\begin{bmatrix}\boldsymbol{D} &amp; \boldsymbol{0} \\\boldsymbol{0} &amp;\boldsymbol{0}\end{bmatrix}\begin{bmatrix}v_1^\mathrm{T}\\ v_2^\mathrm{T} \\ \vdots \\ u_n^\mathrm{T}\end{bmatrix}
+\]</span> 其中 <span class="math display">\[\boldsymbol{D}=\begin{bmatrix} \sigma_1 &amp;0 &amp;\cdots &amp;0 \\ 0 &amp; \sigma_2 &amp;\vdots &amp;0 \\ \vdots &amp;\vdots &amp;\ddots &amp;\vdots \\ 0 &amp;0 &amp;\cdots &amp;\sigma_r\end{bmatrix}\]</span> 将<span class="math inline">\(\boldsymbol{A}\)</span>展开得 <span class="math display">\[\boldsymbol{A}=\sigma_1\boldsymbol{u_1v_1^\mathrm{T}}+\sigma_2\boldsymbol{u_2v_2^\mathrm{T}}+\cdots+\sigma_r\boldsymbol{u_rv_r^\mathrm{T}}\]</span> 将<span class="math inline">\(\boldsymbol{A}\)</span>看成一个图像的矩阵，上面和式的每一个分量按大小排序，越大，说明越重要。而后面的权很小，可以舍去，如果只取前面k项，则数据量为<span class="math inline">\((m+n+1)k\ll mn\)</span>因而达到了压缩图像的目的。 通过对比发现，当$k= <span class="math inline">\(时，能基本看清图像。当\)</span>k= <span class="math inline">\(时基本看不出任何区别，对于长宽相等的图像，此时数据量占原数据量的\)</span>k= $,在测试图像中，这个数值为0.5 。可见图像压缩的效果是显著的。 处理结果如下： 原始图像：
+<center>
+<img src="/blog/images/svdori.png" alt="svdori.png">
+</center>
+k=1:
+<center>
+<img src="/blog/images/svdk=1.png" alt="svdk=1.png">
+</center>
+k=2:
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/05/07/基于奇异值分解的图像压缩/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/04/27/基于形态学的3D点云重建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/04/27/基于形态学的3D点云重建/" itemprop="url">
+                  基于形态学的3D点云重建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-27T10:55:28+08:00">
+                2014-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/图像处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图像处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/04/27/基于形态学的3D点云重建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/04/27/基于形态学的3D点云重建/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/04/27/基于形态学的3D点云重建/" class="leancloud_visitors" data-flag-title="基于形态学的3D点云重建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+这是一年前做的一个小算法，今天把它搬运过来。该算法的主要目的是利用灰度形态学腐蚀对3D点云进行曲面重建。 给定点云的数据文件（这是美国卫星的数据，能在官网上下载到），寻找一种方法，重建原来的曲面。点云数据为卫星扫描的las文件。 点云数据：
+<center>
+<img src="/blog/images/pointCloudOri.jpg" alt="pointCloudOri.jpg"> 原始点云
+</center>
+<center>
+<img src="/blog/images/pointCloudFinal.jpg" alt="pointCloudFinal.jpg"> 处理后的效果
+</center>
+由于是卫星得到的数据，因此可以发现数据点基本都是楼房的屋顶。 而他的平面视图如下：
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/04/27/基于形态学的3D点云重建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/04/26/国史大纲读书笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -477,7 +1018,7 @@ by Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/04/15/拉格朗日乘数法/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/04/15/拉格朗日乘数法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -650,7 +1191,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/04/03/从Bernstein 多项式到Be_zier曲线/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/04/03/从Bernstein 多项式到Be_zier曲线/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -828,7 +1369,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/04/01/利用线性代数的方法求斐波那契数列的通项/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/04/01/利用线性代数的方法求斐波那契数列的通项/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1017,7 +1558,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/25/如何用latex做ppt/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/25/如何用latex做ppt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1193,7 +1734,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/17/让marked与mathjax和谐共存/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/17/让marked与mathjax和谐共存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1370,7 +1911,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/15/偏微分方程变分问题与原问题等价性的探讨/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/15/偏微分方程变分问题与原问题等价性的探讨/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1540,563 +2081,6 @@ By Z.H. Fu
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/14/哪个小球先下落？/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/03/14/哪个小球先下落？/" itemprop="url">
-                  哪个小球先下落？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-14T17:49:04+08:00">
-                2014-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/物理随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">物理随笔</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/03/14/哪个小球先下落？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/03/14/哪个小球先下落？/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/03/14/哪个小球先下落？/" class="leancloud_visitors" data-flag-title="哪个小球先下落？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>以前理论力学课上做过一个实验，就是把各种圆的东西放到斜坡上让他们往下滚，问最后到达斜面底端的次序。</p>
-<figure>
-<img src="/blog/images/Rolling_Racers_-_Moment_of_inertia.gif" alt="Rolling_Racers_-_Moment_of_inertia"><figcaption>Rolling_Racers_-_Moment_of_inertia</figcaption>
-</figure>
-<p>可以看到，黄球最先滑下，其次是蓝柱，再次是红球，最后是绿柱。 各小球质量相等，直径相等，性质如下：</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">红球</th>
-<th style="text-align: left;">黄球</th>
-<th style="text-align: left;">绿柱</th>
-<th style="text-align: left;">蓝柱</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">空心</td>
-<td style="text-align: left;">实心</td>
-<td style="text-align: left;">空心</td>
-<td style="text-align: left;">实心</td>
-</tr>
-</tbody>
-</table>
-<p>各个小球受重力相等，那么为什么会出现这种现象呢？ 这就需要考虑惯性矩。我们知道质量是惯性的度量，表示一个物体受力之后的变化程度，惯性大的受影响小。而惯性矩则是描述物体受力矩作用后的反应，惯性矩大，则受力矩作用小。而惯性矩的定义为： <span class="math display">\[M=\int \rho \mathbf{r}^2dv\]</span> 其中，<span class="math inline">\(\mathbf{r}\)</span>是到主轴的向量。因此，可以看出，质量越集中到边上，则r越大，则惯性矩越大，同等力矩下（这时重力产生的力矩一样大）当然是惯性矩小的实心的物体最先滑下（黄球和蓝柱），随后再是空心的东西。而柱体可以看成是球体把里面的东西减少给放到外面去了，因此，惯性矩比球体大。因此才有这种运动顺序。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/14/推广的分部积分与格林恒等式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/03/14/推广的分部积分与格林恒等式/" itemprop="url">
-                  推广的分部积分与格林恒等式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-14T16:12:59+08:00">
-                2014-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/03/14/推广的分部积分与格林恒等式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/03/14/推广的分部积分与格林恒等式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/03/14/推广的分部积分与格林恒等式/" class="leancloud_visitors" data-flag-title="推广的分部积分与格林恒等式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>在高数中，我们学了格林公式（Threom）： <span class="math display">\[\iint_\Omega(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})=\oint_LPdx+Qdy\]</span> 这个公式实际上是斯托克斯公式在二维的特殊形式。但除此之外，格林还有三个恒等式（Identity），在有限元中，这三个恒等式都有着非常重要的作用。</p>
-<p>而分部积分作为微积分里面一个很基础的公式，能推倒出相当多的定理。本文就利用分部积分公式，推导格林的三个恒等式。<strong>这三个恒等式和格林公式没有任何关系</strong>。</p>
-<h2 id="分部积分公式">1. 分部积分公式</h2>
-<p>首先，复习一下分部积分公式： <span class="math display">\[\int u(x)v&#39;(x)dx=u(x)v(x)-\int u&#39;(x)v(x)dx\]</span> 或者直接写成： <span class="math display">\[\int udv=uv-\int vdu\]</span></p>
-<h2 id="推广的分部积分公式标量场向量场混合分部积分公式">2. 推广的分部积分公式（标量场、向量场混合分部积分公式）</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2014/03/14/推广的分部积分与格林恒等式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/" itemprop="url">
-                  正定矩阵的几何意义
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-14T10:09:36+08:00">
-                2014-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/03/14/正定矩阵在多元函数微积分中的几何意义/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/" class="leancloud_visitors" data-flag-title="正定矩阵的几何意义">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>今天来研究一下正定矩阵的几何意义。对于线性代数中的概念，还是要结合具体的问题，才能理解其物理意义。而最后往往能发现，矩阵往往是以前学的数学中的某个量的推广（一个标量或向量）。先来看一下正定矩阵的具体定义。 对于矩阵<span class="math inline">\(\mathbf{M}\)</span>，若对任意向量<span class="math inline">\(\mathbf{Z}\)</span>满足： <span class="math display">\[\mathbf{z}^\mathrm{T}\mathbf{Mz}\]</span> 则称矩阵<span class="math inline">\(\mathbf{M}\)</span>为正定矩阵。 下面就两个领域浅谈正定矩阵的几何意义。 ## 多元函数微积分 还记得一元函数的泰勒展开么？公式如下： &gt;<span class="math inline">\(f(x)=f(a)+\frac{f&#39;(a)}{1!}(x-a)+\frac{f^{(2)}(a)}{2!}(x-a)^2+\cdots ++\frac{f^{(n)}(a)}{n!}(x-a)^n+R_n(x)\)</span></p>
-<p>在一元微积分中，导数表示的是在某一点对原函数的最佳线性近似，那么在多远微积分中，同理，多元函数中也有一个用于表示对原函数最佳逼近的东西， 多元函数<span class="math inline">\(F:\mathbb{R}^n\mapsto \mathbb{R}^m\)</span>,在<span class="math inline">\(P\)</span>点的最佳线性逼近为： <span class="math display">\[F(\mathbf{x})=F(\mathbf{p})+J_F(\mathbf{x}-\mathbf{p})+o(\mathbf{x}-\mathbf{p})\]</span></p>
-<p>其中，<span class="math inline">\(J_F\)</span>就是雅克比矩阵（就是很多个偏导构成一个矩阵）定义如下：</p>
-<p><span class="math display">\[
-J_F=\begin{bmatrix}
-    \frac{\partial F_1}{\partial x_1} &amp; \frac{\partial F_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial F_1}{\partial x_n}\\
-    \frac{\partial F_2}{\partial x_1} &amp; \frac{\partial F_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial F_2}{\partial x_n}\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\  \frac{\partial F_m}{\partial x_1} &amp; \frac{\partial F_m}{\partial x_2} &amp; \cdots &amp; \frac{\partial F_m}{\partial x_n}
-  \end{bmatrix}
-\]</span></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2146,7 +2130,7 @@ J_F=\begin{bmatrix}
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

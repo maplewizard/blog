@@ -90,11 +90,11 @@
 <meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  Poisson Process counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. \(P(N(s+t)-N(s)|N(s))=P(N(s+">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stochastic Process Cheat Sheet">
-<meta property="og:url" content="http://yoursite.com/2018/07/14/Stochastic-Process-Cheat-Sheet/index.html">
+<meta property="og:url" content="http://fuzihao.org/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/index.html">
 <meta property="og:site_name" content="切问录">
 <meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Poisson Process counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. \(P(N(s+t)-N(s)|N(s))=P(N(s+">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-14T13:44:13.000Z">
+<meta property="og:updated_time" content="2018-07-15T01:57:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Cheat Sheet">
 <meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Poisson Process counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. \(P(N(s+t)-N(s)|N(s))=P(N(s+">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/14/Stochastic-Process-Cheat-Sheet/"/>
+  <link rel="canonical" href="http://fuzihao.org/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/"/>
 
 
 
@@ -300,7 +300,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -401,9 +401,15 @@ By Z.H. Fu
 切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
 </center>
 <h3 id="poisson-process">Poisson Process</h3>
-<p>counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. <span class="math inline">\(P(N(s+t)-N(s)|N(s))=P(N(s+t)-N(s))\)</span>,<span class="math inline">\(P(X_i|X_j)=P(X_i)\)</span> counting process stationary increments: if the distribution of the number of events that occur in any interval of time depends only on the length of the time interval.</p>
+<p>counting process independent increments: if the numbers of events that occur in disjoint time intervals are independent. <span class="math inline">\(P(N(s+t)-N(s)|N(s))=P(N(s+t)-N(s))\)</span>,<span class="math inline">\(P(X_i|X_j)=P(X_i)\)</span></p>
+<p>counting process stationary increments: if the distribution of the number of events that occur in any interval of time depends only on the length of the time interval.</p>
 <h4 id="define-1">Define 1</h4>
-<p>The counting process <span class="math inline">\(\{N(t), t\ge 0\}\)</span> is said to be a Poisson process having rate <span class="math inline">\(\lambda, \lambda &gt; 0\)</span>, if (i) <span class="math inline">\(N(0)= 0\)</span> (ii) The process has independent increments (iii) The number of events in any interval of length <span class="math inline">\(t\)</span> is Poisson distributed with mean <span class="math inline">\(\lambda t\)</span> Thatis,for all <span class="math inline">\(s,t\ge0\)</span>, <span class="math inline">\(P\{N(t+s)- N(s)=n\}= e^{-\lambda t}\frac{(\lambda t)^n}{n!}, \ \  n=0,1,\cdots\)</span> From (iii), we have: <span class="math inline">\(E[N(t)] = \lambda t\)</span></p>
+<p>The counting process <span class="math inline">\(\{N(t), t\ge 0\}\)</span> is said to be a Poisson process having rate <span class="math inline">\(\lambda, \lambda &gt; 0\)</span>, if</p>
+<ol type="i">
+<li><span class="math inline">\(N(0)= 0\)</span>;</li>
+<li>The process has independent increments;</li>
+<li>The number of events in any interval of length <span class="math inline">\(t\)</span> is Poisson distributed with mean <span class="math inline">\(\lambda t\)</span> Thatis,for all <span class="math inline">\(s,t\ge0\)</span>, <span class="math inline">\(P\{N(t+s)- N(s)=n\}= e^{-\lambda t}\frac{(\lambda t)^n}{n!}, \ \  n=0,1,\cdots\)</span> From (iii), we have: <span class="math inline">\(E[N(t)] = \lambda t\)</span></li>
+</ol>
 <h4 id="define-2">Define 2</h4>
 <ol type="i">
 <li><span class="math inline">\(N(0)= 0\)</span></li>
@@ -412,7 +418,7 @@ By Z.H. Fu
 <li><span class="math inline">\(P\{N(h) &gt; 2\} = o(h)\)</span></li>
 </ol>
 <h4 id="interarrival">Interarrival</h4>
-<p><span class="math inline">\(X_n\)</span>denote the time between the <span class="math inline">\((n- 1)\)</span>st and the <span class="math inline">\(n\)</span>th event. <span class="math inline">\(P\{X_1&gt;t\}=P\{N(t) =0\}=e^{-\lambda t}\)</span>, <span class="math inline">\(P\{X_2&gt;t|X_1=s\}=e^{-\lambda t}\)</span>. <span class="math inline">\(X_i\)</span> i.i.d, mean=<span class="math inline">\(1/\lambda\)</span> r.v. <span class="math inline">\(S_n\)</span> is the arrival time of the <span class="math inline">\(n\)</span>th event, <span class="math inline">\(S_n=\sum_{i=1}^nX_i,n\ge1\)</span>. <span class="math inline">\(S_n\)</span> has a gamma distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\lambda\)</span>,<span class="math inline">\(P\{S_n\le t \} =P\{ N( t ) \ge n\}=\sum_{j=n}^\infty e^{-\lambda t}\frac{(\lambda t)^j}{j!} \Rightarrow f(t)=\lambda e^{-\lambda t}\frac{(\lambda t)^{n-1}}{(n-1)!},t\ge0\)</span></p>
+<p><span class="math inline">\(X_n\)</span>denote the time between the <span class="math inline">\((n- 1)\)</span>st and the <span class="math inline">\(n\)</span>th event. <span class="math inline">\(P\{X_1&gt;t\}=P\{N(t) =0\}=e^{-\lambda t}\)</span>, <span class="math inline">\(P\{X_2&gt;t|X_1=s\}=e^{-\lambda t}\)</span>. <span class="math inline">\(X_i\)</span> i.i.d, mean=<span class="math inline">\(1/\lambda\)</span> r.v. <span class="math inline">\(S_n\)</span> is the arrival time of the <span class="math inline">\(n\)</span>th event, <span class="math inline">\(S_n=\sum_{i=1}^nX_i,n\ge1\)</span>. <span class="math inline">\(S_n\)</span> has a gamma distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(\lambda\)</span>,<span class="math inline">\(P\{S_n\le t \} =P\{ N( t ) \ge n\}=\sum_{j=n}^\infty e^{-\lambda t}\frac{(\lambda t)^j}{j!} \Rightarrow f(t)=\)</span> <span class="math inline">\(\lambda e^{-\lambda t}\frac{(\lambda t)^{n-1}}{(n-1)!},t\ge0\)</span></p>
 <h4 id="conditional-distribution-of-the-arrival-times">Conditional Distribution of the Arrival Times</h4>
 <p>Known at <span class="math inline">\(t\)</span>, one event happen, give the distribution of the time that the event happen. It’s uniform dist.<span class="math inline">\(P\{X_1&lt;s|N(t) = 1\}=s/t\)</span> Generalization: Given that <span class="math inline">\(N(t) = n\)</span>, the <span class="math inline">\(n\)</span> arrival times <span class="math inline">\(S_1,...,S_n\)</span>, have the same distribution as the order statistics corresponding to n independent random variables uniformly distributed on the interval <span class="math inline">\((0,t)\)</span> <span class="math inline">\(f(t_1,...,t_n)=P\{t_i\le S_i \le t_i+h,i=1,...,n|N(t)=n\}/(h_1h_2\cdots h_n)=n!/t^n\)</span> <a id="more"></a></p>
 <h4 id="nonhomogeneous">Nonhomogeneous</h4>
@@ -446,7 +452,12 @@ By Z.H. Fu
 <p><strong>recurrent</strong>: not transient. is a class property.</p>
 <p><strong>absorbing state</strong>: A state that is never left once the process enters that state.</p>
 <h4 id="limit-theorems">Limit Theorems</h4>
-<p><span class="math inline">\(\mu_{jj}\)</span> denote the expected number of transitions needed to return to state j. <span class="math inline">\(\mu_{jj}=\infty (\text{j is transient});\)</span> <span class="math inline">\(=\sum_{n=1}^\infty nf_{jj}^n (\text{j is recurrent})\)</span> <span class="math inline">\(\pi_j=\lim_{n\rightarrow \infty}P_{jj}^{nd(j)}\)</span> <span class="math inline">\(\mu_{ii}=1/\pi_i\)</span> if <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> communicate, then (i) <span class="math inline">\(P\{\lim_{t\rightarrow \infty}N_j(t)/t=1/\mu_{jj}|X_0=i\}=1\)</span> (ii)<span class="math inline">\(\lim_{n\rightarrow\infty}\sum_{k=1}^nP_{ij}^k/n=1/\mu_{jj}\)</span> (iii) If <span class="math inline">\(j\)</span> is aperiodic, then <span class="math inline">\(\lim_{n\rightarrow \infty}P_{ij}^n=1/\mu_{jj}\)</span> (iv) If <span class="math inline">\(j\)</span> has period d, then <span class="math inline">\(\lim_{n\rightarrow \infty}P_{ij}^{nd}=d/\mu_{jj}\)</span></p>
+<p><span class="math inline">\(\mu_{jj}\)</span> denote the expected number of transitions needed to return to state j. <span class="math inline">\(\mu_{jj}=\infty (\text{j is transient});\)</span> <span class="math inline">\(=\sum_{n=1}^\infty nf_{jj}^n (\text{j is recurrent})\)</span> <span class="math inline">\(\pi_j=\lim_{n\rightarrow \infty}P_{jj}^{nd(j)}\)</span> <span class="math inline">\(\mu_{ii}=1/\pi_i\)</span> if <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> communicate, then</p>
+<ol type="i">
+<li><span class="math inline">\(P\{\lim_{t\rightarrow \infty}N_j(t)/t=1/\mu_{jj}|X_0=i\}=1\)</span> (ii)<span class="math inline">\(\lim_{n\rightarrow\infty}\sum_{k=1}^nP_{ij}^k/n=1/\mu_{jj}\)</span></li>
+<li>If <span class="math inline">\(j\)</span> is aperiodic, then <span class="math inline">\(\lim_{n\rightarrow \infty}P_{ij}^n=1/\mu_{jj}\)</span></li>
+<li>If <span class="math inline">\(j\)</span> has period d, then <span class="math inline">\(\lim_{n\rightarrow \infty}P_{ij}^{nd}=d/\mu_{jj}\)</span></li>
+</ol>
 <p><strong>positive recurrent</strong> : <span class="math inline">\(\mu_{jj}&lt;\infty\)</span>. Is a class property. <span class="math inline">\(\pi_j&gt;0\)</span></p>
 <p><strong>null recurrent</strong> :<span class="math inline">\(\mu_{jj}=\infty\)</span>. Is a class property.<span class="math inline">\(\pi_j=0\)</span></p>
 <p><strong>ergodic</strong>: positive recurrent states that are aperiodic are called ergodic states.</p>
@@ -528,6 +539,10 @@ By Z.H. Fu
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/07/22/运筹学常用模型/" rel="prev" title="运筹学常用模型">
+                运筹学常用模型 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -614,7 +629,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -854,7 +869,7 @@ By Z.H. Fu
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/07/14/Stochastic-Process-Cheat-Sheet/';
+          this.page.url = 'http://fuzihao.org/blog/2018/07/14/Stochastic-Process-Cheat-Sheet/';
           this.page.identifier = '2018/07/14/Stochastic-Process-Cheat-Sheet/';
           this.page.title = 'Stochastic Process Cheat Sheet';
         };

@@ -1,0 +1,1046 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="By Z.H. Fu   切问录 www.fuzihao.org  一维资源分配 总原料\(a\)，生产\(n\)种产品，若分配数量\(x_i\) 用于生产第 \(i\) 种产 品,其收益为 \(g_i ( x_i )\)，求\(x_i\)的分配方式使得总收入最大。 静态规划：\[ \begin{aligned}\max ~ &amp;amp;z= \ \ \sum_{i=1}^n g_i(x_i) \">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划建模题型">
+<meta property="og:url" content="http://fuzihao.org/blog/2018/07/28/动态规划建模题型/index.html">
+<meta property="og:site_name" content="切问录">
+<meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  一维资源分配 总原料\(a\)，生产\(n\)种产品，若分配数量\(x_i\) 用于生产第 \(i\) 种产 品,其收益为 \(g_i ( x_i )\)，求\(x_i\)的分配方式使得总收入最大。 静态规划：\[ \begin{aligned}\max ~ &amp;amp;z= \ \ \sum_{i=1}^n g_i(x_i) \">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-28T06:26:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划建模题型">
+<meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  一维资源分配 总原料\(a\)，生产\(n\)种产品，若分配数量\(x_i\) 用于生产第 \(i\) 种产 品,其收益为 \(g_i ( x_i )\)，求\(x_i\)的分配方式使得总收入最大。 静态规划：\[ \begin{aligned}\max ~ &amp;amp;z= \ \ \sum_{i=1}^n g_i(x_i) \">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fuzihao.org/blog/2018/07/28/动态规划建模题型/"/>
+
+
+
+
+
+  <title> 动态规划建模题型 | 切问录 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8cc42d04b5d8817e0dc254117cbf24be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">切问录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'HEK16YQus2-9yh5pCMpA','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2018/07/28/动态规划建模题型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                动态规划建模题型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T14:04:48+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/07/28/动态规划建模题型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/28/动态规划建模题型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/07/28/动态规划建模题型/" class="leancloud_visitors" data-flag-title="动态规划建模题型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h3 id="一维资源分配">一维资源分配</h3>
+<p>总原料<span class="math inline">\(a\)</span>，生产<span class="math inline">\(n\)</span>种产品，若分配数量<span class="math inline">\(x_i\)</span> 用于生产第 <span class="math inline">\(i\)</span> 种产 品,其收益为 <span class="math inline">\(g_i ( x_i )\)</span>，求<span class="math inline">\(x_i\)</span>的分配方式使得总收入最大。</p>
+<p>静态规划：<span class="math display">\[
+\begin{aligned}\max ~ &amp;z= \ \ \sum_{i=1}^n g_i(x_i) \\
+s.t. \ \ \ &amp;\sum x_i=a;x_i\ge 0
+\end{aligned}\]</span></p>
+<p>动态规划：</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;f_k(s_k)=\max_{0\le x_k\le s_k}\{g_k(x_k)+f_{k+1}(s_k-x_k)\},\ \ k=n-1,\cdots,1;\\
+&amp;f_n(s_n)=\max_{x_n=s_n}g_n(x_n)
+\end{aligned}\]</span></p>
+<p><span class="math inline">\(s_k\)</span> 表示分配用于生产第 <span class="math inline">\(k\)</span> 种产品至第 <span class="math inline">\(n\)</span> 种产品的原料数量，最后求<span class="math inline">\(f_1(a)\)</span></p>
+<h3 id="资源连续分配问题">资源连续分配问题</h3>
+<p>资源总量<span class="math inline">\(s_1\)</span>，可投入A、B两种生产，第一年以<span class="math inline">\(u_1\)</span>生产A，剩下<span class="math inline">\(s_1-u_1\)</span>生产B，收入为<span class="math inline">\(g(u_1)+h(s_1 -u_1)\)</span>。年终剩余资源再投入第二年生产<span class="math inline">\(s_2 =au_1 +b(s_1 -u_1)\)</span>。决策变量<span class="math inline">\(u_i\)</span>，求<span class="math inline">\(n\)</span>年最大化收入。</p>
+<p>静态规划: <span class="math display">\[\begin{aligned}\max &amp;z= \ \ \sum_{i=1}^n g(u_i)+h(s_i-u_i)\\
+s.t. \ \ \ &amp;s_{i+1}=au_i+b(s_i-u_i),\ \ \ i=1,\cdots,n-1;\\
+&amp;0\le u_i \le s_i,\ \ \ i=1,\cdots,n\end{aligned}\]</span></p>
+<p>动态规划： <span class="math display">\[\begin{aligned}
+&amp;f_k(s_k)=\max_{0\le u_k\le s_k}\{g(u_k)+h(s_k-u_k)+f_{k+1}(au_k+b(s_k-u_k))\},\ \ k=n-1,\cdots,1;\\
+&amp;f_n(s_n)=\max_{0\le u_n\le s_n}\{g(u_n)+h(s_n-u_n)\}
+\end{aligned}\]</span> 例如机器两个档的例题，<span class="math inline">\(k=5,4,3,2,1\)</span>逐步往前推。每一步都能化简成max一个线性函数，因此若系数为正，就取决策变量的上界，系数为负就取下界。</p>
+<h3 id="二维资源分配">二维资源分配</h3>
+<p>两种原料，数量为<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>，需要分配用于生产<span class="math inline">\(n\)</span>种产品。如果以第一种原料<span class="math inline">\(x_i\)</span>, 第二种原料<span class="math inline">\(y_i\)</span>，生产第 <span class="math inline">\(i\)</span> 种产品, 其收入为<span class="math inline">\(g_i ( x_i , y_i )\)</span>。分配<span class="math inline">\(n\)</span>种产品，最大化收入。 静态规划： <span class="math display">\[\begin{aligned}\max z= \ \ \sum_{i=1}^n g_i(x_i,y_i)\\ s.t. \ \ \ \sum x_i=a;\\
+\sum y_i=b\\
+x_i,y_i\ge 0\end{aligned}\]</span></p>
+<p>动态规划： <span class="math display">\[\begin{aligned}
+&amp;f_k(x,y)=\max_{0\le x_k\le x;0\le y_k\le y}\{g_k(x_k,y_k)+f_{k+1}(x-x_k,y-y_k)\},\ \ k=n-1,\cdots,1;\\
+&amp;f_n(x,y)=g_n(x,y)\end{aligned}\]</span> <span class="math inline">\(x,y\)</span>表示两种原料总量</p>
+<a id="more"></a>
+<h3 id="固定资金分配">固定资金分配</h3>
+<p><span class="math inline">\(n\)</span>种产品，两种资源<span class="math inline">\(x,y\)</span>，价格限制<span class="math inline">\(ax+by\le z\)</span>。求如何购买<span class="math inline">\(x,y\)</span> 静态规划：<span class="math inline">\(\max z= \ \ \sum_{i=1}^n r_i(x_i,y_i);\)</span> s.t. <span class="math inline">\(\ \ \ \sum x_i=x; \sum y_i=y; ax+by\le z;\)</span> 把二维转成一维。定义资金利润函数<span class="math inline">\(R_k(x)=\max_{y_k=0,1,\cdots,(z/b)}\{r_k(\lfloor(z-by_k)/a\rfloor,y_k)\}\)</span> 动态规划：<span class="math inline">\(f_k(z)=\max_{z_k=0,1,\cdots,z}[R_k(z_k) + f_{k+1}(z-z_k)];\)</span> <span class="math inline">\(f_n(z)=R_n(z)\)</span></p>
+<h3 id="生产计划问题">生产计划问题</h3>
+<p><span class="math inline">\(n\)</span>个阶段，第<span class="math inline">\(k\)</span>个阶段需求<span class="math inline">\(d_k\)</span>，产量<span class="math inline">\(x_k\)</span>，<span class="math inline">\(v_k\)</span>为<span class="math inline">\(k\)</span>阶段结束时的库存量，每个阶段起步成本<span class="math inline">\(K\)</span>，最大产量<span class="math inline">\(m\)</span>，产品成本<span class="math inline">\(ax_k\)</span>，<span class="math inline">\(n\)</span>阶段借宿后库存为0。需最小化生产成本。 <span class="math inline">\(c_k(x_k)=0,\ \ \ if~~x_k=0;~=K+ax_k,\ \ \ if~~x_k=1,2, \cdots,m; ~=\infty,\ \ \  if~~x_k&gt;m\)</span></p>
+<p>静态规划：</p>
+<p><span class="math display">\[\begin{aligned}
+\min &amp;g=\sum_{k=1}^n[c_k(x_k)+h_k(v_k)],\\
+s.t. &amp;v_0=0,v_n=0;\\ &amp;v_k=\sum_{j=1}^k(x_j-d_j)\ge0,k=2,\cdots,n-1;\\
+&amp;0\le x_k\le m,k=1,\cdots,n\end{aligned}\]</span> <span class="math inline">\(x_k\)</span> is integer</p>
+<p>动态规划：</p>
+<p><span class="math inline">\(x_k\)</span>为决策变量，<span class="math inline">\(v_{k-1}\)</span>为状态变量，是<span class="math inline">\(k\)</span>阶段开始时的库存量。有：<span class="math inline">\(v_k=v_{k-1}+x_k-d_k\)</span>，<span class="math inline">\(f_k(v_k)=\min_{0\le x_k\le \sigma_k}[c_k(x_k)+h_k(v_k)+f_{k-1}(v_{k-1})]\)</span>其中<span class="math inline">\(\sigma_k=\min(v_k+d_k,m)\)</span>(生产上限是m，且<span class="math inline">\(v_{k-1}=v_k+d_k-x_k\ge 0\)</span>)。边界条件<span class="math inline">\(f_0(v_0)=0\)</span>。目标求<span class="math inline">\(f_n(0)\)</span></p>
+<h3 id="不确定性采购问题">不确定性采购问题</h3>
+<p>一种商品的采购可以在n周内选一个时候买，每个阶段有价格和相应的概率（每周都相同）。求价格期望最小的采购方案。 状态变量<span class="math inline">\(y_k\)</span>，<span class="math inline">\(x_k\)</span>决策变量，<span class="math inline">\(y_{kE}\)</span>第k周等待，以后采购的期望价格。 动态规划：<span class="math inline">\(f_k(y_k)=\min\{y_k,y_{kE}\}\)</span>，<span class="math inline">\(f_n(y_k)=y_n\)</span>（最后一周，不管什么价都必须买），<span class="math inline">\(y_{kE}=Ef_{k+1}(y_{k+1})\)</span>。先算<span class="math inline">\(k=5\)</span>。</p>
+<h3 id="背包问题">背包问题</h3>
+<p>背包容量<span class="math inline">\(w\)</span>，每件物品重<span class="math inline">\(w_i\)</span>，每件物品价值<span class="math inline">\(c_ix_i\)</span>，状态变量<span class="math inline">\(w\)</span>，决策变量<span class="math inline">\(x_k\)</span> <span class="math inline">\(f_1=\max_{x_1=0,1,\cdots,\lfloor w/w_1\rfloor} c_1(x_1)\)</span>，<span class="math inline">\(f_k(w)=\max_{x_k=0,1,\cdots,\lfloor w/w_k\rfloor}\{c_k(x_k)+f_{k-1}(w-w_kx_k)\},2\le k\le n\)</span></p>
+<h3 id="复合系统可靠性">复合系统可靠性</h3>
+<p>目标函数是乘积。一个系统由n个模块串联，每个模块可以有<span class="math inline">\(u_i\)</span>个备份，正常工作概率<span class="math inline">\(p_i(u_i)\)</span>，每个模块单个备份重<span class="math inline">\(w_i\)</span>，价格<span class="math inline">\(c_i\)</span>，总费用限制<span class="math inline">\(c\)</span>，总重量限制<span class="math inline">\(w\)</span>。求最大化正常工作概率。</p>
+<p>静态规划： <span class="math display">\[\begin{aligned}\max ~&amp;P=\prod_{i=1}^n p_i(u_i),\\
+s.t. &amp;\sum_{i=1}^nc_iu_i\le c;\\&amp;\sum_{i=1}^nw_iu_i\le w;\\
+&amp;u_i\ge 0\end{aligned}\]</span> 动态规划：</p>
+<p>用<span class="math inline">\(x_k,y_k\)</span>表示<span class="math inline">\(k\)</span>到<span class="math inline">\(n\)</span>个部件剩余的总费用和总重量，状态转移方程<span class="math inline">\(x_{k+1}=x_k-u_kc_k,y_{k+1}=y_k-u_kw_k\)</span>。</p>
+<p>动态规划基本方程： <span class="math display">\[\begin{aligned}
+f_k(x_k,y_k)=\max_{0\le u_k \le \min(\lfloor x_k/c_k \rfloor, \lfloor y_k / w_k \rfloor)}[p_k(u_k)f_{k+1}(x_k-c_ku_k,y_k-w_ku_k)],\\k=n,n-1,\cdots, 1, f_{n+1}(x_{n+1},y_{n+1})=1\end{aligned}\]</span></p>
+<h3 id="设备更新问题">设备更新问题</h3>
+<p><span class="math inline">\(I_j(t),O_j(t),C_j(t)\)</span>表示在第j年，役龄为t年的一台机器运行所得收入，运行费用，更新费用（若更新的话），<span class="math inline">\(\alpha\)</span>为一年后的收入折现到现在的因子，<span class="math inline">\(T\)</span>第一年时，机器已使用年数，<span class="math inline">\(n\)</span>计划总年数，<span class="math inline">\(g_j(t)\)</span>在第j年使用役龄为<span class="math inline">\(t\)</span>的机器的最优收入，<span class="math inline">\(x_j(t)\)</span>第<span class="math inline">\(j\)</span>年的决策(保留或更新) <span class="math display">\[\begin{aligned}
+g_j(t)=&amp;\max[I_j(0)-O_J(0)-C_j(t)+\alpha g_{j+1}(1),I_j(t)-O_j(t)+\alpha g_{t+1}(t+1)],\\
+&amp;(j=1,2,\cdots,n,
+t=1,2,\cdots,j-1,j+T-1);\\
+&amp;g_{n+1}(t)=0
+\end{aligned}\]</span></p>
+<h3 id="tsp问题">TSP问题</h3>
+<p>记<span class="math inline">\(f_k(i,S)\)</span>表示第一个城市到第i个城市的距离，<span class="math inline">\(S\)</span>是途经城市的集合。<span class="math inline">\(S\in N_i=\{2,3,\cdots,i-1,i+1,\cdots,n\}\)</span>，<span class="math inline">\(f_k(i,S)=\min_{f\in S}[f_{k-1}(j,S \backslash \{j\})+d_{ji}]\)</span>，<span class="math inline">\(f_0(i,\Phi)=d_{1i}\)</span></p>
+<h3 id="解整数规划">解整数规划</h3>
+<p><span class="math display">\[\begin{aligned}\max &amp;z=c^Tx \\
+s.t.~ &amp;a^Tx \le 10;b^Tx \le 13; \\&amp;x_i\ge 0
+\end{aligned}\]</span> 状态<span class="math inline">\(x,y\)</span>表示两个约束对<span class="math inline">\(x_i,\cdots x_n\)</span>进行规划，<span class="math inline">\(f_k(x, y)=\max_{0\le x_k \le \min(\lfloor x/a_k \rfloor, \lfloor x/b_k \rfloor)} [c_k x_k + f_{k+1}(x-a_kx_k,y-b_kx_k)]\)</span></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/07/22/运筹学常用模型/" rel="next" title="运筹学常用模型">
+                <i class="fa fa-chevron-left"></i> 运筹学常用模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/07/28/整数规划建模技巧/" rel="prev" title="整数规划建模技巧">
+                整数规划建模技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5623904142232592",
+    enable_page_level_ads: true
+  });
+  </script>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/default_avatar.jpg"
+               alt="Z.H. Fu" />
+          <p class="site-author-name" itemprop="name">Z.H. Fu</p>
+           
+              <p class="site-description motion-element" itemprop="description">Z.H. Fu的博客，主要关注数学、力学、计算机相关内容</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/blog/archives">
+                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nolalism.wordpress.com/" title="nolalism" target="_blank">nolalism</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://katasumi.rocks/" title="La Fantasia" target="_blank">La Fantasia</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://qinxc.win/" title="Xicheng" target="_blank">Xicheng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://liam0205.me/" title="Liam Huang" target="_blank">Liam Huang</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一维资源分配"><span class="nav-number">1.</span> <span class="nav-text">一维资源分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源连续分配问题"><span class="nav-number">2.</span> <span class="nav-text">资源连续分配问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维资源分配"><span class="nav-number">3.</span> <span class="nav-text">二维资源分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定资金分配"><span class="nav-number">4.</span> <span class="nav-text">固定资金分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产计划问题"><span class="nav-number">5.</span> <span class="nav-text">生产计划问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不确定性采购问题"><span class="nav-number">6.</span> <span class="nav-text">不确定性采购问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背包问题"><span class="nav-number">7.</span> <span class="nav-text">背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合系统可靠性"><span class="nav-number">8.</span> <span class="nav-text">复合系统可靠性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备更新问题"><span class="nav-number">9.</span> <span class="nav-text">设备更新问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tsp问题"><span class="nav-number">10.</span> <span class="nav-text">TSP问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解整数规划"><span class="nav-number">11.</span> <span class="nav-text">解整数规划</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z.H. Fu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maplewizard.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://fuzihao.org/blog/2018/07/28/动态规划建模题型/';
+          this.page.identifier = '2018/07/28/动态规划建模题型/';
+          this.page.title = '动态规划建模题型';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maplewizard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "4befa8553cac4664b6eb042caa67c1bc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("sJkEnLGKrRMGOIbJyJDEYkpD-gzGzoHsz", "oSBhAK7x7Rxcc9SfSAIpd00X");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+</body>
+</html>

@@ -90,7 +90,7 @@
 <meta name="description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
 <meta property="og:type" content="website">
 <meta property="og:title" content="切问录">
-<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:url" content="http://fuzihao.org/blog/page/6/index.html">
 <meta property="og:site_name" content="切问录">
 <meta property="og:description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
 <meta property="og:locale" content="zh-Hans">
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/6/"/>
+  <link rel="canonical" href="http://fuzihao.org/blog/page/6/"/>
 
 
 
@@ -301,7 +301,564 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/12/用python绘制数学背景图/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/14/哪个小球先下落？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/03/14/哪个小球先下落？/" itemprop="url">
+                  哪个小球先下落？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-14T17:49:04+08:00">
+                2014-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/物理随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">物理随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/14/哪个小球先下落？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/03/14/哪个小球先下落？/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/14/哪个小球先下落？/" class="leancloud_visitors" data-flag-title="哪个小球先下落？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>以前理论力学课上做过一个实验，就是把各种圆的东西放到斜坡上让他们往下滚，问最后到达斜面底端的次序。</p>
+<figure>
+<img src="/blog/images/Rolling_Racers_-_Moment_of_inertia.gif" alt="Rolling_Racers_-_Moment_of_inertia"><figcaption>Rolling_Racers_-_Moment_of_inertia</figcaption>
+</figure>
+<p>可以看到，黄球最先滑下，其次是蓝柱，再次是红球，最后是绿柱。 各小球质量相等，直径相等，性质如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">红球</th>
+<th style="text-align: left;">黄球</th>
+<th style="text-align: left;">绿柱</th>
+<th style="text-align: left;">蓝柱</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">空心</td>
+<td style="text-align: left;">实心</td>
+<td style="text-align: left;">空心</td>
+<td style="text-align: left;">实心</td>
+</tr>
+</tbody>
+</table>
+<p>各个小球受重力相等，那么为什么会出现这种现象呢？ 这就需要考虑惯性矩。我们知道质量是惯性的度量，表示一个物体受力之后的变化程度，惯性大的受影响小。而惯性矩则是描述物体受力矩作用后的反应，惯性矩大，则受力矩作用小。而惯性矩的定义为： <span class="math display">\[M=\int \rho \mathbf{r}^2dv\]</span> 其中，<span class="math inline">\(\mathbf{r}\)</span>是到主轴的向量。因此，可以看出，质量越集中到边上，则r越大，则惯性矩越大，同等力矩下（这时重力产生的力矩一样大）当然是惯性矩小的实心的物体最先滑下（黄球和蓝柱），随后再是空心的东西。而柱体可以看成是球体把里面的东西减少给放到外面去了，因此，惯性矩比球体大。因此才有这种运动顺序。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/14/推广的分部积分与格林恒等式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/03/14/推广的分部积分与格林恒等式/" itemprop="url">
+                  推广的分部积分与格林恒等式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-14T16:12:59+08:00">
+                2014-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/14/推广的分部积分与格林恒等式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/03/14/推广的分部积分与格林恒等式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/14/推广的分部积分与格林恒等式/" class="leancloud_visitors" data-flag-title="推广的分部积分与格林恒等式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>在高数中，我们学了格林公式（Threom）： <span class="math display">\[\iint_\Omega(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})=\oint_LPdx+Qdy\]</span> 这个公式实际上是斯托克斯公式在二维的特殊形式。但除此之外，格林还有三个恒等式（Identity），在有限元中，这三个恒等式都有着非常重要的作用。</p>
+<p>而分部积分作为微积分里面一个很基础的公式，能推倒出相当多的定理。本文就利用分部积分公式，推导格林的三个恒等式。<strong>这三个恒等式和格林公式没有任何关系</strong>。</p>
+<h2 id="分部积分公式">1. 分部积分公式</h2>
+<p>首先，复习一下分部积分公式： <span class="math display">\[\int u(x)v&#39;(x)dx=u(x)v(x)-\int u&#39;(x)v(x)dx\]</span> 或者直接写成： <span class="math display">\[\int udv=uv-\int vdu\]</span></p>
+<h2 id="推广的分部积分公式标量场向量场混合分部积分公式">2. 推广的分部积分公式（标量场、向量场混合分部积分公式）</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/03/14/推广的分部积分与格林恒等式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/" itemprop="url">
+                  正定矩阵的几何意义
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-14T10:09:36+08:00">
+                2014-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/03/14/正定矩阵在多元函数微积分中的几何意义/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/" class="leancloud_visitors" data-flag-title="正定矩阵的几何意义">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>今天来研究一下正定矩阵的几何意义。对于线性代数中的概念，还是要结合具体的问题，才能理解其物理意义。而最后往往能发现，矩阵往往是以前学的数学中的某个量的推广（一个标量或向量）。先来看一下正定矩阵的具体定义。 对于矩阵<span class="math inline">\(\mathbf{M}\)</span>，若对任意向量<span class="math inline">\(\mathbf{Z}\)</span>满足： <span class="math display">\[\mathbf{z}^\mathrm{T}\mathbf{Mz}\]</span> 则称矩阵<span class="math inline">\(\mathbf{M}\)</span>为正定矩阵。 下面就两个领域浅谈正定矩阵的几何意义。 ## 多元函数微积分 还记得一元函数的泰勒展开么？公式如下： &gt;<span class="math inline">\(f(x)=f(a)+\frac{f&#39;(a)}{1!}(x-a)+\frac{f^{(2)}(a)}{2!}(x-a)^2+\cdots ++\frac{f^{(n)}(a)}{n!}(x-a)^n+R_n(x)\)</span></p>
+<p>在一元微积分中，导数表示的是在某一点对原函数的最佳线性近似，那么在多远微积分中，同理，多元函数中也有一个用于表示对原函数最佳逼近的东西， 多元函数<span class="math inline">\(F:\mathbb{R}^n\mapsto \mathbb{R}^m\)</span>,在<span class="math inline">\(P\)</span>点的最佳线性逼近为： <span class="math display">\[F(\mathbf{x})=F(\mathbf{p})+J_F(\mathbf{x}-\mathbf{p})+o(\mathbf{x}-\mathbf{p})\]</span></p>
+<p>其中，<span class="math inline">\(J_F\)</span>就是雅克比矩阵（就是很多个偏导构成一个矩阵）定义如下：</p>
+<p><span class="math display">\[
+J_F=\begin{bmatrix}
+    \frac{\partial F_1}{\partial x_1} &amp; \frac{\partial F_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial F_1}{\partial x_n}\\
+    \frac{\partial F_2}{\partial x_1} &amp; \frac{\partial F_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial F_2}{\partial x_n}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\  \frac{\partial F_m}{\partial x_1} &amp; \frac{\partial F_m}{\partial x_2} &amp; \cdots &amp; \frac{\partial F_m}{\partial x_n}
+  \end{bmatrix}
+\]</span></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/03/14/正定矩阵在多元函数微积分中的几何意义/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/12/用python绘制数学背景图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -477,7 +1034,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/12/Fortran实现并行计算/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/12/Fortran实现并行计算/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -652,7 +1209,7 @@ by Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/12/多项式定理/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/12/多项式定理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -823,7 +1380,7 @@ by Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/11/Python数据图模板/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/11/Python数据图模板/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1002,7 +1559,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/10/matplotlib中文加载方式/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/10/matplotlib中文加载方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1178,7 +1735,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/06/求积求和交换顺序/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/06/求积求和交换顺序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1348,7 +1905,7 @@ by Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/03/03/曲面积分中dS的含义/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/03/曲面积分中dS的含义/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1513,541 +2070,6 @@ by Z.H. Fu
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/02/27/变分法推导拉格朗日方程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/02/27/变分法推导拉格朗日方程/" itemprop="url">
-                  变分法推导拉格朗日方程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-02-27T13:52:09+08:00">
-                2014-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/02/27/变分法推导拉格朗日方程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/02/27/变分法推导拉格朗日方程/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/02/27/变分法推导拉格朗日方程/" class="leancloud_visitors" data-flag-title="变分法推导拉格朗日方程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <center>
-by Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>拉格朗日方程式理论力学中非常重要的一个方程，它的出现标志着分析力学的诞生，比起传统的牛顿定律来用拉格朗日方程能求解更多的广义坐标系统，且拉格朗日方程能直接导出牛顿运动定律。除此之外，隐藏在这个方程背后的变分思想却更值得我们关注。本文描述了利用变分法推导拉格朗日方程的过程。</p>
-<p>拉格朗日方程的出发点是：当一个系统是真实存在的情况下如下泛函<span class="math inline">\(J\)</span>取极值亦即<span class="math inline">\(\delta J=0\)</span><br>
-<span class="math display">\[J=\int_a^bF(x,y,y&#39;)dx\]</span> 在后续的推导过程中，注意到：</p>
-<ol type="1">
-<li>变分运算和微分运算差不多，<span class="math inline">\(J\)</span>的变分</li>
-</ol>
-<p><span class="math display">\[\delta J=\frac{\partial J}{\partial u_i}\delta u_i\]</span></p>
-<ol start="2" type="1">
-<li>对<span class="math inline">\(y\)</span>变分的时候，与<span class="math inline">\(x\)</span>无关。</li>
-<li><p><span class="math inline">\(\delta\)</span>和<span class="math inline">\(d\)</span>可以直接交换顺序，即 <span class="math inline">\(\delta dy=d\delta y\)</span></p></li>
-<li><p><span class="math inline">\(y\)</span>的变分满足关系</p></li>
-</ol>
-<p><span class="math display">\[\begin{cases}\delta y(a)=0\\\delta y(b)=0\end{cases} \]</span></p>
-<p>因此<span class="math inline">\(J\)</span>的变分可表示为： <span class="math display">\[\begin{align} \delta J&amp;=\int_a^b(F_y\delta y+F_{y&#39;}\delta y&#39;)dx \\ &amp;=\int_a^b F_y\delta y dx+\int_a^b F_{y&#39;}\delta y&#39; dx \\ &amp;=\int_a^b F_y\delta y dx+\int_a^b F_{y&#39;}\delta dy \\ &amp;=\int_a^b F_y\delta y dx+ F_{y&#39;}\delta y \big|_a^b - \int_a^b \delta y dF_{y&#39;} \\ &amp;=\int_a^b F_y\delta y dx - \int_a^b \delta y \frac{dF_{y&#39;}}{dx}dx\\ &amp;=\int_a^b (F_y-\frac{dF_{y&#39;}}{dx})\delta y  x\end{align}\]</span> 由变分法基本引理可知，要想让<span class="math inline">\(\delta J\)</span>恒为0，只能是括号里面的项为0即： <span class="math display">\[F_y-\frac{dF_{y&#39;}}{dx}=0\]</span></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/02/26/推广的分部积分公式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/02/26/推广的分部积分公式/" itemprop="url">
-                  推广的分部积分公式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-02-26T21:01:44+08:00">
-                2014-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/02/26/推广的分部积分公式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/02/26/推广的分部积分公式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/02/26/推广的分部积分公式/" class="leancloud_visitors" data-flag-title="推广的分部积分公式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <center>
-by Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>在数分中，我们学习了分部积分公式，而在处理多元微积分问题的时候，我们需要用到它的推广形式。下面先给出公式，随后给出该公式的证明，以及一个特殊情形。最后给出直观的一个解释。</p>
-<p><span class="math display">\[\int_\Omega f\nabla \cdot \boldsymbol{A} d\Omega+ \int_\Omega \boldsymbol{A} \cdot \nabla f d\Omega=\int_S f \boldsymbol{A}d\boldsymbol{S}\]</span></p>
-<p>证明如下：</p>
-<p>设在空间中，存在向量场<span class="math inline">\(\boldsymbol{B}\)</span>由高斯公式，有：</p>
-<p><span class="math display">\[\int_\Omega \nabla\cdot\boldsymbol{B}d\Omega=\int_S \boldsymbol{B} d\boldsymbol{S}\]</span></p>
-<p>令<span class="math inline">\(\boldsymbol{B}=f\boldsymbol{A}\)</span>,带入得：</p>
-<p><span class="math display">\[\int_\Omega \nabla\cdot f\boldsymbol{A}d\Omega=\int_S f\boldsymbol{A} d\boldsymbol{S}\]</span></p>
-<p><span class="math display">\[\int_\Omega f \nabla\cdot \boldsymbol{A} d\Omega+\int_S \boldsymbol{A} \cdot\nabla f d \Omega=\int_S f\boldsymbol{A} d\boldsymbol{S}\]</span></p>
-<p>特殊地，只考虑<span class="math inline">\(\boldsymbol{A}\)</span>的一个分量（设为g），原式变为：</p>
-<p><span class="math display">\[\int_\Omega f \nabla g d\Omega=\int_S fgd\boldsymbol{S}-\int_\Omega g\nabla f d\Omega\]</span></p>
-<p>这个公式让我们看到，分部积分就是将被积函数的求导项和未求导项交换，然后用两个函数（都不求导）在表面上的积分去减它就行。回想起一元函数定积分分部积分公式，最前面写的是<span class="math inline">\(f(x)g(x)\big|_a^b\)</span>的形式，之所以这个地方要用<span class="math inline">\(f(b)g(b)-f(a)g(a)\)</span>，是因为“表面”只有两个点，且法向量方向相反。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2014/02/21/历史兴衰的原因/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/02/21/历史兴衰的原因/" itemprop="url">
-                  历史兴衰的原因
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-02-21T22:09:33+08:00">
-                2014-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/历史/" itemprop="url" rel="index">
-                    <span itemprop="name">历史</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/02/21/历史兴衰的原因/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/02/21/历史兴衰的原因/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/02/21/历史兴衰的原因/" class="leancloud_visitors" data-flag-title="历史兴衰的原因">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>天下大事，分久必合，合久必分。这是《三国演义》的开篇之语，更是恰当地概括了中国古代历史形式。总的来看，中国分分合合，而整个民族亦在这种分与合生生不息。那么中国为什么有分分合合？</p>
-<p>结论是：一个政权之建立，必有一种与之相应的光明的思想为其支柱。如果这个思想暗淡了，政权的寿命亦必不可久，而分裂之势亦不能避免。 先来看看战国时期，也就是那个人才辈出百花齐放的年代。诸子百家，交相辉映，来向世人解释着我们这个世界。西方人解决了人和物的关系，印度人解决了人和神的关系，而中国人解决了人和人的关系。而诸子百家解释的这个人与人的关系，却稍有不同。要之如下：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2014/02/21/历史兴衰的原因/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2097,7 +2119,7 @@ by Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

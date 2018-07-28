@@ -90,7 +90,7 @@
 <meta name="description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
 <meta property="og:type" content="website">
 <meta property="og:title" content="切问录">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://fuzihao.org/blog/page/2/index.html">
 <meta property="og:site_name" content="切问录">
 <meta property="og:description" content="Z.H. Fu的博客，主要关注数学、力学、计算机相关内容">
 <meta property="og:locale" content="zh-Hans">
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="http://fuzihao.org/blog/page/2/"/>
 
 
 
@@ -301,7 +301,525 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/09/01/伊辛模型-Ising-Model/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2017/06/20/Run-Python-Code-in-C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/06/20/Run-Python-Code-in-C/" itemprop="url">
+                  Run Python Code in C++
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T19:50:17+08:00">
+                2017-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/06/20/Run-Python-Code-in-C/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/20/Run-Python-Code-in-C/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/06/20/Run-Python-Code-in-C/" class="leancloud_visitors" data-flag-title="Run Python Code in C++">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="goals">Goals</h2>
+<p>We explore the method to embed python code into C++ . This is useful when we want to integrate some python code snippets into some C++ based systems. ## compile python Here, we compile python into dynamic link libraries. 1. Download python from python.org <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz</span><br></pre></td></tr></table></figure></p>
+<ol start="2" type="1">
+<li>Unzip and build the python <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar xvf Python-2.7.13.tgz</span><br><span class="line">cd Python-2.7.13</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">../configure --prefix=/home/me/pythonPKG --enable-unicode=ucs4 --disable-ipv6 --enable-shared</span><br><span class="line">make -j20</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/06/20/Run-Python-Code-in-C/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2017/03/14/三门问题与贝叶斯公式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/03/14/三门问题与贝叶斯公式/" itemprop="url">
+                  三门问题与贝叶斯公式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-14T20:57:21+08:00">
+                2017-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/03/14/三门问题与贝叶斯公式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/14/三门问题与贝叶斯公式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/03/14/三门问题与贝叶斯公式/" class="leancloud_visitors" data-flag-title="三门问题与贝叶斯公式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="三门问题">三门问题</h2>
+<p>三门问题是一个很出名也受到了很多争议的问题，这个问题出自美国的电视游戏节目Let’s Make a Deal。问题名字来自该节目的主持人蒙提·霍尔（Monty Hall）。参赛者会看见三扇关闭了的门，其中一扇的后面有一辆汽车，选中后面有车的那扇门可赢得该汽车，另外两扇门后面则各藏有一只山羊。当参赛者选定了一扇门，但未去开启它的时候，节目主持人开启剩下两扇门的其中一扇，露出其中一只山羊。主持人其后会问参赛者要不要换另一扇仍然关上的门。问题是：换另一扇门会否增加参赛者赢得汽车的机率？</p>
+<p>关于这个问题有两个思路，看起来都很有道理，然而却得出了截然不同的结论，我们先来看一下两种解法。</p>
+<ol type="1">
+<li><p>主持人排除了一个门之后，还剩两个门，随便选哪个都是<span class="math inline">\(\frac{1}{2}\)</span>；</p></li>
+<li><p>选手选择的那扇门的概率是<span class="math inline">\(\frac{1}{3}\)</span>，而主持人手上的门打开后，那<span class="math inline">\(\frac{1}{3}\)</span>的概率就跑到另一个门上了，所以另一个门的概率是<span class="math inline">\(\frac{2}{3}\)</span>。</p></li>
+</ol>
+<p>这两个思路看着都有道理，可是为什么会出现两个截然不同的答案呢？其实，问题出在题目里面，题目并没有说主持人是任意选择了一个门，还是只选择空门。玩了一个语言上的trick，把一个很重要的隐含假设一语带过，大家各自采用了自认为显然的隐含假设，便导致了两种不同的结果。我们先介绍一下贝叶斯公式，再用贝叶斯公式理解下这两种思路。</p>
+<h3 id="贝叶斯公式">贝叶斯公式</h3>
+<p>贝叶斯公式是关于条件概率的公式，假设我们有两个事件<span class="math inline">\(A\)</span>和<span class="math inline">\(B\)</span>，我们可以根据<span class="math inline">\(A\)</span>在<span class="math inline">\(B\)</span>下发生概率去求得<span class="math inline">\(B\)</span>在<span class="math inline">\(A\)</span>下发生的概率。其公式表述为： <span class="math display">\[P(A|B)=\frac{P(B|A)P(A)}{P(B|A)P(A)+P(B|\overline{A})P(\overline{A})}\]</span> 其中<span class="math inline">\(\overline{A}\)</span>表示<span class="math inline">\(A\)</span>不发生的概率。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/03/14/三门问题与贝叶斯公式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/09/29/如何理解拉格朗日方程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2016/09/29/如何理解拉格朗日方程/" itemprop="url">
+                  如何理解拉格朗日方程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-29T22:29:55+08:00">
+                2016-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/力学/" itemprop="url" rel="index">
+                    <span itemprop="name">力学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2016/09/29/如何理解拉格朗日方程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/29/如何理解拉格朗日方程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2016/09/29/如何理解拉格朗日方程/" class="leancloud_visitors" data-flag-title="如何理解拉格朗日方程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>拉格朗日方程是理论力学中非常重要的一个方程，它和牛顿力学一样，都是一种对力学系统的描述。但与牛顿力学不同的是，他以整个系统的视角来分析系统的运动状态，而牛顿力学则是对每一个质点进行单独的分析。两种方法等效、且可相互推导，但使用场景则大不相同。本文旨在通过牛顿力学来导出拉格朗日方程。</p>
+<h2 id="拉格朗日方程导出">拉格朗日方程导出</h2>
+<p>我们研究物体在保守系统中的运动情况。所谓保守系统，是指物体所受的力都是保守力。而保守力则是指物体在该力的作用下做功的大小与路径无关。 我们首先给出牛顿第二定律： <span class="math display">\[ma=F\]</span> 以下的步骤皆是通过对牛顿第二定律的变形，来得出拉格朗日方程。我们先补充一个动量<span class="math inline">\(p\)</span>、速度<span class="math inline">\(v\)</span>和动能<span class="math inline">\(T\)</span>的等式。我们有 <span class="math display">\[\frac{\partial T}{\partial v}=\frac{\partial (\frac{1}{2}mv^2)}{\partial v}=mv=p\]</span> 可以看出动能关于速度的导数是动量。而 <span class="math display">\[\frac{dp}{dt}=\frac{mdv}{dt}=ma\]</span> 我们把速度<span class="math inline">\(v\)</span>记作<span class="math inline">\(\dot{x}\)</span>，有： <span class="math display">\[ma=m\ddot{x}_i=\frac{d}{dt}\frac{\partial T}{\partial \dot{x}_i}\]</span> 同时，我们来看势能<span class="math inline">\(U\)</span>与力<span class="math inline">\(F\)</span>的关系： <span class="math display">\[F=-\frac{\partial U}{\partial x}\]</span> 带入牛顿第二定律有：
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2016/09/29/如何理解拉格朗日方程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/09/01/伊辛模型-Ising-Model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -481,7 +999,7 @@ Ising Model（伊辛模型）最早用于磁性材料的研究，而后来在社
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/07/15/C-自动类型推导/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/07/15/C-自动类型推导/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -658,7 +1176,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/07/14/C-enable-if的使用/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/07/14/C-enable-if的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -839,7 +1357,7 @@ in double f()</code></pre>
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/05/31/C-CRTP-Curiously-Recurring-Template-Pattern-简介/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/05/31/C-CRTP-Curiously-Recurring-Template-Pattern-简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1016,7 +1534,7 @@ By Z.H. Fu, X.Y. Xu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/04/11/世说新语精读笔记/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/04/11/世说新语精读笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1191,7 +1709,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/02/29/Predict-Time-Sequence-with-LSTM/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/02/29/Predict-Time-Sequence-with-LSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1366,7 +1884,7 @@ By Z.H. Fu
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/02/10/C-实现惰性求值/">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/02/10/C-实现惰性求值/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Z.H. Fu">
@@ -1537,549 +2055,6 @@ By Z.H. Fu
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/01/29/矩阵的条件数是什么/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/01/29/矩阵的条件数是什么/" itemprop="url">
-                  矩阵的条件数是什么
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-29T20:24:01+08:00">
-                2016-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2016/01/29/矩阵的条件数是什么/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/01/29/矩阵的条件数是什么/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2016/01/29/矩阵的条件数是什么/" class="leancloud_visitors" data-flag-title="矩阵的条件数是什么">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<h1 id="条件数定义">条件数定义</h1>
-<p>在矩阵的数值计算中经常会遇到条件数的概念，条件数通常用于描述一个线性系统的稳定性，条件数越大，系统的稳定性越差。通常条件数太大的线性系统，求得的解会受到舍入误差的严重影响。下面我们来看条件数的一些概念。</p>
-<p>条件数被定义为：</p>
-<p><span class="math display">\[\kappa (A)=||A||_2||A^{-1}||_2\]</span></p>
-<p>其中，<span class="math inline">\(||A||_2\)</span>表示矩阵的二范数，定义为：</p>
-<p><span class="math display">\[||A||_2=\max_{x \neq 0 }\frac{||Ax||_2}{||x||_2}\]</span></p>
-<p>因此，条件数可表示为：</p>
-<p><span class="math display">\[\kappa(A)=||A||_2||A^{-1}||_2=\left(\max_{x \neq 0 }\frac{||Ax||_2}{||x||_2}\right)\left(\min_{x \neq 0 }\frac{||Ax||_2}{||x||_2}\right)^{-1}\]</span></p>
-<p>可以看出，他的意义就是单位向量拉伸的最大比例除以单位向量拉伸的最小比例。而这个拉伸比例就是矩阵最大和最小的奇异值，记作<span class="math inline">\(\sigma_n(A),\sigma_1(A)\)</span>有</p>
-<p><span class="math display">\[\kappa(A)=\frac{\sigma_n(A)}{\sigma_1(A)}\]</span></p>
-<h1 id="条件数与奇异值">条件数与奇异值</h1>
-我们再来回顾一下奇异值分解（参见 <a href="http://www.fuzihao.org/blog/2015/12/04/%E7%90%86%E8%A7%A3PCA%E5%92%8CSVD/" target="_blank" rel="noopener">理解PCA和SVD</a> ），矩阵<span class="math inline">\(A\)</span>的奇异值分解为<span class="math inline">\(A=U\Sigma V^T\)</span>，其中，<span class="math inline">\(U,V\)</span>为正交单位阵，因此<span class="math inline">\(Ax=U\Sigma V^Tx=U\Sigma y\)</span>，这里<span class="math inline">\(y = V^Tx\)</span>是对<span class="math inline">\(x\)</span>做一个正交变换，其模长不变，若<span class="math inline">\(x\)</span>为单位向量的话，<span class="math inline">\(y\)</span>也为单位向量。同理最后用<span class="math inline">\(U\)</span>来对<span class="math inline">\(\Sigma y\)</span>进行正交变换也不改变其模长，因此，最终的模长可看做是一个对角阵<span class="math inline">\(\Sigma\)</span>对一个单向量<span class="math inline">\(y\)</span>，进行变换的结果，而对角阵<span class="math inline">\(\Sigma\)</span>的对角元素就是奇异值，如果最大的奇异值和最小的奇异值相差较大的话，那么对一个单位向量的变换结果模长的变化范围就很大，这样的话，不同向量的计算出的数量级不一样，就会出现舍入误差的问题。
-<center>
-<img src="/blog/images/conditionNumber1.jpg" alt="conditionNumber1">
-</center>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/01/29/矩阵的条件数是什么/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/" itemprop="url">
-                  Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-16T11:10:44+08:00">
-                2016-01-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/machine-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">machine learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/" class="leancloud_visitors" data-flag-title="Comparison of Gradient Descent, Stochastic Gradient Descent and L-BFGS">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<h1 id="abstract">Abstract</h1>
-<p>This article compares four optimization approaches on the logistic regression of mnist dataset. The results of Gradient Descent(GD), Stochastic Gradient Descent(SGD), L-BFGS will be discussed in detail. We proposed a Combined Stochastic Gradient Descent with L-BFGS(CL-BFGS) which is a improved version of L-BFGS and SGD. we conclude that when dataset is small, L-BFGS performans the best. If the dataset is big, SGD is recommended.</p>
-<h1 id="dataset">Dataset</h1>
-<p>The mnist dataset is one of the most popular dataset in machine learning especially in handwriting recognition systems. It contains 50000 pictures of 28x28 size as the training set while 10000 as validation set and 10000 as test set. The Bench mark error rate of mnist in traditional linear classification method is 7.6%[1]. However, the result improved dramatically after the deep learning method is proposed. DNN0.35%[2], CNN0.23%[3]. In this article, we only compare the optimization method in logistic regression. # Experiment</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/01/16/Comparison-of-Gradient-Descent-Stochastic-Gradient-Descent-and-L-BFGS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2015/12/04/理解PCA和SVD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2015/12/04/理解PCA和SVD/" itemprop="url">
-                  理解PCA和SVD
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-04T10:23:38+08:00">
-                2015-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2015/12/04/理解PCA和SVD/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/12/04/理解PCA和SVD/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2015/12/04/理解PCA和SVD/" class="leancloud_visitors" data-flag-title="理解PCA和SVD">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<h2 id="摘要">摘要</h2>
-<p>本文主要从分解形式上讲述了PCA（Principal Component Analysis，主成分分析）和SVD（Singular Value Decomposition奇异值分解）的目的和方法，对于两种方法都给出了一种直观的理解。简单起见，本文不给出具体的应用实例。 ## PCA 主成分分析（PCA）常用于提取一系列多维样本的共同特征。那么，怎么理解特征？我们假设每个样本是由一系列的特征线性组合而成的，PCA的目的就是去找到这些特征，然后将每一个样本表示为这些特征的组合，实际上PCA找到了样本空间中的一组基，将每一个样本表示为这组基的线性组合，因此，每一个基就是一个特征。那么，特征需要满足哪些性质呢？其实就一点，特征之间的关系应该越少越好。用基来描述就是这应该是一组正交基。下面我们来看该怎么构造这组基。 <img src="/blog/images/20151204PCA.jpg" alt="PCA"> 我们假设我们的样本矩阵为<span class="math inline">\(A_{m\times n}\)</span>每一行为一个样本，共m个样本，每一列是一个特征，共n个特征。我们来看怎么刻画特征不相关这个事情。我们可以看两个随机变量不相关是怎么刻画的，两个随机变量不相关，即他们的协方差为0，即：
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2015/12/04/理解PCA和SVD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2129,7 +2104,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
