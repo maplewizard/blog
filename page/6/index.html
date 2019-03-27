@@ -301,6 +301,362 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/17/让marked与mathjax和谐共存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/03/17/让marked与mathjax和谐共存/" itemprop="url">
+                  让marked与MathJax和谐共存
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-17T12:37:54+08:00">
+                2014-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/17/让marked与mathjax和谐共存/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/03/17/让marked与mathjax和谐共存/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/17/让marked与mathjax和谐共存/" class="leancloud_visitors" data-flag-title="让marked与MathJax和谐共存">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>先说明一下问题，marked是使用广泛的Markdown解析器，用于将Markdown语言翻译成HTML，而MathJax则用于页面公式渲染，其工作方式是在页面上识别LaTeX公式，然后将其转义。最近用Hexo在GitHub上搭建了自己的博客，由于内容需要，必须大量使用数学公式，于是决定使用MathJax进行渲染，因此需要在页面中嵌入MathJax，方法如下： 在header.html中加入： <figure class="highlight plain"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>由于MathJax默认没有开启单个美元符号的inline模式，需要手动打开，代码如下：</p>
+<figure class="highlight plain"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/x-mathjax-config&quot;&gt;MathJax.Hub.Config(&#123; tex2jax: &#123;inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]&#125;&#125;);&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;path-to-mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/03/17/让marked与mathjax和谐共存/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/15/偏微分方程变分问题与原问题等价性的探讨/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/03/15/偏微分方程变分问题与原问题等价性的探讨/" itemprop="url">
+                  偏微分方程变分问题与原问题等价性的探讨
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-15T17:14:02+08:00">
+                2014-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/有限元/" itemprop="url" rel="index">
+                    <span itemprop="name">有限元</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/15/偏微分方程变分问题与原问题等价性的探讨/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/03/15/偏微分方程变分问题与原问题等价性的探讨/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/15/偏微分方程变分问题与原问题等价性的探讨/" class="leancloud_visitors" data-flag-title="偏微分方程变分问题与原问题等价性的探讨">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>在用有限元方法求解偏微分方程的过程中，首先需要将微分方程写成它的弱形式（变分问题），然后通过求解变分问题，来得出原问题的解。本文旨在以椭圆偏微分方程为例，探讨其变分形式与原问题的等价性。 ## 原始问题 用有限元法求解偏微分方程： <span class="math display">\[\frac{\partial}{\partial x}\beta\frac{\partial u}{\partial x}+\frac{\partial}{\partial y}\beta\frac{\partial u}{\partial y}=-f\]</span> 计算域为<span class="math inline">\(\Omega\)</span>，在边界上满足以下边界条件：<span class="math display">\[\begin{cases}
+   u&amp;=g_0,\quad 在\Gamma_D上 \\
+  \partial_n u&amp;=g_1 ,\quad 在\Gamma_N上
+\end{cases} \]</span> 其中，<span class="math inline">\(\Gamma\)</span>是计算域的边界，<span class="math inline">\(n\)</span>是边界外法线，而<span class="math inline">\(\Gamma_D\)</span>和<span class="math inline">\(\Gamma_N\)</span>分别叫做Dirichlet边界和Neumann边界，在这上面的边界条件分别称作做Dirichlet边界条件和Neumann边界条件。 ## 能量方程 下面给出其“能量方程”，也就是对应的泛函<span class="math inline">\(J\)</span>，（后面将证明变分<span class="math inline">\(\delta J=0\)</span>的解和原问题等价 ）。至于这个方程怎么来的，我见过的所有将变分原理的都是直接给的，而我认为可以通过偏微分方程的形式，来拼凑，有兴趣的可以试一试。 <span class="math display">\[J(u)=\iint_\Omega(\frac{1}{2}(\beta(\frac{\partial u}{\partial x})^2+\beta(\frac{\partial u}{\partial y})^2)-fu)dxdy\]</span> 变分法的思想认为，<span class="math inline">\(J(u)\)</span>取极值的时候，就是原始问题的解，，<span class="math inline">\(J(u)\)</span>取极值等价于说它的变分等于零，下面写出<span class="math inline">\(\delta J=0\)</span>：</p>
+<p><span class="math display">\[\delta J(u)=\iint_\Omega(\beta\frac{\partial u}{\partial x}\frac{\partial \delta u}{\partial x}+\beta\frac{\partial u}{\partial y}\frac{\partial \delta u}{\partial y}-f\delta u)dxdy\]</span></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/03/15/偏微分方程变分问题与原问题等价性的探讨/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/14/哪个小球先下落？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1726,350 +2082,6 @@ By Z.H. Fu
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/06/求积求和交换顺序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/03/06/求积求和交换顺序/" itemprop="url">
-                  求积求和交换顺序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-06T15:25:53+08:00">
-                2014-03-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/03/06/求积求和交换顺序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/03/06/求积求和交换顺序/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/03/06/求积求和交换顺序/" class="leancloud_visitors" data-flag-title="求积求和交换顺序">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <center>
-by Z.H. Fu
-</center>
-<p>这篇文章主要介绍求积和求和交换顺序的问题。我们知道求积符号和求和符号一般是不可以任意交换顺序的。但是有时候，对于先求和再求积的式子，处理起来非常麻烦（不是线性的，不像求和那样可以分开处理）因此我们希望得到一个式子使求和号在外面，求积号在里面。 先来看一个特殊的例子： <span class="math display">\[(\sum_{i=1}^la_i)\cdot(\sum_{j=1}^mb_j)\cdot(\sum_{k=1}^nc_k)=\sum_{i=1}^l\sum_{j=1}^m\sum_{k=1}^n a_ib_jc_k\]</span></p>
-<p>由上面可以看出，此式的精华在于每次在<span class="math inline">\(a_i,b_j,c_k\)</span>中任取意项。下面我们给出一个通式：</p>
-<p><span class="math display">\[\begin{align}\prod_{i=1}^n\sum_{j=1}^ma_{ij}&amp;=(a_{11}+a_{12}+\cdots+a_{1m})\cdot(a_{21}+a_{22}+\cdots+a_{2m})\cdots(a_{n1}+a_{n2}+\cdots+a_{nm}) \\ &amp;=\sum_{j_1}^m\sum_{j_2}^m\cdots\sum_{j_n}^m a_{1j_1}a_{2j_2}\cdots a_{nj_n} \\ &amp;=\sum_{j_1}^m\sum_{j_2}^m\cdots\sum_{j_n}^m \prod_{i=1}^n a_{ij_i} \\ &amp;=\prod_{i=1}^n\times\sum_{j_i=1}^m\prod_{i=1}^na_{ij_i}\end{align}\]</span> 写成这样的优点是原式虽然变得超级复杂了，但是却也变成线性的了。外面所有的线性算子都可以直接作用到里面的元素上了。同时那个叉乘是我自己发明的符号，为了简记而已，写论文慎用~</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/03/曲面积分中dS的含义/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/03/03/曲面积分中dS的含义/" itemprop="url">
-                  曲面积分中$d\mathbf{S}$的含义
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-03T21:54:35+08:00">
-                2014-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">数学杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/03/03/曲面积分中dS的含义/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/03/03/曲面积分中dS的含义/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/03/03/曲面积分中dS的含义/" class="leancloud_visitors" data-flag-title="曲面积分中$d\mathbf{S}$的含义">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <center>
-by Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>在曲面积分中，有向面元 $d= dS=(dydz,dzdx,dxdy) <span class="math inline">\(。 那么这个结论的几何意义如何理解？ 如图，法向量\)</span><span class="math inline">\(在\)</span>x<span class="math inline">\(方向上的投影越长，就说明通过\)</span>yz<span class="math inline">\(平面的向量越多。也就是说\)</span>n_x<span class="math inline">\(和\)</span>dydz<span class="math inline">\(有某种对应关系。这个关系就是\)</span>n_xdS=dydz $</p>
-<figure>
-<img src="/blog/images/meaningds.png" alt="曲面积分示意图"><figcaption>曲面积分示意图</figcaption>
-</figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2119,7 +2131,7 @@ by Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2209,7 +2221,7 @@ by Z.H. Fu
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

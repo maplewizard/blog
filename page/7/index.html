@@ -301,6 +301,350 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/06/求积求和交换顺序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/03/06/求积求和交换顺序/" itemprop="url">
+                  求积求和交换顺序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-06T15:25:53+08:00">
+                2014-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/06/求积求和交换顺序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/03/06/求积求和交换顺序/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/06/求积求和交换顺序/" class="leancloud_visitors" data-flag-title="求积求和交换顺序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+by Z.H. Fu
+</center>
+<p>这篇文章主要介绍求积和求和交换顺序的问题。我们知道求积符号和求和符号一般是不可以任意交换顺序的。但是有时候，对于先求和再求积的式子，处理起来非常麻烦（不是线性的，不像求和那样可以分开处理）因此我们希望得到一个式子使求和号在外面，求积号在里面。 先来看一个特殊的例子： <span class="math display">\[(\sum_{i=1}^la_i)\cdot(\sum_{j=1}^mb_j)\cdot(\sum_{k=1}^nc_k)=\sum_{i=1}^l\sum_{j=1}^m\sum_{k=1}^n a_ib_jc_k\]</span></p>
+<p>由上面可以看出，此式的精华在于每次在<span class="math inline">\(a_i,b_j,c_k\)</span>中任取意项。下面我们给出一个通式：</p>
+<p><span class="math display">\[\begin{align}\prod_{i=1}^n\sum_{j=1}^ma_{ij}&amp;=(a_{11}+a_{12}+\cdots+a_{1m})\cdot(a_{21}+a_{22}+\cdots+a_{2m})\cdots(a_{n1}+a_{n2}+\cdots+a_{nm}) \\ &amp;=\sum_{j_1}^m\sum_{j_2}^m\cdots\sum_{j_n}^m a_{1j_1}a_{2j_2}\cdots a_{nj_n} \\ &amp;=\sum_{j_1}^m\sum_{j_2}^m\cdots\sum_{j_n}^m \prod_{i=1}^n a_{ij_i} \\ &amp;=\prod_{i=1}^n\times\sum_{j_i=1}^m\prod_{i=1}^na_{ij_i}\end{align}\]</span> 写成这样的优点是原式虽然变得超级复杂了，但是却也变成线性的了。外面所有的线性算子都可以直接作用到里面的元素上了。同时那个叉乘是我自己发明的符号，为了简记而已，写论文慎用~</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/03/03/曲面积分中dS的含义/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014/03/03/曲面积分中dS的含义/" itemprop="url">
+                  曲面积分中$d\mathbf{S}$的含义
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-03T21:54:35+08:00">
+                2014-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数学杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">数学杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/03/曲面积分中dS的含义/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/03/03/曲面积分中dS的含义/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/03/曲面积分中dS的含义/" class="leancloud_visitors" data-flag-title="曲面积分中$d\mathbf{S}$的含义">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+by Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>在曲面积分中，有向面元 $d= dS=(dydz,dzdx,dxdy) <span class="math inline">\(。 那么这个结论的几何意义如何理解？ 如图，法向量\)</span><span class="math inline">\(在\)</span>x<span class="math inline">\(方向上的投影越长，就说明通过\)</span>yz<span class="math inline">\(平面的向量越多。也就是说\)</span>n_x<span class="math inline">\(和\)</span>dydz<span class="math inline">\(有某种对应关系。这个关系就是\)</span>n_xdS=dydz $</p>
+<figure>
+<img src="/blog/images/meaningds.png" alt="曲面积分示意图"><figcaption>曲面积分示意图</figcaption>
+</figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2014/02/27/变分法推导拉格朗日方程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1204,7 +1548,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1294,7 +1638,7 @@ By Z.H. Fu
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

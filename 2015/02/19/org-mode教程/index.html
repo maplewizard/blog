@@ -586,7 +586,10 @@ but not any simpler -- Albert Einstein
 这里的注释不会被导出
 # +END_COMMENT</code></pre>
 <p>Latex使用，org-mode能支持直接输入LaTeX，在导出后LaTeX能被正确解释：</p>
-
+<p><span class="math display">\[\begin{equation}
+\nabla^2 x=\int_\Omega \frac{a}{\log{b}
+} \sum^n_{i=1} a_i d\Omega
+\end{equation}\]</span></p>
 <h4 id="插入源代码">插入源代码</h4>
 <p>org-mode除了可以直接插入源代码之外，可以直接求出运行结果，这也是其强大之处，在使用之前，需要在.emacs配置文件中设置加载的运行语言：</p>
 <pre><code>(org-babel-do-load-languages
@@ -782,7 +785,7 @@ print a
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -888,7 +891,7 @@ print a
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

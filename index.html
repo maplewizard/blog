@@ -301,6 +301,330 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2019/03/27/Struggling-in-importing-wikipedia-into-Elasticsearch-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2019/03/27/Struggling-in-importing-wikipedia-into-Elasticsearch-2/" itemprop="url">
+                  Struggling in importing wikipedia into Elasticsearch (2)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T16:58:27+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/03/27/Struggling-in-importing-wikipedia-into-Elasticsearch-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/27/Struggling-in-importing-wikipedia-into-Elasticsearch-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2019/03/27/Struggling-in-importing-wikipedia-into-Elasticsearch-2/" class="leancloud_visitors" data-flag-title="Struggling in importing wikipedia into Elasticsearch (2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>We have introduced many tools and tricks in my previous post <a href="http://www.fuzihao.org/blog/2018/01/01/Struggling-in-importing-wikipedia-into-Elasticsearch/" target="_blank" rel="noopener">Struggling in importing wikipedia into Elasticsearch</a>. In that post, we successfully import Wikipedia into elasticsearch with logstash. However, things are not settled. The biggest problem of logstash is that it’s extremely user-unfriendly. Even filter an html tag will waste you half days searching google how to do modify the config file. It made very annoy sine I totally forget all the tricks of logstash. Therefore, we will explore how to use python to import the Wikipedia into elasticsearch directly.</p>
+<p>The first step is to convert the Wikipedia source file into a more formatted one. I choose to use gensim’s Wikipedia tool to do this. It can be run like this:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m gensim.scripts.segment_wiki -i -f enwiki-20190320-pages-articles-multistream.xml.bz2 -o enwiki-20190320-pages-articles-multistream.json.gz -w 100</span><br></pre></td></tr></table></figure>
+<p>It will convert the latest Wikipedia dump to a <code>.json.gz</code> file, in which each contains a JSON dict representation a page. The detail can be obtained from the official sites of <a href="https://radimrehurek.com/gensim/scripts/segment_wiki.html" target="_blank" rel="noopener">gensim</a>.</p>
+<p>Afterwards, we get a well-formated file enwiki-20190320-pages-articles-multistream.json.gz . We will then import this line by line into elasticsearch.</p>
+<p>Before we begin to write our code. We should firstly set some parameters for elasticsearch to make it more capable to hold large data and query. There are two modifications:</p>
+<ol type="1">
+<li>in <code>config/elasticsearch.yml</code>, add:</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">thread_pool:</span></span><br><span class="line"><span class="attr">  bulk:</span></span><br><span class="line"><span class="attr">    size:</span> <span class="number">32</span></span><br><span class="line"><span class="attr">    queue_size:</span> <span class="number">50000</span></span><br></pre></td></tr></table></figure>
+<p>This will make the thread pool much larger than the default one. It makes elasticsearch capable to handle multiple queries.</p>
+<ol start="2" type="1">
+<li>config/jvm.options:</li>
+</ol>
+<p>change <code>-Xmx1g</code> to <code>-Xmx32g</code> to make it have a larger jvm heap size. If the jvm heap size is not large enough, the elasticsearch will throw errors.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2019/03/27/Struggling-in-importing-wikipedia-into-Elasticsearch-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2018/08/09/泛函分析笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2018/08/09/泛函分析笔记/" itemprop="url">
+                  泛函分析笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T10:48:07+08:00">
+                2018-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/08/09/泛函分析笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/09/泛函分析笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/08/09/泛函分析笔记/" class="leancloud_visitors" data-flag-title="泛函分析笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<h2 id="一度量空间">一、度量空间</h2>
+<h3 id="度量空间">1.1 度量空间</h3>
+<p>所谓 <strong>度量空间</strong>，就是指对偶<span class="math inline">\((X,d)\)</span> ，其中<span class="math inline">\(X\)</span>是一个集合， <span class="math inline">\(d\)</span>是<span class="math inline">\(X\)</span>上的一个度量（或<span class="math inline">\(X\)</span>上的距离函数）， 即<span class="math inline">\(d\)</span>是定义在<span class="math inline">\(X\times X\)</span>上且对所有<span class="math inline">\(x,y,z\in X\)</span>满足以下四条公理的函数:</p>
+<p>(M1) <span class="math inline">\(d\)</span>是实值、有限和非负的。 (M2) 当且仅当<span class="math inline">\(x=y\)</span>时，<span class="math inline">\(d(x,y)=0\)</span>。 (M3) <span class="math inline">\(d (x, y) =d(y, x)\)</span> (对称性 ） (M4) <span class="math inline">\(d(x,y)\le d(x,z)+d(z,y)\)</span> (三角不等式）</p>
+<p>注：(M4)三角不等式可推广到多项：<span class="math inline">\(d(x_1,x_n)\le d(x_1,d_2)+d(x_2,x_3)+\cdots+d(x_{n-1},x_n)\)</span></p>
+<h4 id="诱导度量">诱导度量</h4>
+<p>如果取子集<span class="math inline">\(Y\subset X\)</span>且把<span class="math inline">\(d\)</span>限制在<span class="math inline">\(Y\times Y\)</span>上，则可得<span class="math inline">\((X,d)\)</span>的一个<strong>子空间</strong><span class="math inline">\((Y,\tilde{d})\)</span>因而F上的度量就是限制<span class="math inline">\(\tilde{d}=d|_ {Y\times Y}\)</span> <span class="math inline">\(\tilde{d}\)</span>叫做<span class="math inline">\(d\)</span>在<span class="math inline">\(Y\)</span>上诱导出来的度量。</p>
+<h4 id="度量空间例子">度量空间例子</h4>
+<p><span class="math inline">\(\mathbb{R},\mathbb{R}^2,\mathbb{R}^3,\mathbb{R}^n,\mathbb{C}^n,\mathbb{C}\)</span>都是度量空间。 <strong>序列空间<span class="math inline">\(l^\infty\)</span></strong>：我们取一切有界的复数序列的集合作为基集<span class="math inline">\(X\)</span>，也就是说<span class="math inline">\(X\)</span>中每个元素都是形如<span class="math inline">\(x=(\xi_1,\xi_2,\cdots)\)</span>的复数序列。且<span class="math inline">\(\xi_j\le c_x\)</span>。<span class="math inline">\(d(x,y)=\sup_{j\in N}|\xi_j-\eta_j|\)</span></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2018/07/28/整数规划建模技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1627,325 +1951,6 @@ By Z.H. Fu
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/" itemprop="url">
-                  Why We Need Jordan Canonical Form?
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-10T12:10:08+08:00">
-                2017-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/10/Why-We-Need-Jordan-Canonical-Form/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/" class="leancloud_visitors" data-flag-title="Why We Need Jordan Canonical Form?">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>Jordan Canonical Form is an important form of matrix, because not all matrices have the eigen decomposition. But it is guaranteed that all real matrices have Jordan canonical form decomposition.</p>
-<p>This article gives an example to show that when a matrix cannot be diagonalized, it is still similar to some approximate diagonal form. We can construct varieties of approximate diagonal form, but the Jordan canonical form is the simplest.</p>
-<p>We have <span class="math display">\[A=\begin{bmatrix}
-4 &amp;3 &amp;-4\\
--1 &amp;0 &amp;2\\
-1 &amp;1 &amp;0
-\end{bmatrix}
-\]</span> We solve the equation <span class="math inline">\(AV=\lambda v\)</span> to get the eigen value and the eigenvectors. We get: <span class="math display">\[\begin{aligned}
-&amp;\lambda_1 = 2,\ \ v_1=(2, 0, 1)^T \\
-&amp;\lambda_2 = 1,\ \ v_2=(-1, 1, 0)^T
-\end{aligned}\]</span>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/" itemprop="url">
-                  EM (Expectation Maximization) Tutorial
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T19:44:15+08:00">
-                2017-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/17/EM-Expectation-Maximization-Tutorial/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/" class="leancloud_visitors" data-flag-title="EM (Expectation Maximization) Tutorial">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<h2 id="the-goal-of-this-tutorial">The Goal of This Tutorial</h2>
-<p>EM (Expectation Maximization) algorithm is a widely used method when a model has hidden variables that cannot be observed from the dataset. In this tutorial, we focus on the outline and intuition of the EM algorithm. A Gaussian mixture model is studied as an example.</p>
-<h2 id="gaussian-mixture-model">Gaussian Mixture Model</h2>
-<p>In the Gaussian mixture model, we assume that there are several generators which can generate samples from a Gaussian distribution. Each sample (denoted as <span class="math inline">\(x^{(i)}=(x_1,x_2,...,x_d)\)</span>) of our data is sampled from one of the generators. We can only observe the position of each sample <span class="math inline">\(x\)</span> and we don’t know for each sample <span class="math inline">\(x^{(i)}\)</span>, which generator <span class="math inline">\(z^{(i)}\)</span> generate it. Here, <span class="math inline">\(z^{(i)}=\{1,2,..,k\}\)</span> stand for the ID of each generator. For each generator <span class="math inline">\(j\)</span>(<span class="math inline">\(j\in[1,k]\)</span>), it generates samples by a Gaussian distribution with parameter <span class="math inline">\(\mu_j,\Sigma_j\)</span>. We use <span class="math inline">\(\theta\)</span> to denote all model parameters, <span class="math inline">\(\theta=(\mu_1,\mu_2,...,\mu_k,\Sigma_1,\Sigma_2,...,\Sigma_k,\phi_1,\phi_2,...,\phi_k)\)</span>. Where <span class="math inline">\(\phi_j\)</span> is the probability of selecting <span class="math inline">\(j\)</span>th generator and <span class="math inline">\(\sum_{j=i}^k \phi_j=1\)</span>. The goal of Gaussian mixture model is to find a most suitable parameter <span class="math inline">\(\theta\)</span> to describe the data.
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/10/17/EM-Expectation-Maximization-Tutorial/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1995,7 +2000,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2085,7 +2090,7 @@ By Z.H. Fu
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
