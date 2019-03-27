@@ -95,7 +95,7 @@
 <meta property="og:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Elasticsearch is a powerful search engine based on Lucene. It can build indexes on huge amount of data and we can query the data fast by keywords. Different from com">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://fuzihao.org/blog/images/logstash_pipeline.png">
-<meta property="og:updated_time" content="2018-01-02T09:28:55.000Z">
+<meta property="og:updated_time" content="2019-03-27T09:23:24.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Struggling in importing wikipedia into Elasticsearch">
 <meta name="twitter:description" content="By Z.H. Fu   切问录 www.fuzihao.org  Elasticsearch is a powerful search engine based on Lucene. It can build indexes on huge amount of data and we can query the data fast by keywords. Different from com">
@@ -432,6 +432,8 @@ By Z.H. Fu
 <p>We can list some sample data by <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl &apos;localhost:9200/enwiki/_search&apos;</span><br></pre></td></tr></table></figure></p>
 <h3 id="remove-index">Remove index</h3>
 <p>We can remove the index by <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XDELETE &quot;localhost:9200/enwiki/?pretty&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="use-python-to-import">Use Python to import</h2>
+<p>Plase refer to an updated post <a href="http://www.fuzihao.org/blog/2019/03/27/Struggling-in-importing-wikipedia-into-Elasticsearch-2/" target="_blank" rel="noopener">Struggling in importing wikipedia into Elasticsearch (2)</a></p>
 
       
     </div>
@@ -589,7 +591,7 @@ By Z.H. Fu
             
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags/index.html">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -650,7 +652,7 @@ By Z.H. Fu
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#download-elasticsearch"><span class="nav-number">1.</span> <span class="nav-text">Download Elasticsearch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#do-not-follow-the-official-old-post"><span class="nav-number">2.</span> <span class="nav-text">Do not follow the official old post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-logstash"><span class="nav-number">3.</span> <span class="nav-text">Use Logstash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-stream2es"><span class="nav-number">4.</span> <span class="nav-text">Use stream2es</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-basic-operation-of-elasticsearch"><span class="nav-number">5.</span> <span class="nav-text">Some basic operation of Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#view-index-information"><span class="nav-number">5.1.</span> <span class="nav-text">View Index Information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-by-content"><span class="nav-number">5.2.</span> <span class="nav-text">Search by content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list-data"><span class="nav-number">5.3.</span> <span class="nav-text">List data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove-index"><span class="nav-number">5.4.</span> <span class="nav-text">Remove index</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#download-elasticsearch"><span class="nav-number">1.</span> <span class="nav-text">Download Elasticsearch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#do-not-follow-the-official-old-post"><span class="nav-number">2.</span> <span class="nav-text">Do not follow the official old post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-logstash"><span class="nav-number">3.</span> <span class="nav-text">Use Logstash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-stream2es"><span class="nav-number">4.</span> <span class="nav-text">Use stream2es</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-basic-operation-of-elasticsearch"><span class="nav-number">5.</span> <span class="nav-text">Some basic operation of Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#view-index-information"><span class="nav-number">5.1.</span> <span class="nav-text">View Index Information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-by-content"><span class="nav-number">5.2.</span> <span class="nav-text">Search by content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list-data"><span class="nav-number">5.3.</span> <span class="nav-text">List data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove-index"><span class="nav-number">5.4.</span> <span class="nav-text">Remove index</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-python-to-import"><span class="nav-number">6.</span> <span class="nav-text">Use Python to import</span></a></li></ol></div>
             
 
           </div>
