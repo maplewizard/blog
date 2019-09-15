@@ -439,7 +439,7 @@ By Z.H. Fu
 <h1 id="条件数与奇异值">条件数与奇异值</h1>
 我们再来回顾一下奇异值分解（参见 <a href="http://www.fuzihao.org/blog/2015/12/04/%E7%90%86%E8%A7%A3PCA%E5%92%8CSVD/" target="_blank" rel="noopener">理解PCA和SVD</a> ），矩阵<span class="math inline">\(A\)</span>的奇异值分解为<span class="math inline">\(A=U\Sigma V^T\)</span>，其中，<span class="math inline">\(U,V\)</span>为正交单位阵，因此<span class="math inline">\(Ax=U\Sigma V^Tx=U\Sigma y\)</span>，这里<span class="math inline">\(y = V^Tx\)</span>是对<span class="math inline">\(x\)</span>做一个正交变换，其模长不变，若<span class="math inline">\(x\)</span>为单位向量的话，<span class="math inline">\(y\)</span>也为单位向量。同理最后用<span class="math inline">\(U\)</span>来对<span class="math inline">\(\Sigma y\)</span>进行正交变换也不改变其模长，因此，最终的模长可看做是一个对角阵<span class="math inline">\(\Sigma\)</span>对一个单向量<span class="math inline">\(y\)</span>，进行变换的结果，而对角阵<span class="math inline">\(\Sigma\)</span>的对角元素就是奇异值，如果最大的奇异值和最小的奇异值相差较大的话，那么对一个单位向量的变换结果模长的变化范围就很大，这样的话，不同向量的计算出的数量级不一样，就会出现舍入误差的问题。
 <center>
-<img src="/blog/images/conditionNumber1.jpg" alt="conditionNumber1">
+<img src="/blog/images/conditionNumber1.jpg" title="fig:" alt="conditionNumber1">
 </center>
 <a id="more"></a>
 <p>通过上图中我们也能看出，奇异值相差越大，椭圆的长短半轴差异就越大，就越接近于一个奇异矩阵，当最小奇异值有0存在时，条件数变为正无穷，是个奇异矩阵。</p>
@@ -485,7 +485,7 @@ By Z.H. Fu
 <p>$</p>
 <p>右边项改变一小点，将造成解差很多，这个从下面的图示中也能看出，黄线与绿线平行，绿线比黄线只平移了一点，但是与蓝线的交点差异很大。这说明，输入的一点误差将引起输出解得巨大变化。这种系统是在设计中应该尽量避免的。</p>
 <center>
-<img src="/blog/images/conditionNumber2.jpg" alt="conditionNumber2">
+<img src="/blog/images/conditionNumber2.jpg" title="fig:" alt="conditionNumber2">
 </center>
 <h1 id="参考文献">参考文献</h1>
 <p>[1] http://www.fuzihao.org/blog/2015/12/04/%E7%90%86%E8%A7%A3PCA%E5%92%8CSVD/ [2] http://www.math.pitt.edu/~sussmanm/2071Spring09/lab05/</p>
@@ -634,7 +634,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

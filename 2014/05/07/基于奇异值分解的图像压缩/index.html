@@ -437,39 +437,39 @@ By Z.H. Fu
 \boldsymbol{A}=\begin{bmatrix}u_1 &amp;u_2 &amp;\cdots &amp;u_m\end{bmatrix}\begin{bmatrix}\boldsymbol{D} &amp; \boldsymbol{0} \\\boldsymbol{0} &amp;\boldsymbol{0}\end{bmatrix}\begin{bmatrix}v_1^\mathrm{T}\\ v_2^\mathrm{T} \\ \vdots \\ u_n^\mathrm{T}\end{bmatrix}
 \]</span> 其中 <span class="math display">\[\boldsymbol{D}=\begin{bmatrix} \sigma_1 &amp;0 &amp;\cdots &amp;0 \\ 0 &amp; \sigma_2 &amp;\vdots &amp;0 \\ \vdots &amp;\vdots &amp;\ddots &amp;\vdots \\ 0 &amp;0 &amp;\cdots &amp;\sigma_r\end{bmatrix}\]</span> 将<span class="math inline">\(\boldsymbol{A}\)</span>展开得 <span class="math display">\[\boldsymbol{A}=\sigma_1\boldsymbol{u_1v_1^\mathrm{T}}+\sigma_2\boldsymbol{u_2v_2^\mathrm{T}}+\cdots+\sigma_r\boldsymbol{u_rv_r^\mathrm{T}}\]</span> 将<span class="math inline">\(\boldsymbol{A}\)</span>看成一个图像的矩阵，上面和式的每一个分量按大小排序，越大，说明越重要。而后面的权很小，可以舍去，如果只取前面k项，则数据量为<span class="math inline">\((m+n+1)k\ll mn\)</span>因而达到了压缩图像的目的。 通过对比发现，当$k= <span class="math inline">\(时，能基本看清图像。当\)</span>k= <span class="math inline">\(时基本看不出任何区别，对于长宽相等的图像，此时数据量占原数据量的\)</span>k= $,在测试图像中，这个数值为0.5 。可见图像压缩的效果是显著的。 处理结果如下： 原始图像：
 <center>
-<img src="/blog/images/svdori.png" alt="svdori.png">
+<img src="/blog/images/svdori.png" title="fig:" alt="svdori.png">
 </center>
 k=1:
 <center>
-<img src="/blog/images/svdk=1.png" alt="svdk=1.png">
+<img src="/blog/images/svdk=1.png" title="fig:" alt="svdk=1.png">
 </center>
 k=2: <a id="more"></a>
 <center>
-<img src="/blog/images/svdk=2.png" alt="svdk=2.png">
+<img src="/blog/images/svdk=2.png" title="fig:" alt="svdk=2.png">
 </center>
 k=3:
 <center>
-<img src="/blog/images/svdk=3.png" alt="svdk=3.png">
+<img src="/blog/images/svdk=3.png" title="fig:" alt="svdk=3.png">
 </center>
 k=4:
 <center>
-<img src="/blog/images/svdk=4.png" alt="svdk=4.png">
+<img src="/blog/images/svdk=4.png" title="fig:" alt="svdk=4.png">
 </center>
 k=21:
 <center>
-<img src="/blog/images/svdk=21.png" alt="svdk=21.png">
+<img src="/blog/images/svdk=21.png" title="fig:" alt="svdk=21.png">
 </center>
 k=50:
 <center>
-<img src="/blog/images/svdk=50.png" alt="svdk=50.png">
+<img src="/blog/images/svdk=50.png" title="fig:" alt="svdk=50.png">
 </center>
 k=105:
 <center>
-<img src="/blog/images/svdk=105.png" alt="svdk=105.png">
+<img src="/blog/images/svdk=105.png" title="fig:" alt="svdk=105.png">
 </center>
 k=r=420:
 <center>
-<img src="/blog/images/svdk=r=420.png" alt="svdk=r=420.png">
+<img src="/blog/images/svdk=r=420.png" title="fig:" alt="svdk=r=420.png">
 </center>
 <p>附matlab测试代码： <figure class="highlight plain"><figcaption><span>lang: matlab</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">SNum = 21;</span><br><span class="line">I = imread(&apos;img.bmp&apos;);</span><br><span class="line">h = size(I,1);</span><br><span class="line">w = size(I,2);</span><br><span class="line">R = I(:,:,1);</span><br><span class="line">G = I(:,:,2);</span><br><span class="line">B = I(:,:,3);</span><br><span class="line">debug = &apos;RGB disposed&apos;</span><br><span class="line">Rd = im2double(R);</span><br><span class="line">Gd = im2double(G);</span><br><span class="line">Bd = im2double(B);</span><br><span class="line">[Ur,Sr,Vr] = svd(Rd);</span><br><span class="line">[Ug,Sg,Vg] = svd(Gd);</span><br><span class="line">[Ub,Sb,Vb] = svd(Bd);</span><br><span class="line">debug = &apos;end SVD decomposition&apos;</span><br><span class="line">Rt = zeros(h,w);</span><br><span class="line">Gt = zeros(h,w);</span><br><span class="line">Bt = zeros(h,w);</span><br><span class="line">for i = 1:SNum</span><br><span class="line">    Rt = Rt + Sr(i,i)*Ur(:,i)*Vr(:,i)&apos;;</span><br><span class="line">    Gt = Gt + Sg(i,i)*Ug(:,i)*Vg(:,i)&apos;;</span><br><span class="line">    Bt = Bt + Sb(i,i)*Ub(:,i)*Vb(:,i)&apos;;</span><br><span class="line">end</span><br><span class="line">I2(:,:,1) = im2uint8(Rt);</span><br><span class="line">I2(:,:,2) = im2uint8(Gt);</span><br><span class="line">I2(:,:,3) = im2uint8(Bt);</span><br><span class="line">imshow(I2);</span><br></pre></td></tr></table></figure></p>
 
@@ -608,7 +608,7 @@ k=r=420:
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -301,6 +301,161 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2017/11/18/SVM-Revisit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z.H. Fu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="切问录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2017/11/18/SVM-Revisit/" itemprop="url">
+                  SVM Revisit
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T17:10:30+08:00">
+                2017-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2017/11/18/SVM-Revisit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/18/SVM-Revisit/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2017/11/18/SVM-Revisit/" class="leancloud_visitors" data-flag-title="SVM Revisit">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <center>
+By Z.H. Fu
+</center>
+<center>
+切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
+</center>
+<p>SVM (Support Vector Machine) is an important tool in pattern recognition before the wave of different kind of neural networks. In this post, we revisit the derivation of SVM and get some important intuition of the result.</p>
+<h2 id="the-original-problem">The original problem</h2>
+<p>Suppose we have some training data <span class="math inline">\(\mathcal{D}=\{(\mathbf{x}_1, y_1),(\mathbf{x}_2, y_2),\cdots,(\mathbf{x}_n, y_n)\}\)</span>, in which <span class="math inline">\(\mathbf{x}\)</span> is a feature vector, and <span class="math inline">\(y_i\)</span> is the class label for each sample and it is -1 or 1. Our task is to find a classifier that uses a separate hyper plane to divide the points in <span class="math inline">\(\mathcal{D}\)</span> into two parts. Points on each side of the hyper plane have the same class label y respectively. This classifier is denoted as <span class="math inline">\(f(\mathbf{x})=\text{sign}(\mathbf{w}^T\mathbf{x}+b)\)</span>. For any hyper plane that successfully divide the two classes. We define the geometry margin of the <span class="math inline">\(i\)</span>th point as the distance from the point to the hyper plane: <span class="math display">\[\gamma_i=\frac{y_i(\mathbf{w}^Tx_i+b)}{||\mathbf{w}||}\]</span> <img src="/blog/images/revisit-SVM.png"> We observe that for both classes <span class="math inline">\(y=1\)</span> and <span class="math inline">\(y=-1\)</span>, the geometry margin is larger than 0. We can define the geometry margin of our dataset <span class="math inline">\(\mathcal{D}\)</span> as: <span class="math display">\[\gamma=\min_{i=1,\cdots,n} \gamma_i\]</span>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/11/18/SVM-Revisit/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2017/11/10/Why-We-Need-Jordan-Canonical-Form/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1844,181 +1999,6 @@ By Z.H. Fu, X.Y. Xu
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://fuzihao.org/blog/blog/2016/04/11/世说新语精读笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Z.H. Fu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="切问录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/04/11/世说新语精读笔记/" itemprop="url">
-                  世说新语精读笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-11T22:06:55+08:00">
-                2016-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2016/04/11/世说新语精读笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/04/11/世说新语精读笔记/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2016/04/11/世说新语精读笔记/" class="leancloud_visitors" data-flag-title="世说新语精读笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <center>
-By Z.H. Fu
-</center>
-<center>
-切问录 <a href="http://www.fuzihao.org/blog" target="_blank" rel="noopener">www.fuzihao.org</a>
-</center>
-<p>《世说新语》是南朝宋刘义庆编著的一本记录魏晋士族言谈的一本书。魏晋时期是中国最糟糕的时代之一，社会阶层分化空前扩大，底层民众长期生活在战乱和流离之中，而与之形成鲜明对比的是上层的士族阶层，长期把持国家的政权，架空了皇权，几大家族轮换更替，对内无一个光明伟大的理想，对外无一份进取扩展的勇气，以至于整个六朝皆浸淫在一种奢靡浮华的氛围里，没有大的事功。而魏晋却又是中国思想史上最灿烂的时代，士族阶层的思想家打破了传统名教的束缚，思想领域出现了蓬勃发展的景象，他们从传统的条条框框中挣脱出来，将眼光转向自然、转向内心、转向宇宙大千，他们思想之宏大、人格之完备时至今日亦多可见教。本文主要通过《世说新语》来回味这段绮丽的历史。 ## 略论两汉选举制度对士族风尚的影响 魏晋士族风尚的形成，似乎都与两汉的选举制度有关。东汉选举主要包括地方的察举和公府的征辟两方面。察举主要包括之前的贤良与后来的孝廉，由地方官员向上推荐。而征辟则是直接由皇帝（征）和地方官员（辟）选拔任用，东汉的公卿尤以辟士为高，而公府征辟又以一时之清议为转移（清议即指按儒家道德规范臧否人物）。在此等政治环境下，造成士族风尚形成了几个特点：1）过分重视道德。汉末士族过分看中道德，而轻视实务，以致在对抗宦官的过程中并无一个切实有效的应对，同时随着清议的发展，这种臧否人物的手段堕落为不着实务的空谈；2）畸形的道德观。道德本为人的基本素质，以道德为标杆进行选拔，造成竞相攀比，弄出一些“道德亢奋”的事情。 ## 略论汉末政治形势 东汉的政治局势是三方角力的一种平衡。皇室、士大夫、外戚，东汉皇帝皆短命，皇室的权利实际上掌握在宦官手里，而士大夫阶层于利益、于道义上讲都是与宦官阶层对立的，而外戚是一个比较有意思的阶层，也就在汉代有，其他朝代皆不多见，从魏其侯窦婴、武安侯田蚡起，外戚就在汉代政治上起着举足轻重的作用，他们大多代表着皇室掌握军队，待到汉武帝托少帝于霍光，弄出个大司马大将军来，不想霍光擅行废立，外戚权势达到一个高潮，
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/04/11/世说新语精读笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2068,7 +2048,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -430,17 +430,17 @@ by Z.H. Fu
 <p>Fortran是人类最古老的的一门高级语言，而它的优点就在于能进行大规模的科学计算。Fortran对许多基础的数学计算都有非常多大的加速（比如对一个数组通式求正弦），因而很多科学计算程序都是用Fortran实现。而并行计算无疑能在此基础之上给Fortran一个更大的提速。本文主要讲解如何使用Fortran实现并行计算。 ## 编译器的选择 一般来说，Fortran的编译器都是选择Intel的 Visual Fortran和VS结合实现（如果是用的Intel的CPU的话，这个加速相当完美，这是其他编译器无法超越的）。然而，由于我是要拿他来和Python做混编，Intel的编译器老是有问题。无奈之下，采用GNU的GFortran编译器。 ## IDE配置 目前GFortran最流行的编译器是Code::Blocks（这不是以前搞竞赛的时候用的么。。）点开设置-编译器如下图：</p>
 <a id="more"></a>
 <figure>
-<img src="/blog/images/fortranide.PNG" alt="fortranide"><figcaption>fortranide</figcaption>
+<img src="/blog/images/fortranide.PNG" alt=""><figcaption>fortranide</figcaption>
 </figure>
 <p>设置编译器为GNU Fortran Compiler 在Compiler Flags下面勾选上 Enable the openMP extension[-fopenmp] 在Linker settings里面添加链接库 C:32-xy-1.dll（根据自己minGW安装位置而定） 在Other linker options选项中添加 -lgomp -lpthread两项 到此编译器的环境就配置完成了 ## 程序编写 openMP通过注释的方式在fortran语句中实现并行。在<code>!$OMP PARALLEL</code>和<code>!$OMP END PARALLEL</code>之间的语句表示这里面是并行的程序块，而<code>!$OMP DO</code>和<code>!$OMP END DO</code>块表示这是一个do循环，而且这个循环需要用并行方式处理。除此之外还有其他若干种并行方式，需要的时候很容易在网上找到。 下面我们来编写一个例子：</p>
 <figure class="highlight plain"><figcaption><span>lang: fortran</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">! A fortran95 program for G95</span><br><span class="line">! By Z.H. Fu</span><br><span class="line">program main</span><br><span class="line">    implicit none</span><br><span class="line">    call mainFunction(15)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">subroutine mainFunction(cir)</span><br><span class="line">implicit none</span><br><span class="line">    integer cir</span><br><span class="line">    integer i,j,s,dosum(0:cir-1)</span><br><span class="line">    do i=0,cir-1</span><br><span class="line">        dosum(i) = 0</span><br><span class="line">    end do</span><br><span class="line">    !$OMP PARALLEL</span><br><span class="line">	!$OMP DO</span><br><span class="line">    do i = 0,cir-1</span><br><span class="line">        call indo()</span><br><span class="line">        write(*,*) i</span><br><span class="line">    end do</span><br><span class="line">    !$OMP END DO</span><br><span class="line">	!$OMP END PARALLEL</span><br><span class="line">end subroutine mainFunction</span><br><span class="line"></span><br><span class="line">subroutine indo()</span><br><span class="line">implicit none</span><br><span class="line">    integer k,thesum</span><br><span class="line">    thesum = 0</span><br><span class="line">    do k=0,100000000</span><br><span class="line">        thesum = thesum + k</span><br><span class="line">    end do</span><br><span class="line">end subroutine</span><br></pre></td></tr></table></figure>
 <p>以下是运行结果： 串行：</p>
 <figure>
-<img src="/blog/images/FortranSerial.PNG" alt="FortranSerial"><figcaption>FortranSerial</figcaption>
+<img src="/blog/images/FortranSerial.PNG" alt=""><figcaption>FortranSerial</figcaption>
 </figure>
 <p>并行：</p>
 <figure>
-<img src="/blog/images/FortranParallel.PNG" alt="FortranParallel"><figcaption>FortranParallel</figcaption>
+<img src="/blog/images/FortranParallel.PNG" alt=""><figcaption>FortranParallel</figcaption>
 </figure>
 <h2 id="注意事项">注意事项</h2>
 <ul>
@@ -591,7 +591,7 @@ by Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

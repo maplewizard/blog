@@ -493,7 +493,7 @@ By Z.H. Fu
 <h4 id="absolute-value-of-simple-random-walk">Absolute Value of Simple Random Walk</h4>
 <p><span class="math inline">\(S_n=\sum_1^nX_n\)</span>, <span class="math inline">\(P\{X_i =1\}=p\)</span>, <span class="math inline">\(P\{X_i =-1\}=1-p=q\)</span>. Let <span class="math inline">\(j=\max\{k:0\le k\le n,i_k=0\}\)</span>, <span class="math inline">\(\therefore P\{S_n=i||S_n|=i,\cdots,|S_1|=i_1\}=\)</span> <span class="math inline">\(P\{S_n=i||S_n|=i,\cdots,|S_j|=0\}\)</span>, <span class="math inline">\(\therefore P(S_n=i|...)=p^{(n-j)/2+i/2}q^{(n-j)/2-i/2}\)</span> <span class="math inline">\(\therefore P(S_n=-i|...)=p^{(n-j)/2-i/2}q^{(n-j)/2+i/2}\)</span> <span class="math inline">\(P(S_n=i|...)=P(S_n=i|...)/(P(S_n=i|...)+P(S_n=-i|...))\)</span> <span class="math inline">\(=p^i/(p^i+q^i)\)</span> <span class="math inline">\(\therefore P\{|S_{n+1}|=i+1||S_n|=i,|S_{n-1},\cdots,|S_1|\}\)</span> <span class="math inline">\(=P\{S_{n+1}=i+1|S_n=i\}p^i/(p^i+q^i)\)</span> <span class="math inline">\(+P\{S_{n+1}=-(i+1)|S_n=-i\}q^i/(p^i+q^i)\)</span> <span class="math inline">\(=(p^{i+1}+q^{i+1})/(p^i+q^i)\)</span> <span class="math inline">\(\therefore P_{i,i+1}=(p^{i+1}+q^{i+1})/(p^i+q^i)\)</span> <span class="math inline">\(=1-P_{i,i-1},i&gt;0\)</span> <span class="math inline">\(P_{01}=1\)</span></p>
 <h4 id="simple-random-walk">Simple Random Walk</h4>
-<p><span class="math inline">\(P_{i,i+1}=p=1-P_{i,i-1}\)</span>. Firstly, step number cannot be even, i.e. <span class="math inline">\(P_{00}^{2n+1}=0\)</span>. <span class="math inline">\(P_{00}^{2n}=\binom{2n}{n}p^n(1-p)^n\)</span> <span class="math inline">\(=\frac{(2n)!}{n!n!}(p(1-p))^n\)</span>. By Stirling, <span class="math inline">\(P_{00}^{2n}\sim (4p(1-p))^n/\sqrt{\pi n}\)</span>. $$ if <span class="math inline">\(\sum_{n=1}^\infty (4p(1-p))^n/\sqrt{\pi n}=\infty\)</span> (only when <span class="math inline">\(p=1/2\)</span>) it will be recurrent. otherwise transient.</p>
+<p><span class="math inline">\(P_{i,i+1}=p=1-P_{i,i-1}\)</span>. Firstly, step number cannot be even, i.e. <span class="math inline">\(P_{00}^{2n+1}=0\)</span>. <span class="math inline">\(P_{00}^{2n}=\binom{2n}{n}p^n(1-p)^n\)</span> <span class="math inline">\(=\frac{(2n)!}{n!n!}(p(1-p))^n\)</span>. By Stirling, <span class="math inline">\(P_{00}^{2n}\sim (4p(1-p))^n/\sqrt{\pi n}\)</span>. $$ if <span class="math inline">\(\sum_{n=1}^\infty (4p(1-p))^n/\sqrt{\pi n}=\infty\)</span> (only when <span class="math inline">\(p=1/2\)</span>) it will be recurrent. otherwise transient.</p>
 
       
     </div>
@@ -629,7 +629,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -843,16 +843,16 @@ B b;
 B b();//错误，这是声明b是一个返回值为B类型的函数。</code></pre>
 <h3 id="静态成员">静态成员</h3>
 <ul>
-<li>静态成员变量：非const型static变量只能在类声明外初始化。</li>
+<li><p>静态成员变量：非const型static变量只能在类声明外初始化。</p></li>
 <li><p>静态成员函数：可以直接使用A::f()的形式调用，不用生成对象。</p>
 <p>class A { public: const static int a = 1;//const static可以直接初始化 static int b; static int f(); }; int A::b = 2;//初始化，不能加static int main() { … }</p></li>
 </ul>
 <h3 id="初始化列表">初始化列表</h3>
 <ul>
-<li>在构造函数的定义中指定；</li>
-<li>带参数对象（成员对象、基类对象）、引用成员、const只能在初始化列表中初始化；</li>
+<li><p>在构造函数的定义中指定；</p></li>
+<li><p>带参数对象（成员对象、基类对象）、引用成员、const只能在初始化列表中初始化；</p></li>
 <li><p>初始化顺序由成员定义的顺序决定，跟初始化列表里的顺序无关（考点）。</p>
-<p>class A { public: A(int i):b(i++),a(i++),c(0){} int a; int b; const int c; }; int main() { A t(1); cout&lt;&lt;t.a&lt;&lt;&quot; “&lt;&lt;t.b&lt;&lt;” “&lt;&lt;t.c&lt;&lt;” &quot;; }</p></li>
+<p>class A { public: A(int i):b(i++),a(i++),c(0){} int a; int b; const int c; }; int main() { A t(1); cout&lt;&lt;t.a&lt;&lt;" “&lt;&lt;t.b&lt;&lt;” “&lt;&lt;t.c&lt;&lt;” "; }</p></li>
 </ul>
 <p>打印 1 2 0</p>
 <h3 id="成员变量初始化位置">成员变量初始化位置</h3>
@@ -1114,7 +1114,7 @@ class D:public B,public C;</code></pre>
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

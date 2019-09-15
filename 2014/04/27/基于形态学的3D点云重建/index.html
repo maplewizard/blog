@@ -442,11 +442,11 @@ By Z.H. Fu
 </center>
 由于是卫星得到的数据，因此可以发现数据点基本都是楼房的屋顶。 而他的平面视图如下： <a id="more"></a>
 <center>
-<img src="/blog/images/pointCloudFromTop.jpg" alt="pointCloudFromTop.jpg">
+<img src="/blog/images/pointCloudFromTop.jpg" title="fig:" alt="pointCloudFromTop.jpg">
 </center>
 从这张图中，能看出扫描的轨迹。同时，我们也能发现，数据点过于稀疏，这是该数据的一个特点。由于数据点过于稀疏，传统的滤波插值等手段的效果均不好。因此在这里采用灰度形态学腐蚀运算原理如下：
 <center>
-<img src="/blog/images/pointCloudgreyfilter.jpg" alt="pointCloudgreyfilter.jpg">
+<img src="/blog/images/pointCloudgreyfilter.jpg" title="fig:" alt="pointCloudgreyfilter.jpg">
 </center>
 相当于用一个小面片向上推，直到他卡住推不动了，则这是的高度值为新灰度图的值。这本质上也是一个低通滤波的过程，经过处理后，滤掉了多余的噪点，屋顶非常平滑。处理前后的效果对比如下：
 <center>
@@ -457,16 +457,16 @@ By Z.H. Fu
 </center>
 最终得到的灰度图：
 <center>
-<img src="/blog/images/pointCloudGreyMap.png" alt="pointCloudGreyMap.png">
+<img src="/blog/images/pointCloudGreyMap.png" title="fig:" alt="pointCloudGreyMap.png">
 </center>
 <p>注意这里格式一定要用png（或其他无损的格式，jpg是有损的格式，如果用jpg会造成边缘毛刺）</p>
 然后利用3Dmax的地形制作功能，制作地形图。 首先在3Dmax中新建一个平面，设置分段尽量多，然后对该评先添加Displace修改器，在修改器中将位图指定为该灰度图即可。
 <center>
-<img src="/blog/images/pointCloud3DMaxDis.jpg" alt="pointCloud3DMaxDis.jpg">
+<img src="/blog/images/pointCloud3DMaxDis.jpg" title="fig:" alt="pointCloud3DMaxDis.jpg">
 </center>
 下图是最终的效果，可见这种方法重建的效果还是很好的。
 <center>
-<img src="/blog/images/pointCloudFinal2.jpg" alt="pointCloudFinal2.jpg">
+<img src="/blog/images/pointCloudFinal2.jpg" title="fig:" alt="pointCloudFinal2.jpg">
 </center>
 
       
@@ -602,7 +602,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

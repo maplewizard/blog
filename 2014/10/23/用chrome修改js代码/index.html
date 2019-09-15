@@ -430,20 +430,20 @@ By Z.H. Fu
 </center>
 　　网页中大部分的限制都是由js编写的，而chrome提供了一个修改js代码的工具，利用这个工具可以轻松解决各种时间等待之类的限制。本文主要通过利用chrome命令行修改变量值得方式，控制运行流程。
 <center>
-<img src="/blog/images/chrome_button.PNG" alt="chrome_button.PNG">
+<img src="/blog/images/chrome_button.PNG" title="fig:" alt="chrome_button.PNG">
 </center>
 如图，我们看到该网站有一个阅读等待时间，而且一直没有任何变化，我们的目的是跳过这个等待时间。步骤如下： 1、按F12，打开调试面板； 2、打开source面板，找到相对应的代码；
 <center>
-<img src="/blog/images/chrome_panel.PNG" alt="chrome_panel.PNG">
+<img src="/blog/images/chrome_panel.PNG" title="fig:" alt="chrome_panel.PNG">
 </center>
 <a id="more"></a>
-3、分析代码，我们发现，124行元素<code>name=&quot;Candidateposition1$BtnOk&quot;</code>，名字和后面的139、140行元素的名字<code>document.getElementById(&quot;CandidatePosition1_BtnOk&quot;).disabled=false;</code>不相同，在运行到139、140行get元素的时候，是空，所以该行运行后就有个红叉，因为没有get到这个元素，说明这是网站设计时候的一个BUG。那么我们来人工地让这个元素的disabled属性变成false即可；
+3、分析代码，我们发现，124行元素<code>name="Candidateposition1$BtnOk"</code>，名字和后面的139、140行元素的名字<code>document.getElementById("CandidatePosition1_BtnOk").disabled=false;</code>不相同，在运行到139、140行get元素的时候，是空，所以该行运行后就有个红叉，因为没有get到这个元素，说明这是网站设计时候的一个BUG。那么我们来人工地让这个元素的disabled属性变成false即可；
 <center>
-<img src="/blog/images/chrome_console.PNG" alt="chrome_console.PNG">
+<img src="/blog/images/chrome_console.PNG" title="fig:" alt="chrome_console.PNG">
 </center>
-3、如图选择console面板，这里可以用来说如一些即时的js代码，我们输入<code>document.getElementById(&quot;Candidateposition1_BtnOk&quot;).disabled=false;</code>请注意，这个地方的<code>$</code>符号应该用下划线，因为实际过程中发现元素的编号并不和开始一致，遇到这种情况，点开Elements面板查看到当前按钮就可以。至此我们发现这个按钮可以点击了。
+3、如图选择console面板，这里可以用来说如一些即时的js代码，我们输入<code>document.getElementById("Candidateposition1_BtnOk").disabled=false;</code>请注意，这个地方的<code>$</code>符号应该用下划线，因为实际过程中发现元素的编号并不和开始一致，遇到这种情况，点开Elements面板查看到当前按钮就可以。至此我们发现这个按钮可以点击了。
 <center>
-<img src="/blog/images/chrome_rname.PNG" alt="chrome_rname.PNG">
+<img src="/blog/images/chrome_rname.PNG" title="fig:" alt="chrome_rname.PNG">
 </center>
 
       
@@ -577,7 +577,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

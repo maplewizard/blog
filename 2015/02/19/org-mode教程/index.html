@@ -431,7 +431,7 @@ By Z.H. Fu
 <h1 id="org-mode-入门教程">org-mode 入门教程</h1>
 <p>　　org-mode是Emacs提供的一个强大的编辑模式，可以用于做会议笔记以及制作各种待办事项（GDT）。其语法类似于Markdown但是提供了比Markdown更多的操作，再加上Emacs强大的编辑功能，能给笔记增加很多动态的操作（能纯文本上实现折叠、展开、树状视图、表格求和、求代码运行结果等功能），可以说org-mode是最强大的标记语言。而org-mode的强大，也导致了他比markdown更加复杂，需要花些时间来练习，本文选出了org-mode最强大、实用的功能，进行最简单的介绍，下面介绍org-mode的使用方法。</p>
 <center>
-<img src="/blog/images/org-mode-unicorn-logo.png" alt="org-mode的logo">
+<img src="/blog/images/org-mode-unicorn-logo.png" title="fig:" alt="org-mode的logo">
 </center>
 <h2 id="安装">安装</h2>
 <p>　　<a href="http://www.gnu.org/software/emacs/" target="_blank" rel="noopener">Emacs</a>最新版本（24.4）自带org-mode，这就意味着只要打开一个后缀名为org的文件就会自动进入org-mode。因此我们只需要下载最新版的Emacs即可。 　　 windows用户：到http://ftp.gnu.org/gnu/emacs/windows/ 下载最新版 ubuntu系列：在终端中输入：<code>sudo apt-get install emacs</code> ## 配置 　　org-mode功能基本比较完善，不需要更多的配置，但是org模式下默认没有自动换行的功能，我们在.emacs文件里面添加如下代码，实现自动换行：</p>
@@ -471,7 +471,7 @@ By Z.H. Fu
 2) [ ] 任务2</code></pre>
 <p>　　我们按<code>M-S-RET</code> 可以输入一个带checkbox的列表项，而在总任务后面可以输入一个<code>[%]</code>或者<code>[/]</code>则能自动计算总任务进度。最后结果如图所示。</p>
 <center>
-<img src="/blog/images/orgmode5.png" alt="orgmode5.png">
+<img src="/blog/images/orgmode5.png" title="fig:" alt="orgmode5.png">
 </center>
 <p>　　 常用快捷键： - <code>M-RET</code> 插入同级列表项 - <code>M-S-RET</code> 插入有 checkbox的同级列表项 - <code>C-c C-c</code> 改变 checkbox状态 - <code>M-left/right</code> 改变列表项层级关系 - <code>M-up/dowm</code> 上下移动列表项</p>
 <h3 id="脚注">脚注</h3>
@@ -502,7 +502,7 @@ By Z.H. Fu
 | hehe        | 157... |   87 |   78 |   165 |
 # +TBLFM: $5=$3+$4</code></pre>
 <center>
-<img src="/blog/images/orgmode4.png" alt="orgmode4.png">
+<img src="/blog/images/orgmode4.png" title="fig:" alt="orgmode4.png">
 </center>
 <p>　　如果要插入行和列，可在表头添加一个标签或者新起一行，输入|再调整格式即可。其中最后一行是ogr-mode自动添加的。一些快捷键如下：</p>
 <ul>
@@ -637,7 +637,7 @@ print a
 <pre><code># +HTML_HEAD: &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style1.css&quot; /&gt;</code></pre>
 <p>该代码加载我们的css。下面我们来将我们的文件导出成html。按<code>C-c C-e</code>会出现一个如图的提示框，问我们导出那种格式，我们选<code>h</code>导出html。</p>
 <center>
-<img src="/blog/images/orgmode6.png" alt="orgmode6.png">
+<img src="/blog/images/orgmode6.png" title="fig:" alt="orgmode6.png">
 </center>
 <p>常用快捷键： - <code>C-c C-e</code> 选择相应的导出格式</p>
 <h2 id="结论">结论</h2>
@@ -785,7 +785,7 @@ print a
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

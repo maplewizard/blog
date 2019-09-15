@@ -436,7 +436,7 @@ s.t. \ \ &amp;\sum_{i=1}^n\alpha_iy_i=0\\
 \end{aligned}\]</span> This is the dual optimization problem of problem (P) and it is a standard Quadratic Programming which can be solved by a lot of solvers.</p>
 <h2 id="some-obervations-and-intuitions">Some obervations and intuitions</h2>
 <ol type="1">
-<li>The variable of the primal optimization problem (P) is to optimize <span class="math inline">\((\mathbf{w},b)\)</span> while the dual problem (D) is to optimize the dual variable <span class="math inline">\(\mathbf{\alpha}\)</span>. The length of dual variable equals to the number of constrains of the primal problem.</li>
+<li><p>The variable of the primal optimization problem (P) is to optimize <span class="math inline">\((\mathbf{w},b)\)</span> while the dual problem (D) is to optimize the dual variable <span class="math inline">\(\mathbf{\alpha}\)</span>. The length of dual variable equals to the number of constrains of the primal problem.</p></li>
 <li><p>If <span class="math inline">\(\alpha_i=0\)</span>, <span class="math inline">\(y_i(\mathbf{w}^T\mathbf{x_i}+b)&gt;1\)</span> the function margin of this is not equal to the function margin of the dataset (<span class="math inline">\(\hat\gamma=1\)</span>) . It means that the margin of this sample is not the smallest among others. If <span class="math inline">\(\alpha_i&gt;0\)</span>, it means that the <span class="math inline">\(i\)</span>th constrain is active and <span class="math inline">\(y_i(\mathbf{w}^T\mathbf{x_i}+b)=1\)</span>. The function margin of the <span class="math inline">\(i\)</span>th sample equals to the function margin of the dataset. This sample is called a support vector.</p></li>
 <li><p>We observe the optimal value of <span class="math inline">\(\mathbf{w^*}\)</span>: <span class="math display">\[\mathbf{w}^*=\sum_{i=1}^n\alpha_iy_i\mathbf{x}\]</span> In which <span class="math inline">\(\alpha_i=0\)</span> for all non support vectors, which means that the value of <span class="math inline">\(\mathbf{w^*}\)</span> is only determined by support vectors.</p></li>
 </ol>
@@ -584,7 +584,7 @@ s.t. \ \ &amp;\sum_{i=1}^n\alpha_iy_i=0\\
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

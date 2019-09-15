@@ -435,7 +435,7 @@ By Z.H. Fu
 <p>这种系数又叫质心坐标，哪个点的系数大，就相当于质量大，质心就离那个点近。仿射变换得到的结果就是给定点按质量加权的质心，质心的仿射变换等于每个点进行放射变换后再求质心。 　　　　　　 ## 用线性变换表示仿射变换</p>
 <p>下面来看如何表示仿射变换，我们定义<span class="math inline">\(\mathbb{R}^n\)</span>中一个向量<span class="math inline">\(\boldsymbol{v}\)</span>的齐次形式为<span class="math inline">\(\mathbb{R}^{n+1}\)</span>中的<span class="math inline">\(\overset{\sim}{\boldsymbol{v}}=\left[\begin{aligned}\boldsymbol{v} \\ 1\end{aligned}\right]\)</span>那么，仿射组合与系数和为1的要求可统一表示为 <span class="math display">\[\left[\begin{aligned}\boldsymbol{y} \\ 1\end{aligned}\right]=c_1\left[\begin{aligned}\boldsymbol{v_1} \\ 1\end{aligned}\right]+c_2\left[\begin{aligned}\boldsymbol{v_2} \\ 1\end{aligned}\right]+\cdots+c_n\left[\begin{aligned}\boldsymbol{v_n} \\ 1\end{aligned}\right]\]</span> 也就是说，仿射组合可以写成高一维对应齐次坐标的线性组合形式。那么对于一个附加平移的变换 <span class="math display">\[\boldsymbol{y}=A\boldsymbol{x}+\boldsymbol{b}\]</span> 我们可以将其改写成其次坐标的形式 <span class="math display">\[\left[\begin{aligned}\boldsymbol{y} \\ 1\end{aligned}\right]=\left[\begin{aligned}&amp;A &amp;\boldsymbol{b} \\ &amp;0 &amp;1\end{aligned}\right]\cdot\left[\begin{aligned}\boldsymbol{x} \\ 1\end{aligned}\right]\]</span>这也是在计算机图形学中对平移的处理方式。下面一个摘自维基百科的图形象地说明了这一过程</p>
 <center>
-<img src="/blog/images/affinetransofrmation.gif" alt="affinetransofrmation.gif">
+<img src="/blog/images/affinetransofrmation.gif" title="fig:" alt="affinetransofrmation.gif">
 </center>
 <p>　　　　　　　　　　 ## 其它</p>
 <p>　　我们再来看看质心坐标（Barycentric Coordinates），采用质心坐标的好处在于它能够表示每一点受周围点的影响，质心坐标的系数越大，影响越大，因此在线性插值时，可以直接用质心坐标来乘以每一点的值，得出的就是插值后的结果，在计算机图形学中进行渲染时，颜色差值就用这种算法。 　　　　　　　　　　　　　　　　　　 ## 参考文献</p>
@@ -572,7 +572,7 @@ By Z.H. Fu
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
